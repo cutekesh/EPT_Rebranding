@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const EPTAdvantage = () => {
   return (
-    <div>
+    <div className="">
       <p className="text-white">WHY CHOOSE US</p>
       <h2>The EPT Advantage</h2>
       <div className="">
@@ -15,16 +15,20 @@ const EPTAdvantage = () => {
           </Link>
         </div>
         <div className="">
-          <h3>We Build & Deliver</h3>
-          <p>From foundation to finish, we build safely and fast</p>
-          <Link>
+          <h3 className="">We Build & Deliver</h3>
+          <p className="">
+            From foundation to finish, we build safely and fast
+          </p>
+          <Link className="">
             Learn More <img src="" alt="" />
           </Link>
         </div>
         <div className="">
-          <h3>We Equip & Support</h3>
-          <p>Rent or buy equipment, get project support no delays</p>
-          <Link>
+          <h3 className="">We Equip & Support</h3>
+          <p className="">
+            Rent or buy equipment, get project support no delays
+          </p>
+          <Link className="">
             Learn More <img src="" alt="" />
           </Link>
         </div>
