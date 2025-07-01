@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "./App.css";
+import Navbar from "./components/Navbar/Navbar";
+import Hero from "./components/Hero/Hero";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
+     <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
         </Routes>
