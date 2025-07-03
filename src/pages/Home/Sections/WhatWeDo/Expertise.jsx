@@ -135,7 +135,7 @@ const Expertise = () => {
         </div>
       </div>
 
-      <div className="bg-[#008A3F] flex py-[80px] justify-center px-[126px] w-full items-center gap-[48.97px]">
+      <div className="bg-[#008A3F] md:w-full flex py-[80px] justify-center px-[126px] lg:w-full items-center gap-[48.97px]">
         <div className="flex items-center gap-[10.77px]">
           <img src={procon} alt="" />
           <h3 className="text-[27.43px] font-[500] font-Inter text-[#FEFFFF] text-start">
