@@ -8,14 +8,14 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
 });
 
-module.exports = {
-  theme: {
-    extend: {
-      backgroundImage: {
-        plan: "url('/src/assets/plan and design.jpeg')",
-        build: "url('/src/assets/build and deliver.jpeg')",
-        equip: "url('/src/assets/equip and support.jpeg')",
-      },
-    },
-  },
-};
+// module.exports = {
+//   theme: {
+//     extend: {
+//       backgroundImage: {
+//         plan: "url('/src/assets/plan and design.jpeg')",
+//         build: "url('/src/assets/build and deliver.jpeg')",
+//         equip: "url('/src/assets/equip and support.jpeg')",
+//       },
+//     },
+//   },
+// };
