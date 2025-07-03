@@ -15,7 +15,12 @@ const EPTAdvantage = () => {
       </div>
 
       <div className="flex lg:gap-[14.69px] sm:flex-col sm:gap-[12.52px] lg:flex-row">
-        <div className="bg-plan bg-cover text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px]">
+        <div
+          className="bg-plan bg-cover text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px] bg-[url('src/assets/plan and design.jpeg')]"
+          style={{
+            backgroundImage: "",
+          }}
+        >
           <h3 className="text-[#FEFFFF] text-[27.43px] font-[700] font-Inter">
             We Plan & Design
           </h3>
