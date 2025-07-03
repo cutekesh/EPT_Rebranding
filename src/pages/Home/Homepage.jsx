@@ -9,7 +9,7 @@ import Footer from "../../components/Footer/Footer";
 
 const Homepage = () => {
   return (
-    <div>
+    <div className="bg-white">
       <Navbar />
       <Hero />
       <EPTAdvantage />
