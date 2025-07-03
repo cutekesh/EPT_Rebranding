@@ -80,7 +80,7 @@ const Expertise = () => {
           </div>
 
           <div className="flex gap-[22.53px]">
-            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
+            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border-[0.98px] border-[#969797] hover:bg-gray-50">
               <img src={engineers} alt="" />
               <div className="flex flex-col gap-[26.45px]">
                 <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
@@ -97,7 +97,7 @@ const Expertise = () => {
               </div>
             </div>
 
-            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
+            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border-[0.98px] border-[#969797] hover:bg-gray-50">
               <img src={training} alt="" />
               <div className="flex flex-col gap-[26.45px]">
                 <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
@@ -115,7 +115,7 @@ const Expertise = () => {
               </div>
             </div>
 
-            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
+            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px]  border-[0.98px] border-[#969797] hover:bg-gray-50">
               <img src={testing} alt="" />
               <div className="flex flex-col gap-[26.45px]">
                 <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
@@ -135,7 +135,7 @@ const Expertise = () => {
         </div>
       </div>
 
-      <div className="bg-[#008A3F] flex py-[80px] justify-center px-[126px] w-full items-center gap-[48.97px]">
+      <div className="bg-[#008A3F] md:w-full flex py-[80px] justify-center px-[126px] lg:w-full items-center gap-[48.97px]">
         <div className="flex items-center gap-[10.77px]">
           <img src={procon} alt="" />
           <h3 className="text-[27.43px] font-[500] font-Inter text-[#FEFFFF] text-start">
