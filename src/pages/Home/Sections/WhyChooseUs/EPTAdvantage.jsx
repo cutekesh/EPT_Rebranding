@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
+import plan from "../../../../assets/plan and design.jpeg";
+import build from "../../../../assets/build and deliver.jpeg";
+import equip from "../../../../assets/equip and support.jpeg";
 
 const EPTAdvantage = () => {
   return (
@@ -16,9 +19,9 @@ const EPTAdvantage = () => {
 
       <div className="flex lg:gap-[14.69px] sm:flex-col sm:gap-[12.52px] lg:flex-row">
         <div
-          className="bg-plan bg-cover text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px] bg-[url('src/assets/plan and design.jpeg')]"
+          className="bg-cover bg-center rounded-[7.84px] text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px]"
           style={{
-            backgroundImage: "",
+            backgroundImage: `url(${plan})`,
           }}
         >
           <h3 className="text-[#FEFFFF] text-[27.43px] font-[700] font-Inter">
@@ -33,7 +36,12 @@ const EPTAdvantage = () => {
           </Link>
         </div>
 
-        <div className="bg-[url-(/assets/)] text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px]">
+        <div
+          className="bg-[url-(/assets/)] text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px] bg-cover bg-center rounded-[7.84px]"
+          style={{
+            backgroundImage: `url(${build})`,
+          }}
+        >
           <h3 className="text-[27.43px] font-[700] font-Inter">
             We Build & Deliver
           </h3>
@@ -46,7 +54,12 @@ const EPTAdvantage = () => {
           </Link>
         </div>
 
-        <div className="bg-[url-(/assets/)] text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px]">
+        <div
+          className="bg-[url-(/assets/)] text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px] bg-cover bg-center rounded-[7.84px]"
+          style={{
+            backgroundImage: `url(${equip})`,
+          }}
+        >
           <h3 className="text-[27.43px] font-[700] font-Inter">
             We Equip & Support
           </h3>
