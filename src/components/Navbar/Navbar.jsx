@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react"; 
+import React, { useState, useEffect, useRef } from "react";
 import eptLogo from "../../assets/eptLogo.svg";
 import eptUserLogo from "../../assets/eptUserLogo.svg";
 import eptMobileMenu from "../../assets/eptMobileMenu.svg";
-
+import { Link } from "react-router-dom"; // Ensure Link is imported
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,8 +10,9 @@ const Navbar = () => {
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   let servicesDropdownTimeout;
 
-  const homeLinkRef = useRef(null); 
-  const headerRef = useRef(null); 
+  const homeLinkRef = useRef(null);
+  const headerRef = useRef(null);
+  const navRef = useRef(null); // Ref for the nav element
 
   // Handlers for Services dropdown hover behavior
   const handleMouseEnterServices = () => {
@@ -22,58 +23,59 @@ const Navbar = () => {
   const handleMouseLeaveServices = () => {
     servicesDropdownTimeout = setTimeout(() => {
       setIsServicesDropdownOpen(false);
-    }, 150); 
+    }, 150);
   };
 
   // Function to toggle the mobile menu
   const toggleMenu = () => {
-    console.log("toggleMenu called!"); 
+    console.log("toggleMenu called!");
     setIsMenuOpen((prev) => !prev);
   };
 
   // Function to toggle the user menu
   const toggleUserMenu = () => {
-    setIsUserMenuOpen((prev) => !prev); // Use functional update for state
+    setIsUserMenuOpen((prev) => !prev);
   };
 
   // Define your service links here with the exact names from Figma
   const serviceLinks = [
     { name: "Engineering & Project Management", path: "/services/engineering" },
-    {
-      name: "Construction and Marine Logistics",
-      path: "/services/construction",
-    },
+    { name: "Construction and Marine Logistics", path: "/services/construction" },
     { name: "Petroleum Asset Consulting", path: "/services/petroleum" },
     { name: "Well and Production", path: "/services/well-production" },
     { name: "Flow Systems and Technology", path: "/services/flow-systems" },
     { name: "Energy, Gas and Power", path: "/services/energy-gas" },
   ];
 
-  // Effect to dynamically calculate the left offset of the "Home" link
+  // Effect to dynamically calculate the left and top offsets
   useEffect(() => {
-    const calculateHomeOffset = () => {
-      if (homeLinkRef.current && headerRef.current) {
+    const calculateOffsets = () => {
+      if (homeLinkRef.current && headerRef.current && navRef.current) {
         const homeRect = homeLinkRef.current.getBoundingClientRect();
         const headerRect = headerRef.current.getBoundingClientRect();
+        const navRect = navRef.current.getBoundingClientRect();
+
         // Calculate the distance from the header's left edge to the home link's left edge
-        const offset = homeRect.left - headerRect.left;
-        headerRef.current.style.setProperty("--home-offset", `${offset}px`);
+        const homeOffset = homeRect.left - headerRect.left;
+        headerRef.current.style.setProperty("--home-offset", `${homeOffset}px`);
+
+        // Calculate the distance from the header's top edge to the nav's bottom edge
+        const dropdownTopOffset = navRect.bottom - headerRect.top;
+        headerRef.current.style.setProperty("--dropdown-top-offset", `${dropdownTopOffset}px`);
       }
     };
 
-    calculateHomeOffset(); // Calculate on initial render
-    window.addEventListener("resize", calculateHomeOffset); // Recalculate on resize
+    calculateOffsets(); // Calculate on initial render
+    window.addEventListener("resize", calculateOffsets); // Recalculate on resize
 
     return () => {
-      window.removeEventListener("resize", calculateHomeOffset); // Cleanup
+      window.removeEventListener("resize", calculateOffsets); // Cleanup
     };
-  }, []); // Run once on mount
+  }, [homeLinkRef.current, headerRef.current, navRef.current]); // Added refs to dependency array
 
   return (
     <header className="w-full relative" ref={headerRef}>
-      {" "}
-      {/* Added relative and ref */}
-      <nav className="flex justify-between items-center px-4 py-2 xl:py-6 xl:px-30 md:px-6 md:py-6 lg:px-2 bg-white">
+      <nav className="flex justify-between items-center px-4 py-2 xl:py-6 xl:px-30 md:px-6 md:py-6 lg:px-2 bg-white" ref={navRef}>
         {/* Logo */}
         <div>
           <img
@@ -86,52 +88,52 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex">
           <ul className="text-[#333333] flex gap-[30px] xl:gap-[40px] 2xl:gap-[80px]">
-            <li
-              className="text-[16px] font-[500] font-Inter relative group"
-              ref={homeLinkRef}
-            >
-              {" "}
-              {/* Added ref here */}
-              <a
-                href="#home"
-                className="hover:text-[#007A4D] transition-all duration-300"
+            <li className="text-[16px] font-[500] font-Inter relative group" ref={homeLinkRef}>
+              <Link
+                to="/"
+                className="hover:text-[#007A4D] transition-colors duration-300"
               >
                 Home
-              </a>
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+              <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out scale-x-0 origin-left group-hover:scale-x-100"></span>
             </li>
-            {/* Services Link (without the dropdown div inside it anymore) */}
+            {/* Services Link with Hover for Dropdown */}
             <li
               className="text-[16px] font-[500] font-Inter relative group"
               onMouseEnter={handleMouseEnterServices}
               onMouseLeave={handleMouseLeaveServices}
             >
-              <a
-                href="#services-dropdown" // Dummy href for desktop hover
-                onClick={(e) => e.preventDefault()} // Prevent default navigation
-                className="hover:text-[#007A4D] transition-all duration-300"
+              <Link
+                to="/services" // This Link can navigate if clicked directly (e.g., on mobile)
+                onClick={(e) => {
+                  // Prevent default navigation on desktop if dropdown is intended
+                  if (window.innerWidth >= 768) { // md breakpoint and up
+                    e.preventDefault();
+                  }
+                }}
+                className="hover:text-[#007A4D] transition-colors duration-300"
               >
                 Services
-              </a>
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+              <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out scale-x-0 origin-left group-hover:scale-x-100"></span>
             </li>
             <li className="text-[16px] font-[500] font-Inter relative group">
-              <a
-                href="#about"
-                className="hover:text-[#007A4D] transition-all duration-300"
+              <Link
+                to="/about"
+                className="hover:text-[#007A4D] transition-colors duration-300"
               >
                 About Us
-              </a>
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+              <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out scale-x-0 origin-left group-hover:scale-x-100"></span>
             </li>
             <li className="text-[16px] font-[500] font-Inter relative group">
-              <a
-                href="#contact"
-                className="hover:text-[#007A4D] transition-all duration-300"
+              <Link
+                to="/contact"
+                className="hover:text-[#007A4D] transition-colors duration-300"
               >
                 Contact Us
-              </a>
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+              <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out scale-x-0 origin-left group-hover:scale-x-100"></span>
             </li>
           </ul>
         </div>
@@ -158,7 +160,7 @@ const Navbar = () => {
             className="w-[24px] h-[24px] cursor-pointer md:hidden"
             src={eptMobileMenu}
             alt="Mobile Menu"
-            onClick={toggleMenu} // Call toggleMenu here
+            onClick={toggleMenu}
           />
         </div>
 
@@ -167,20 +169,20 @@ const Navbar = () => {
           <div className="absolute top-[60px] right-4 bg-white shadow-lg rounded-lg p-4 z-50 md:hidden">
             <ul className="text-[#333333] flex flex-col gap-4">
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
-                <a href="#home">Home</a>
-                <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
+                <Link to="/">Home</Link>
+                <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out scale-x-0 origin-left group-hover:scale-x-100"></span>
               </li>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
-                <a href="#services">Services</a>
-                <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
+                <Link to="/services">Services</Link> {/* This link will navigate on mobile */}
+                <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out scale-x-0 origin-left group-hover:scale-x-100"></span>
               </li>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
-                <a href="#about">About Us</a>
-                <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
+                <Link to="/about">About Us</Link>
+                <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out scale-x-0 origin-left group-hover:scale-x-100"></span>
               </li>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
-                <a href="#contact">Contact Us</a>
-                <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
+                <Link to="/contact">Contact Us</Link>
+                <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out scale-x-0 origin-left group-hover:scale-x-100"></span>
               </li>
             </ul>
           </div>
@@ -200,19 +202,19 @@ const Navbar = () => {
           </div>
         )}
       </nav>
+
       {/* Dropdown Menu for Services (Desktop Only) - Moved outside of nav, inside header */}
       {/* Positioned absolutely relative to the header */}
       <div
-        className={`absolute top-[calc(125%-1px)] /* Position just below the header */
+        className={`absolute top-[var(--dropdown-top-offset)] /* Dynamically position below nav */
                     left-[var(--home-offset)] /* Dynamically align with Home link */
                     bg-white p-4 rounded-lg shadow-lg z-50
-                    w-[574px] h-[266px] /* Figma specified dimensions */
+                    w-full max-w-[574px] /* Responsive width: full width on smaller, max 574px on larger */
+                    md:w-[calc(100vw-4rem)] /* Example: 100vw minus 2rem padding on each side for md screens */
+                    lg:w-[574px] /* Fixed width for large screens */
+                    h-auto lg:h-[266px] /* Responsive height: auto on smaller, fixed on larger */
                     transition-opacity duration-300 ease-in-out
-                    ${
-                      isServicesDropdownOpen
-                        ? "opacity-100 block"
-                        : "opacity-0 hidden"
-                    }
+                    ${isServicesDropdownOpen ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none'}
                     hidden md:block /* Ensure it's only for desktop */
                     `}
         onMouseEnter={handleMouseEnterServices} // Keep open if mouse enters dropdown
@@ -225,13 +227,13 @@ const Navbar = () => {
               key={index}
               href={link.path}
               className="text-black font-Inter text-[16px] font-[500]
-                         bg-[#E6F3EC] 
-                         w-[257px] h-[52px] 
-                         p-8 rounded-md
-                         flex items-center justify-center text-center 
-                         hover:bg-[#008A3F] hover:text-white 
+                         bg-[#E6F3EC]
+                         lg:w-[257px] /* Responsive width: fixed on larger */
+                         h-[52px]
+                         p-3 rounded-md
+                         flex items-center justify-center text-center
+                         hover:bg-[#008A3F] hover:text-white
                          transition-colors duration-200"
-              // Removed whitespace-nowrap to allow text to wrap
             >
               {link.name}
             </a>
