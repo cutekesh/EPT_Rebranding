@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import eptLogo from "../../assets/eptLogo.svg";
 import eptUserLogo from "../../assets/eptUserLogo.svg";
 import eptMobileMenu from "../../assets/eptMobileMenu.svg";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,39 +32,39 @@ const Navbar = () => {
         <div className="hidden md:flex">
           <ul className="text-[#333333] flex gap-[30px] 2xl:gap-[80px] lg:gap-[40px]">
             <li className="text-[16px] font-[500] font-Inter relative group">
-              <a
-                href="#home"
+              <Link
+                to="/"
                 className="hover:text-[#007A4D] transition-all duration-300"
               >
                 Home
-              </a>
+              </Link>
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
             </li>
             <li className="text-[16px] font-[500] font-Inter relative group">
-              <a
-                href="#about"
+              <Link
+                to="/services"
                 className="hover:text-[#007A4D] transition-all duration-300"
               >
                 Services
-              </a>
+              </Link>
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
             </li>
             <li className="text-[16px] font-[500] font-Inter relative group">
-              <a
-                href="#services"
+              <Link
+                to="/about"
                 className="hover:text-[#007A4D] transition-all duration-300"
               >
                 About Us
-              </a>
+              </Link>
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
             </li>
             <li className="text-[16px] font-[500] font-Inter relative group">
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="hover:text-[#007A4D] transition-all duration-300"
               >
                 Contact Us
-              </a>
+              </Link>
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
             </li>
           </ul>
@@ -100,19 +101,19 @@ const Navbar = () => {
           <div className="absolute top-[60px] right-4 bg-white shadow-lg rounded-lg p-4 z-50 md:hidden">
             <ul className="text-[#333333] flex flex-col gap-4">
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
-                <a href="#home">Home</a>
+                <Link to="/">Home</Link>
                 <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
               </li>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
-                <a href="#about">Services</a>
+                <Link to="/services">Services</Link>
                 <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
               </li>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
-                <a href="#services">About Us</a>
+                <Link to="/about">About Us</Link>
                 <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
               </li>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
-                <a href="#contact">Contact Us</a>
+                <Link to="/contact">Contact Us</Link>
                 <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#007A4D] transition-all duration-300 group-hover:w-full"></span>
               </li>
             </ul>
