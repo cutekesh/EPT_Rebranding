@@ -1,35 +1,58 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import arrow from "../../../../assets/arrow-forward-outline.svg";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const EPTAdvantage = () => {
   return (
-    <div className="">
-      <p className="text-white">WHY CHOOSE US</p>
-      <h2>The EPT Advantage</h2>
-      <div className="">
-        <div className="">
-          <h3 className="">We Plan & Design</h3>
-          <p className="">Smart blueprints for oil, gas, and power systems.</p>
-          <Link className="">
-            Learn More <img src="" alt="" />
+    <div className="py-[80px] px-[97.95px] flex flex-col justify-center items-center lg:gap-[29.38px] sm:gap-[15.97px]">
+      <div className="flex flex-col items-center">
+        <p className="text-black lg:text-[27.43px] font-[400] font-Inter sm:text-[12.75px]">
+          WHY CHOOSE US?
+        </p>
+        <h2 className="lg:text-[#008A3F] lg:text-[54.85px] font-[700] font-IBM-Plex-Sans-Hebrew sm:text-[25.49px] sm:text[#013F1E]">
+          The EPT Advantage
+        </h2>
+      </div>
+
+      <div className="flex lg:gap-[14.69px] sm:flex-col sm:gap-[12.52px] lg:flex-row">
+        <div className="bg-plan bg-cover text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px]">
+          <h3 className="text-[#FEFFFF] text-[27.43px] font-[700] font-Inter">
+            We Plan & Design
+          </h3>
+          <p className="text-[#FEFFFF] text-[15.67px] font-[400] font-Inter">
+            Smart blueprints for oil, gas, and power <br />
+            systems.
+          </p>
+          <Link className="bg-[#F6C200] flex items-center gap-[1.96px] rounded-[7.84px] text-black text-[20px] font-inter font-[600] py-[11.75px] px-[7.84px] h-[47.51px] w-[151.14px]">
+            Learn More <FaArrowRightLong />
           </Link>
         </div>
-        <div className="">
-          <h3 className="">We Build & Deliver</h3>
-          <p className="">
-            From foundation to finish, we build safely and fast
+
+        <div className="bg-[url-(/assets/)] text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px]">
+          <h3 className="text-[27.43px] font-[700] font-Inter">
+            We Build & Deliver
+          </h3>
+          <p className="text-[15.67px] font-[400] font-Inter">
+            From foundation to finish, we build safely <br />
+            and fast
           </p>
-          <Link className="">
-            Learn More <img src="" alt="" />
+          <Link className="bg-[#F6C200] flex items-center gap-[1.96px] rounded-[7.84px] text-black text-[20px] font-inter font-[600] py-[11.75px] px-[7.84px] h-[47.51px] w-[151.14px]">
+            Learn More <FaArrowRightLong />
           </Link>
         </div>
-        <div className="">
-          <h3 className="">We Equip & Support</h3>
-          <p className="">
-            Rent or buy equipment, get project support no delays
+
+        <div className="bg-[url-(/assets/)] text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px]">
+          <h3 className="text-[27.43px] font-[700] font-Inter">
+            We Equip & Support
+          </h3>
+          <p className="text-[15.67px] font-[400] font-Inter">
+            Rent or buy equipment, get project support <br />
+            no delays
           </p>
-          <Link className="">
-            Learn More <img src="" alt="" />
+          <Link className="bg-[#F6C200] flex items-center gap-[1.96px] rounded-[7.84px] text-black text-[20px] font-inter font-[600] py-[11.75px] px-[7.84px] h-[47.51px] w-[151.14px]">
+            Learn More
+            <FaArrowRightLong />
           </Link>
         </div>
       </div>
