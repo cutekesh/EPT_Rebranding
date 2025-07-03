@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
+// import Homepage from "./pages/Home/Homepage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Homepage from './pages/Home/Homepage'
 
 function App() {
   return (

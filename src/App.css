@@ -5,6 +5,6 @@
 @plugin "daisyui";
 
 @theme {
-  --font-family: "IBM Plex Sans", sans-serif;
-  --font-family: "Inter", sans-serif;
+  --font-IBM-Plex: "IBM Plex Sans", sans-serif;
+  --font-Inter: "Inter", sans-serif;
 }
