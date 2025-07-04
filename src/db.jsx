@@ -79,3 +79,34 @@ export const  Testimonials = [
     img: image5
   },
 ]
+
+import Img1 from "./assets/ceo.png"
+import Img2 from "./assets/james uchendu.png"
+import Img3 from "./assets/ohiozua david.png"
+import Img4 from "./assets/funmike.png"
+export const execuctives = [
+  {
+    id: 1,
+    name: "Ifeanyi Ezuka",
+    role: "Chief Executive Officer",
+    image: Img1
+  },
+  {
+    id: 2,
+    name: "James Uchendu",
+    role: "Chief Operating Officer",
+    image: Img2
+  },
+  {
+    id: 3,
+    name: "Ohiozua David Ohijeagbon",
+    role: "General Manager",
+    image: Img3
+  },
+  {
+    id: 4,
+    name: "Funmike Sojinuga",
+    role: "Business Development Manager",
+    image: Img4
+  }
+]

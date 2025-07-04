@@ -77,55 +77,64 @@ const Expertise = () => {
             </div>
           </div>
 
-          <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
-            <img src={engineers} alt="" />
-            <div className="flex flex-col gap-[26.45px]">
-              <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
-                ENGINEERING AND DESIGN
-              </h3>
-              <p className="font-[500] font-inter text-[15.67px] text-[#000101] text-center">
-                We design smart, safe systems that bring oil <br />
-                and gas projects to life-on time, <br />
-                on budget and built to perform efficiently.
-              </p>
-              <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
-                Learn more <FaArrowRightLong />
-              </Link>
+          <div className="flex gap-[22.53px]">
+            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border-[0.98px] border-[#969797] hover:bg-gray-50">
+              <img src={engineers} alt="" />
+              <div className="flex flex-col gap-[26.45px]">
+                <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
+                  ENGINEERING AND DESIGN
+                </h3>
+                <p className="font-[500] font-inter text-[15.67px] text-[#000101] text-center">
+                  We design smart, safe systems that bring oil <br />
+                  and gas projects to life-on time, <br />
+                  on budget and built to perform efficiently.
+                </p>
+                <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
+                  Learn more <FaArrowRightLong />
+                </Link>
+              </div>
+
             </div>
           </div>
 
-          <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
-            <img src={training} alt="" />
-            <div className="flex flex-col gap-[26.45px]">
-              <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
-                TRAINING SERVICES
-              </h3>
-              <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
-                We believe knowledge empowers safe and <br />
-                efficient operations. That’s why we offer <br />
-                hands-on, structured training programs in <br />
-                three core areas.
-              </p>
-              <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
-                Learn more <FaArrowRightLong />
-              </Link>
+
+            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border-[0.98px] border-[#969797] hover:bg-gray-50">
+              <img src={training} alt="" />
+              <div className="flex flex-col gap-[26.45px]">
+                <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
+                  TRAINING SERVICES
+                </h3>
+                <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
+                  We believe knowledge empowers safe and <br />
+                  efficient operations. That’s why we offer <br />
+                  hands-on, structured training programs in <br />
+                  three core areas.
+                </p>
+                <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
+                  Learn more <FaArrowRightLong />
+                </Link>
+              </div>
+
             </div>
           </div>
 
-          <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
-            <img src={testing} alt="" />
-            <div className="flex flex-col gap-[26.45px]">
-              <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
-                WELL TESTING & PRODUCTION
-              </h3>
-              <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
-                Get early results and fast flow. <br />
-                We test your wells and start production <br />
-                quickly, safely and with reliable data.
-              </p>
-              <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
-                Learn more <FaArrowRightLong />
-              </Link>
+
+            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px]  border-[0.98px] border-[#969797] hover:bg-gray-50">
+              <img src={testing} alt="" />
+              <div className="flex flex-col gap-[26.45px]">
+                <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
+                  WELL TESTING & PRODUCTION
+                </h3>
+                <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
+                  Get early results and fast flow. <br />
+                  We test your wells and start production <br />
+                  quickly, safely and with reliable data.
+                </p>
+                <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
+                  Learn more <FaArrowRightLong />
+                </Link>
+              </div>
+
             </div>
           </div>
         </div>
