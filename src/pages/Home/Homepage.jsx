@@ -6,6 +6,7 @@ import Expertise from "./Sections/WhatWeDo/Expertise";
 import ProvenProcess from "./Sections/HowItWorks/ProvenProcess";
 import Testimonials from "./Sections/ClientTestimonials/Testimonials";
 import Footer from "../../components/Footer/Footer";
+import Partners from "./Sections/OurPartners/Partners";
 
 const Homepage = () => {
   return (
@@ -16,6 +17,7 @@ const Homepage = () => {
       <Expertise />
       <ProvenProcess />
       <Testimonials />
+      <Partners/>
       <Footer />
     </div>
   );
