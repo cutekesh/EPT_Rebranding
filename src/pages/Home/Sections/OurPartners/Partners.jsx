@@ -17,7 +17,7 @@ const Partners = () => {
         <div className='w-full xl:w-10/12 mx-auto'>
           <h2 className="text-[#008A3F] text-center text-lg md:text-4xl font-bold">Our Partners</h2>
         <marquee behavior="scroll" direction="left">
-          <div className="hidden md:flex w-full  mx-auto justify-between gap-10 p-2">
+          <div className="hidden md:flex w-full justify-between gap-10 p-2">
             <img src={Image} alt="partners-logo"/>
             <img src={Image2} alt="partners-logo"/>
             <img src={Image3} alt="partners-logo"/>
