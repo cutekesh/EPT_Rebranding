@@ -7,6 +7,7 @@ import ProvenProcess from "./Sections/HowItWorks/ProvenProcess";
 import Testimonials from "./Sections/ClientTestimonials/Testimonials";
 import Footer from "../../components/Footer/Footer";
 import Partners from "./Sections/OurPartners/Partners";
+import Banner from "../../components/Banner/Banner";
 
 const Homepage = () => {
   return (
@@ -15,9 +16,10 @@ const Homepage = () => {
       <Hero />
       <EPTAdvantage />
       <Expertise />
+      <Banner />
       <ProvenProcess />
       <Testimonials />
-      <Partners/>
+      <Partners />
       <Footer />
     </div>
   );
