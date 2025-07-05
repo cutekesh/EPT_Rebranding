@@ -14,68 +14,66 @@ import failcon from "../../../../assets/banner project failure.png";
 
 const Expertise = () => {
   return (
-    <div className="pt-[80px] flex flex-col justify-center items-center gap-[29.38px]">
-      <div className="py-[80px] flex flex-col justify-center items-center gap-[29.38px] ms-[96.95px]">
+    <div className="flex flex-col justify-center items-center gap-[29.38px]">
+      <div className="py-[80px] flex flex-col justify-center items-center gap-[29.38px] w-10/12">
         <p className="text-black lg:text-[27.43px] font-[400] font-Inter sm:text-[12.75px]">
           WHAT WE DO
         </p>
         <h3 className="lg:text-[#008A3F] lg:text-[54.85px] font-[700] font-IBM-Plex-Sans-Hebrew sm:text-[25.49px] sm:text-[#013F1E]">
           End-to-End Energy Expertise
         </h3>
-        <div className="flex flex-col gap-[51.91px]">
-          <div className="flex gap-[22.53px]">
-            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] lg:border lg:border-[0.98px] lg:border-[#969797] hover:bg-gray-50">
-              <img src={concept} alt="" />
-              <div className="flex flex-col gap-[26.45px]">
-                <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
-                  CONCEPT STUDIES
-                </h3>
-                <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
-                  Before any project moves <br />
-                  into full engineering and development,
-                  <br />
-                  we help clients explore their options.
-                </p>
-                <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
-                  Learn more <FaArrowRightLong />
-                </Link>
-              </div>
+        <div className="md:grid md:grid-cols-3 gap-[22.53px] flex overflow-x-auto w-full">
+          <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] lg:border lg:border-[0.98px] lg:border-[#969797] hover:bg-gray-50">
+            <img src={concept} alt="" />
+            <div className="flex flex-col gap-[26.45px]">
+              <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
+                CONCEPT STUDIES
+              </h3>
+              <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
+                Before any project moves <br />
+                into full engineering and development,
+                <br />
+                we help clients explore their options.
+              </p>
+              <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
+                Learn more <FaArrowRightLong />
+              </Link>
             </div>
+          </div>
 
-            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
-              <img src={procurement} alt="" />
-              <div className="flex flex-col gap-[26.45px]">
-                <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
-                  PROCUREMENT & FABRICATION
-                </h3>
-                <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
-                  We handle the full process of sourcing high <br />
-                  quality equipment <br />
-                  and materials and fabricating <br />
-                  components to meet project needs.
-                </p>
-                <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
-                  Learn more <FaArrowRightLong />
-                </Link>
-              </div>
+          <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
+            <img src={procurement} alt="" />
+            <div className="flex flex-col gap-[26.45px]">
+              <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
+                PROCUREMENT & FABRICATION
+              </h3>
+              <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
+                We handle the full process of sourcing high <br />
+                quality equipment <br />
+                and materials and fabricating <br />
+                components to meet project needs.
+              </p>
+              <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
+                Learn more <FaArrowRightLong />
+              </Link>
             </div>
+          </div>
 
-            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
-              <img src={comission} alt="" />
-              <div className="flex flex-col gap-[26.45px]">
-                <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
-                  COMISSIONING & START UP
-                </h3>
-                <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
-                  Before any plant or system goes live <br />
-                  we make sure everything works. <br />
-                  Our team carries out detailed checks <br />
-                  system test, and safety validations.
-                </p>
-                <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
-                  Learn more <FaArrowRightLong />
-                </Link>
-              </div>
+          <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
+            <img src={comission} alt="" />
+            <div className="flex flex-col gap-[26.45px]">
+              <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
+                COMISSIONING & START UP
+              </h3>
+              <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
+                Before any plant or system goes live <br />
+                we make sure everything works. <br />
+                Our team carries out detailed checks <br />
+                system test, and safety validations.
+              </p>
+              <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
+                Learn more <FaArrowRightLong />
+              </Link>
             </div>
           </div>
 
@@ -95,7 +93,10 @@ const Expertise = () => {
                   Learn more <FaArrowRightLong />
                 </Link>
               </div>
+
             </div>
+          </div>
+
 
             <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border-[0.98px] border-[#969797] hover:bg-gray-50">
               <img src={training} alt="" />
@@ -113,7 +114,10 @@ const Expertise = () => {
                   Learn more <FaArrowRightLong />
                 </Link>
               </div>
+
             </div>
+          </div>
+
 
             <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px]  border-[0.98px] border-[#969797] hover:bg-gray-50">
               <img src={testing} alt="" />
@@ -130,6 +134,7 @@ const Expertise = () => {
                   Learn more <FaArrowRightLong />
                 </Link>
               </div>
+
             </div>
           </div>
         </div>

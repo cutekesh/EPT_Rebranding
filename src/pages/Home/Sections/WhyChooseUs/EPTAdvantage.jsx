@@ -1,24 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
+import plan from "../../../../assets/plan and design.jpeg";
+import build from "../../../../assets/build and deliver.jpeg";
+import equip from "../../../../assets/equip and support.jpeg";
 
 const EPTAdvantage = () => {
   return (
-    <div className="py-[80px] px-[97.95px] flex flex-col justify-center items-center lg:gap-[29.38px] sm:gap-[15.97px]">
+    <div className="w-full pt-[80px] px-[97.95px] flex flex-col justify-center items-center md:gap-[29.38px] gap-[15.97px] md:max-w-full">
       <div className="flex flex-col items-center">
-        <p className="text-black lg:text-[27.43px] font-[400] font-Inter sm:text-[12.75px]">
+        <p className="text-black md:text-[27.43px] font-[400] font-Inter text-[12.75px]">
           WHY CHOOSE US?
         </p>
-        <h2 className="lg:text-[#008A3F] lg:text-[54.85px] font-[700] font-IBM-Plex-Sans-Hebrew sm:text-[25.49px] sm:text[#013F1E]">
+        <h2 className="text-[#008A3F] md:text-[54.85px] font-[700] font-IBM-Plex-Sans-Hebrew text-[25.49px] md:text[#013F1E]">
           The EPT Advantage
         </h2>
       </div>
 
-      <div className="flex lg:gap-[14.69px] sm:flex-col sm:gap-[12.52px] lg:flex-row">
+      <div className="flex md:gap-[25px] md:items-center flex-col gap-[12.52px] md:px-4 md:flex-row md:mx-auto md:w-full">
         <div
-          className="bg-plan bg-cover text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px] bg-[url('src/assets/plan and design.jpeg')]"
+          className="bg-cover bg-center rounded-[7.84px] text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px] w-[410.79px]"
           style={{
-            backgroundImage: "",
+            backgroundImage: `url(${plan})`,
           }}
         >
           <h3 className="text-[#FEFFFF] text-[27.43px] font-[700] font-Inter">
@@ -33,7 +36,12 @@ const EPTAdvantage = () => {
           </Link>
         </div>
 
-        <div className="bg-[url-(/assets/)] text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px]">
+        <div
+          className="bg-[url-(/assets/)] text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px] bg-cover bg-center rounded-[7.84px] w-[410.79px]"
+          style={{
+            backgroundImage: `url(${build})`,
+          }}
+        >
           <h3 className="text-[27.43px] font-[700] font-Inter">
             We Build & Deliver
           </h3>
@@ -46,7 +54,12 @@ const EPTAdvantage = () => {
           </Link>
         </div>
 
-        <div className="bg-[url-(/assets/)] text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px]">
+        <div
+          className="bg-[url-(/assets/)] text-start w-[391.79px] h-[477.98px] pt-[289.92px] ps-[19.59px] flex flex-col gap-[19.59px] bg-cover bg-center rounded-[7.84px] w-[410.79px]"
+          style={{
+            backgroundImage: `url(${equip})`,
+          }}
+        >
           <h3 className="text-[27.43px] font-[700] font-Inter">
             We Equip & Support
           </h3>
