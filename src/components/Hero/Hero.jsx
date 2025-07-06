@@ -44,7 +44,7 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
+    }, 5000); 
     return () => clearInterval(interval);
   }, [images.length]);
 
@@ -70,7 +70,6 @@ const Hero = () => {
         ))}
 
         {/* Overlay Content */}
-        {/* px-4 py-2 2xl:px-4 xl:py-6 xl:px-20 md:px-6 md:py-6 lg:px-2 */}
         <div className="absolute inset-0 bg-opacity-50 flex flex-col justify-center items-start text-white px-4 md:px-8 lg:px-2 2xl:px-4 xl:px-20 container mx-auto">
           <h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl /* Fluid responsive font sizing */
@@ -160,16 +159,16 @@ const Hero = () => {
         ></div>
 
         <div className="relative z-10 text-white px-4 py-8 flex flex-col items-center justify-center">
-          {/* Hero Title for Mobile - Responsive font sizes for different mobile screens */}
+          {/* Hero Title for Mobile */}
           <h1
             className="text-3xl  xs:text-2xl sm:text-3xl  font-bold mb-4 leading-tight font-Inter"
             dangerouslySetInnerHTML={{ __html: heroTitleMobile }}
           ></h1>
-          {/* Hero Text for Mobile - Responsive font sizes for different mobile screens */}
+          {/* Hero Text for Mobile  */}
           <p className="font-Inter font-medium text-lg  xs:text-sm sm:text-base leading-relaxed max-w-xs mb-8">
             {heroTextMobile}
           </p>
-          {/* Explore Services Button for Mobile - Responsive sizing and centering */}
+          {/* Explore Services Button for Mobile */}
           <button
             className="group relative inline-flex items-center justify-center
                        bg-[#F6C200] text-black

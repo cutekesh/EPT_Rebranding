@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import eptLogo from "../../assets/eptLogo.svg";
 import eptUserLogo from "../../assets/eptUserLogo.svg";
 import eptMobileMenu from "../../assets/eptMobileMenu.svg";
-import { Link } from "react-router-dom"; // Ensure Link is imported
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,16 +17,15 @@ const Navbar = () => {
 
   // Handlers for Services dropdown hover behavior
   const handleMouseEnterServices = () => {
-    clearTimeout(servicesDropdownTimeoutId.current); // Clear any pending hide timeout
+    clearTimeout(servicesDropdownTimeoutId.current);
     setIsServicesDropdownOpen(true);
   };
 
   const handleMouseLeaveServices = () => {
-    // Set a timeout to hide the dropdown, allowing cursor to move onto the dropdown itself
     servicesDropdownTimeoutId.current = setTimeout(() => {
       setIsServicesDropdownOpen(false);
-      setActiveSubDropdownId(null); // Also close any active sub-dropdown
-    }, 150); // Small delay (e.g., 150ms)
+      setActiveSubDropdownId(null);
+    }, 150);
   };
 
   // Function to toggle the mobile menu
@@ -40,7 +39,6 @@ const Navbar = () => {
     setIsUserMenuOpen((prev) => !prev);
   };
 
-  // Define your service links here with subLinks for nested dropdowns
   const serviceLinks = [
     {
       id: "engineering",
@@ -96,7 +94,6 @@ const Navbar = () => {
     },
   ];
 
-  // Effect to dynamically calculate the left and top offsets
   useEffect(() => {
     const calculateOffsets = () => {
       if (homeLinkRef.current && headerRef.current && navRef.current) {
@@ -104,13 +101,10 @@ const Navbar = () => {
         const headerRect = headerRef.current.getBoundingClientRect();
         const navRect = navRef.current.getBoundingClientRect();
 
-        // Calculate the distance from the header's left edge to the home link's left edge
         const homeOffset = homeRect.left - headerRect.left;
         headerRef.current.style.setProperty("--home-offset", `${homeOffset}px`);
 
-        // Calculate the distance from the header's top edge to the nav's bottom edge
-        // Added 10px to create a gap between the navbar and the dropdown
-        const dropdownTopOffset = navRect.bottom - headerRect.top + 10; // Added +10 for the space
+        const dropdownTopOffset = navRect.bottom - headerRect.top + 10;
         headerRef.current.style.setProperty(
           "--dropdown-top-offset",
           `${dropdownTopOffset}px`
@@ -123,7 +117,7 @@ const Navbar = () => {
 
     return () => {
       window.removeEventListener("resize", calculateOffsets);
-      clearTimeout(servicesDropdownTimeoutId.current); // Cleanup timeout on unmount
+      clearTimeout(servicesDropdownTimeoutId.current);
     };
   }, [homeLinkRef.current, headerRef.current, navRef.current]);
 
@@ -157,7 +151,7 @@ const Navbar = () => {
               </Link>
               <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out scale-x-0 origin-left group-hover:scale-x-100"></span>
             </li>
-            {/* Services Link with Hover for Dropdown */}
+            {/* Services Link */}
             <li
               className="text-[16px] font-[500] font-Inter relative group"
               onMouseEnter={handleMouseEnterServices}
@@ -229,8 +223,8 @@ const Navbar = () => {
 
         {/* Mobile Dropdown Menu (for Home, About Us, Contact Us) */}
         {isMenuOpen && (
-          <div className="absolute top-[60px] right-4 bg-white shadow-lg rounded-lg p-4 z-50 md:hidden">
-            <ul className="text-[#333333] flex flex-col gap-4">
+          <div className="absolute top-[60px] right-1 bg-white shadow-lg rounded-lg p-4 z-50 w-full md:hidden">
+            <ul className="text-[#333333] flex flex-col gap-4 items-center">
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/">Home</Link>
                 <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out scale-x-0 origin-left group-hover:scale-x-100"></span>
@@ -271,44 +265,43 @@ const Navbar = () => {
           className={`absolute top-[var(--dropdown-top-offset)]
                       left-[var(--home-offset)]
                       bg-white p-4 rounded-lg shadow-lg z-50
-                      w-[574px] h-[266px] /* Default for desktop */
-                      md:w-[calc(100vw-4rem)] md:max-w-[450px] md:mx-auto md:h-auto /* Added for tablet */
+                      w-[574px] h-[266px] 
+                      md:w-[calc(100vw-4rem)] md:max-w-[450px] md:mx-auto md:h-auto 
                       transition-opacity duration-300 ease-in-out opacity-100
                       hidden md:block
                       pointer-events-auto
                       `}
-          onMouseEnter={handleMouseEnterServices} // Keep open if mouse enters dropdown
-          onMouseLeave={handleMouseLeaveServices} // Hide if mouse leaves dropdown
+          onMouseEnter={handleMouseEnterServices}
+          onMouseLeave={handleMouseLeaveServices}
         >
           {/* Grid for 2 columns and 3 rows */}
           <div className="grid grid-cols-2 gap-x-4 gap-y-4 pt-3">
             {serviceLinks.map((link, index) => (
               <div key={link.id || index} className="relative group">
                 {" "}
-                {/* Added relative group wrapper for nested dropdown positioning */}
                 <a
                   href={link.path}
                   className="text-black font-Inter text-[16px] font-[500]
                              bg-[#E6F3EC]
-                             w-[257px] h-[55px] /* Default for desktop */
-                             md:w-full /* Added for tablet */
+                             w-[257px] h-[55px] 
+                             md:w-full 
                              p-3 rounded-md
                              flex items-center justify-center text-center
                              hover:bg-[#008A3F] hover:text-white
                              transition-colors duration-200
-                             relative group" /* Added relative group for underline effect */
+                             relative group"
                   onMouseEnter={() => {
-                    clearTimeout(servicesDropdownTimeoutId.current); // Keep main dropdown open
-                    setActiveSubDropdownId(link.id); // Set this link as active for its sub-dropdown
+                    clearTimeout(servicesDropdownTimeoutId.current);
+                    setActiveSubDropdownId(link.id);
                   }}
                   onMouseLeave={() => {
                     servicesDropdownTimeoutId.current = setTimeout(() => {
-                      setActiveSubDropdownId(null); // Hide sub-dropdown after delay
+                      setActiveSubDropdownId(null);
                     }, 150);
                   }}
                 >
                   {link.name}
-                  {/* Underline effect for dropdown buttons - Changed color to #F6C200 */}
+                  {/* Underline effect for dropdown buttons */}
                   <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#F6C200] transition-transform duration-300 ease-out scale-x-0 origin-left group-hover:scale-x-100"></span>
 
                   {/* Nested Dropdown for Engineering & Project Management */}
@@ -319,12 +312,12 @@ const Navbar = () => {
                                  transition-opacity duration-300 ease-in-out opacity-100
                                  pointer-events-auto"
                       onMouseEnter={() => {
-                        clearTimeout(servicesDropdownTimeoutId.current); // Keep main dropdown open
+                        clearTimeout(servicesDropdownTimeoutId.current);
                         setActiveSubDropdownId(link.id); // Keep this sub-dropdown active
                       }}
                       onMouseLeave={() => {
                         servicesDropdownTimeoutId.current = setTimeout(() => {
-                          setActiveSubDropdownId(null); // Hide sub-dropdown after delay
+                          setActiveSubDropdownId(null);
                         }, 150);
                       }}
                     >
