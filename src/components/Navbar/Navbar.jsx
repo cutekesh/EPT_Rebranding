@@ -47,18 +47,53 @@ const Navbar = () => {
       name: "Engineering & Project Management",
       path: "/services/engineering",
       subLinks: [
-        { name: "Front End Engineering Design", path: "/services/engineering/front-end" },
-        { name: "Detailed Engineering Design", path: "/services/engineering/detailed" },
-        { name: "Follow On Engineering and Construction Support", path: "/services/engineering/follow-on" },
-        { name: "Operation Readiness and Commissioning Support", path: "/services/engineering/operation-readiness" },
-        { name: "Project Management", path: "/services/engineering/project-management" },
-      ]
+        {
+          name: "Front End Engineering Design",
+          path: "/services/engineering/front-end",
+        },
+        {
+          name: "Detailed Engineering Design",
+          path: "/services/engineering/detailed",
+        },
+        {
+          name: "Follow On Engineering and Construction Support",
+          path: "/services/engineering/follow-on",
+        },
+        {
+          name: "Operation Readiness and Commissioning Support",
+          path: "/services/engineering/operation-readiness",
+        },
+        {
+          name: "Project Management",
+          path: "/services/engineering/project-management",
+        },
+      ],
     },
-    { id: "construction", name: "Construction and Marine Logistics", path: "/services/construction" },
-    { id: "petroleum", name: "Petroleum Asset Consulting", path: "/services/petroleum" },
-    { id: "well-production", name: "Well and Production", path: "/services/well-production" },
-    { id: "flow-systems", name: "Flow Systems and Technology", path: "/services/flow-systems" },
-    { id: "energy-gas", name: "Energy, Gas and Power", path: "/services/energy-gas" },
+    {
+      id: "construction",
+      name: "Construction and Marine Logistics",
+      path: "/services/construction",
+    },
+    {
+      id: "petroleum",
+      name: "Petroleum Asset Consulting",
+      path: "/services/petroleum",
+    },
+    {
+      id: "well-production",
+      name: "Well and Production",
+      path: "/services/well-production",
+    },
+    {
+      id: "flow-systems",
+      name: "Flow Systems and Technology",
+      path: "/services/flow-systems",
+    },
+    {
+      id: "energy-gas",
+      name: "Energy, Gas and Power",
+      path: "/services/energy-gas",
+    },
   ];
 
   // Effect to dynamically calculate the left and top offsets
@@ -76,7 +111,10 @@ const Navbar = () => {
         // Calculate the distance from the header's top edge to the nav's bottom edge
         // Added 10px to create a gap between the navbar and the dropdown
         const dropdownTopOffset = navRect.bottom - headerRect.top + 10; // Added +10 for the space
-        headerRef.current.style.setProperty("--dropdown-top-offset", `${dropdownTopOffset}px`);
+        headerRef.current.style.setProperty(
+          "--dropdown-top-offset",
+          `${dropdownTopOffset}px`
+        );
       }
     };
 
@@ -91,7 +129,10 @@ const Navbar = () => {
 
   return (
     <header className="w-full relative" ref={headerRef}>
-      <nav className="flex justify-between items-center px-4 py-2 xl:py-6 2xl:px-4 xl:px-20 md:px-6 md:py-6 lg:px-2 bg-white mx-auto container" ref={navRef}>
+      <nav
+        className="flex justify-between items-center px-4 py-2 xl:py-6 2xl:px-4 xl:px-20 md:px-6 md:py-6 lg:px-2 bg-white mx-auto container"
+        ref={navRef}
+      >
         {/* Logo */}
         <div>
           <img
@@ -104,7 +145,10 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex">
           <ul className="text-[#333333] flex gap-[30px] xl:gap-[40px] 2xl:gap-[80px]">
-            <li className="text-[16px] font-[500] font-Inter relative group" ref={homeLinkRef}>
+            <li
+              className="text-[16px] font-[500] font-Inter relative group"
+              ref={homeLinkRef}
+            >
               <Link
                 to="/"
                 className="hover:text-[#007A4D] transition-colors duration-300"
@@ -155,12 +199,16 @@ const Navbar = () => {
 
         {/* Desktop Buttons */}
         <div className="hidden lg:flex text-[#333333] gap-[20px] items-center">
-          <button className="text-[16px] font-[400] bg-[#008A3F] py-[17.5px] px-[24.5px] rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-green-600 hover:text-black">
-            Sign In
-          </button>
-          <button className="text-[16px] font-[400] bg-white py-[17.5px] px-[24.5px] rounded-xl cursor-pointer border-1 font-Inter hover:text-[#007A4D]">
-            Sign Up
-          </button>
+          <Link to="/login">
+            <button className="text-[16px] font-[400] bg-[#008A3F] py-[17.5px] px-[24.5px] rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-green-600 hover:text-black">
+              Sign In
+            </button>
+          </Link>
+          <Link to="/register">
+            <button className="text-[16px] font-[400] bg-white py-[17.5px] px-[24.5px] rounded-xl cursor-pointer border-1 font-Inter hover:text-[#007A4D]">
+              Sign Up
+            </button>
+          </Link>
         </div>
 
         {/* Tablet and mobile icons */}
@@ -169,13 +217,13 @@ const Navbar = () => {
             className="w-[24px] h-[24px] cursor-pointer"
             src={eptUserLogo}
             alt="Auth Button"
-            onClick={() => setIsUserMenuOpen(prev => !prev)}
+            onClick={() => setIsUserMenuOpen((prev) => !prev)}
           />
           <img
             className="w-[24px] h-[24px] cursor-pointer md:hidden"
             src={eptMobileMenu}
             alt="Mobile Menu"
-            onClick={() => setIsMenuOpen(prev => !prev)}
+            onClick={() => setIsMenuOpen((prev) => !prev)}
           />
         </div>
 
@@ -235,7 +283,9 @@ const Navbar = () => {
           {/* Grid for 2 columns and 3 rows */}
           <div className="grid grid-cols-2 gap-x-4 gap-y-4 pt-3">
             {serviceLinks.map((link, index) => (
-              <div key={link.id || index} className="relative group"> {/* Added relative group wrapper for nested dropdown positioning */}
+              <div key={link.id || index} className="relative group">
+                {" "}
+                {/* Added relative group wrapper for nested dropdown positioning */}
                 <a
                   href={link.path}
                   className="text-black font-Inter text-[16px] font-[500]
