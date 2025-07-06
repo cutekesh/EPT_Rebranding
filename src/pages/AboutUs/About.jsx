@@ -6,11 +6,13 @@ import Navbar from "../../components/Navbar/Navbar";
 import Banner from "../../components/Banner/Banner";
 import Energylevel from "../../components/meet us/Energylevel";
 import Covenant from "./Sections/Covenant";
+import WhatWeDo from "./Sections/WhatWeDo";
 
 const About = () => {
   return (
     <div className="bg-white">
       <Navbar />
+      <WhatWeDo />
       <Covenant />
       <Banner />
       <Energylevel />
