@@ -7,168 +7,89 @@ import engineers from "../../../../assets/engineering.jpeg";
 import training from "../../../../assets/training.jpeg";
 import testing from "../../../../assets/well testing.jpeg";
 import { FaArrowRightLong } from "react-icons/fa6";
-import procon from "../../../../assets/banner projects.png";
-import certcon from "../../../../assets/certified engineers.png";
-import supercon from "../../../../assets/super maintenance.png";
-import failcon from "../../../../assets/banner project failure.png";
 
 const Expertise = () => {
+  const services = [
+    {
+      id: 1,
+      image: concept,
+      title: "CONCEPT STUDIES",
+      description:
+        "Before any project moves \ninto full engineering and development,\nwe help clients explore their options.",
+    },
+    {
+      id: 2,
+      image: procurement,
+      title: "PROCUREMENT & FABRICATION",
+      description:
+        "We handle the full process of sourcing high \nquality equipment \nand materials and fabricating \ncomponents to meet project needs.",
+    },
+    {
+      id: 3,
+      image: comission,
+      title: "COMMISSIONING & START UP", // Corrected spelling
+      description:
+        "Before any plant or system goes live \nwe make sure everything works. \nOur team carries out detailed checks \nsystem test, and safety validations.",
+    },
+    {
+      id: 4,
+      image: engineers,
+      title: "ENGINEERING AND DESIGN",
+      description:
+        "We design smart, safe systems that bring oil \nand gas projects to life-on time, \non budget and built to perform efficiently.",
+    },
+    {
+      id: 5,
+      image: training,
+      title: "TRAINING SERVICES",
+      description:
+        "We believe knowledge empowers safe and \nefficient operations. That’s why we offer \nhands-on, structured training programs in \nthree core areas.",
+    },
+    {
+      id: 6,
+      image: testing,
+      title: "WELL TESTING & PRODUCTION",
+      description:
+        "Get early results and fast flow. \nWe test your wells and start production \nquickly, safely and with reliable data.",
+    },
+  ];
+
   return (
-    <div className="pt-[80px] flex flex-col justify-center items-center gap-[29.38px]">
-      <div className="py-[80px] flex flex-col justify-center items-center gap-[29.38px] ms-[96.95px]">
-        <p className="text-black lg:text-[27.43px] font-[400] font-Inter sm:text-[12.75px]">
-          WHAT WE DO
-        </p>
-        <h3 className="lg:text-[#008A3F] lg:text-[54.85px] font-[700] font-IBM-Plex-Sans-Hebrew sm:text-[25.49px] sm:text-[#013F1E]">
-          End-to-End Energy Expertise
-        </h3>
-        <div className="flex flex-col gap-[51.91px]">
-          <div className="flex gap-[22.53px]">
-            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] lg:border lg:border-[0.98px] lg:border-[#969797] hover:bg-gray-50">
-              <img src={concept} alt="" />
-              <div className="flex flex-col gap-[26.45px]">
-                <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
-                  CONCEPT STUDIES
+    <>
+      <div className="md:py-[80px] py-[22.95px] px-[15px] flex flex-col justify-center items-center gap-[5.15px] md:gap-[29.38px] w-full md:max-w-11/12">
+        <div className="flex flex-col items-center">
+          <p className="text-black md:text-[27.43px] font-[400] font-Inter text-[14.75px]">
+            WHAT WE DO
+          </p>
+          <h2 className="md:text-[#008A3F] md:text-[54.85px] text-[16px] font-[700] font-Inter md:font-IBM-Plex-Sans-Hebrew text-[25.49px] text-[#013F1E]">
+            End-to-End Energy Expertise
+          </h2>
+        </div>
+        <div className="md:grid md:grid-cols-3 grid-rows-1 md:gap-[50.53px] gap-[10px] w-full md:max-w-10/12 flex overflow-x-auto">
+          {services.map((service) => (
+            <div className="group text-center md:h-[557.32px] md:w-full w-11/12 rounded-[7.84px] md:border md:border-[0.98px] border-[#969797] flex-shrink-0 md:flex-shrink md:bg-white bg-[#E6F3EC] md:hover:bg-gray-50">
+              <img src={service.image} alt="" className="w-full" />
+              <div className="flex flex-col gap-[26.45px] md:bg-white md:group-hover:bg-gray-50">
+                <h3 className="bg-black font-[700] text-white text-xl sm:text-2xl font-bold font-Inter group-hover:text-[#F6C200]">
+                  {service.title}
                 </h3>
                 <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
-                  Before any project moves <br />
-                  into full engineering and development,
-                  <br />
-                  we help clients explore their options.
+                  {service.description.split("\n").map((line, i) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      {i < service.description.split("\n").length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
                 </p>
                 <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
                   Learn more <FaArrowRightLong />
                 </Link>
               </div>
             </div>
-
-            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
-              <img src={procurement} alt="" />
-              <div className="flex flex-col gap-[26.45px]">
-                <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
-                  PROCUREMENT & FABRICATION
-                </h3>
-                <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
-                  We handle the full process of sourcing high <br />
-                  quality equipment <br />
-                  and materials and fabricating <br />
-                  components to meet project needs.
-                </p>
-                <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
-                  Learn more <FaArrowRightLong />
-                </Link>
-              </div>
-            </div>
-
-            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
-              <img src={comission} alt="" />
-              <div className="flex flex-col gap-[26.45px]">
-                <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
-                  COMISSIONING & START UP
-                </h3>
-                <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
-                  Before any plant or system goes live <br />
-                  we make sure everything works. <br />
-                  Our team carries out detailed checks <br />
-                  system test, and safety validations.
-                </p>
-                <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
-                  Learn more <FaArrowRightLong />
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex gap-[22.53px]">
-            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
-              <img src={engineers} alt="" />
-              <div className="flex flex-col gap-[26.45px]">
-                <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
-                  ENGINEERING AND DESIGN
-                </h3>
-                <p className="font-[500] font-inter text-[15.67px] text-[#000101] text-center">
-                  We design smart, safe systems that bring oil <br />
-                  and gas projects to life-on time, <br />
-                  on budget and built to perform efficiently.
-                </p>
-                <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
-                  Learn more <FaArrowRightLong />
-                </Link>
-              </div>
-            </div>
-
-            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
-              <img src={training} alt="" />
-              <div className="flex flex-col gap-[26.45px]">
-                <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
-                  TRAINING SERVICES
-                </h3>
-                <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
-                  We believe knowledge empowers safe and <br />
-                  efficient operations. That’s why we offer <br />
-                  hands-on, structured training programs in <br />
-                  three core areas.
-                </p>
-                <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
-                  Learn more <FaArrowRightLong />
-                </Link>
-              </div>
-            </div>
-
-            <div className="group text-center h-[557.32px] w-[389.83px] rounded-[7.84px] border border-[0.98px] border-[#969797] hover:bg-gray-50">
-              <img src={testing} alt="" />
-              <div className="flex flex-col gap-[26.45px]">
-                <h3 className="bg-black font-[700] font-Inter text-[23.51px] group-hover:text-[#F6C200]">
-                  WELL TESTING & PRODUCTION
-                </h3>
-                <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
-                  Get early results and fast flow. <br />
-                  We test your wells and start production <br />
-                  quickly, safely and with reliable data.
-                </p>
-                <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
-                  Learn more <FaArrowRightLong />
-                </Link>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-
-      <div className="bg-[#008A3F] md:w-full flex py-[80px] justify-center px-[126px] lg:w-full items-center gap-[48.97px]">
-        <div className="flex items-center gap-[10.77px]">
-          <img src={procon} alt="" />
-          <h3 className="text-[27.43px] font-[500] font-Inter text-[#FEFFFF] text-start">
-            200+ <br />
-            Projects
-          </h3>
-        </div>
-
-        <div className="flex items-center gap-[10.77px] border-l-[0.98px] ps-[73.46px]">
-          <img src={certcon} alt="" />
-          <h3 className="text-[27.43px] font-[500] font-Inter text-[#FEFFFF] text-start">
-            Certified <br />
-            Engineers
-          </h3>
-        </div>
-
-        <div className="flex items-center gap-[10.77px] border-l-[0.98px] ps-[73.46px]">
-          <img src={supercon} alt="" />
-          <h3 className="text-[27.43px] font-[500] font-Inter text-[#FEFFFF] text-start">
-            24/7 Super <br />
-            Maintenance
-          </h3>
-        </div>
-
-        <div className="flex items-center gap-[10.77px] border-l-[0.98px] ps-[73.46px]">
-          <img src={failcon} alt="" />
-          <h3 className="text-[27.43px] font-[500] font-Inter text-[#FEFFFF] text-start">
-            Zero Project <br />
-            Failure
-          </h3>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 
