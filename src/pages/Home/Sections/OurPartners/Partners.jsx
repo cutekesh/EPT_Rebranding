@@ -14,7 +14,8 @@ const Partners = () => {
   return (
     <div className="bg-white">
       <div className="w-11/12 mx-auto py-10 space-y-3">
-        <h2 className="text-[#008A3F] text-center text-lg md:text-4xl font-bold">Our Partners</h2>
+        <div className='w-full xl:w-10/12 mx-auto'>
+          <h2 className="text-[#008A3F] text-center text-lg md:text-4xl font-bold">Our Partners</h2>
         <marquee behavior="scroll" direction="left">
           <div className="hidden md:flex w-full justify-between gap-10 p-2">
             <img src={Image} alt="partners-logo"/>
@@ -28,6 +29,8 @@ const Partners = () => {
             <img src={Image9} alt="partners-logo"/>
           </div>
         </marquee>
+        </div>
+
 
         {/* mobile view */}
         <div className="w-full grid grid-cols-6 md:hidden items-center gap-4 p-2">
