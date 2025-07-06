@@ -56,21 +56,25 @@ const Expertise = () => {
 
   return (
     <>
-      <div className="md:py-[80px] py-[22.95px] px-[15px] flex flex-col justify-center items-center gap-[5.15px] md:gap-[29.38px] w-full md:max-w-11/12">
+      {/* Outermost div now includes max-w-[1440px] mx-auto for consistent alignment */}
+      <div className="md:pt-[80px] pt-[22.95px] flex flex-col justify-center items-center md:gap-[29.38px] gap-[15.97px]  mx-auto mb-10">
         <div className="flex flex-col items-center">
           <p className="text-black md:text-[27.43px] font-[400] font-Inter text-[14.75px]">
             WHAT WE DO
           </p>
-          <h2 className="md:text-[#008A3F] md:text-[54.85px] text-[16px] font-[700] font-Inter md:font-IBM-Plex-Sans-Hebrew text-[25.49px] text-[#013F1E]">
+          <h2 className="md:text-[#008A3F] md:text-[54.85px] font-[700] font-Inter md:font-IBM-Plex-Sans-Hebrew text-[25.49px] text-[#013F1E]">
             End-to-End Energy Expertise
           </h2>
         </div>
-        <div className="md:grid md:grid-cols-3 grid-rows-1 md:gap-[50.53px] gap-[10px] w-full md:max-w-10/12 flex overflow-x-auto">
+        {/* This div now applies the responsive horizontal padding to align content, and removed overflow-x-auto */}
+        {/* Adjusted gap classes to match EPTAdvantage.jsx */}
+        <div className="md:grid md:grid-cols-3 grid-rows-1 md:space-y-0 space-y-6 md:gap-8 md:gap-y-8 w-full px-4 md:px-8 lg:px-2 2xl:px-4 xl:px-20 container mx-auto ">
           {services.map((service) => (
-            <div className="group text-center md:h-[557.32px] md:w-full w-11/12 rounded-[7.84px] md:border md:border-[0.98px] border-[#969797] flex-shrink-0 md:flex-shrink md:bg-white bg-[#E6F3EC] md:hover:bg-gray-50">
-              <img src={service.image} alt="" className="w-full" />
+            <div key={service.id} className="group text-center md:h-[620px] md:w-full w-full rounded-[7.84px]  md:border-[1px] border-[#969797] flex-shrink-0 md:flex-shrink md:bg-white bg-[#E6F3EC] md:hover:bg-gray-50">
+              <img src={service.image} alt={service.title} className="w-full h-" />
               <div className="flex flex-col gap-[26.45px] md:bg-white md:group-hover:bg-gray-50">
-                <h3 className="bg-black font-[700] text-white text-xl sm:text-2xl font-bold font-Inter group-hover:text-[#F6C200]">
+                {/* Removed bg-black from h3 */}
+                <h3 className="  text-xl sm:text-2xl font-bold font-Inter group-hover:text-[#F6C200] bg-black text-white">
                   {service.title}
                 </h3>
                 <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
@@ -81,7 +85,7 @@ const Expertise = () => {
                     </React.Fragment>
                   ))}
                 </p>
-                <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
+                <Link to={`/services/${service.id}`} className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
                   Learn more <FaArrowRightLong />
                 </Link>
               </div>

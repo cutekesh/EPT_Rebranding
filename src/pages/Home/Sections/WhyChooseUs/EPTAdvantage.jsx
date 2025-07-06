@@ -7,17 +7,19 @@ import equip from "../../../../assets/equip and support.jpeg";
 
 const EPTAdvantage = () => {
   return (
-    <div className="md:pt-[80px] pt-[22.95px] md:px-[97.95px] px-[20px] flex flex-col justify-center items-center md:gap-[29.38px] gap-[15.97px] w-full md:max-w-11/12">
+    // Outermost div now only handles max-width and centering, and vertical padding
+    <div className="md:pt-[80px] pt-[22.95px] flex flex-col justify-center items-center md:gap-[29.38px] gap-[15.97px] w-full mx-auto">
       <div className="flex flex-col items-center">
         <p className="text-black md:text-[27.43px] font-[400] font-Inter text-[14.75px]">
           WHY CHOOSE US?
         </p>
-        <h2 className="md:text-[#008A3F] md:text-[54.85px] text-[16px] font-[700] font-Inter md:font-IBM-Plex-Sans-Hebrew text-[25.49px] text-[#013F1E]">
+        <h2 className="md:text-[#008A3F] md:text-[54.85px] font-[700] font-Inter md:font-IBM-Plex-Sans-Hebrew text-[25.49px] text-[#013F1E]">
           The EPT Advantage
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto w-full">
+      {/* This div now applies the responsive horizontal padding to align content */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full px-4 md:px-8 lg:px-2 2xl:px-4 xl:px-20 container mx-auto">
         <div
           className="group relative rounded-lg text-start w-full flex flex-col justify-end"
           style={{
