@@ -11,7 +11,7 @@ const Hero = () => {
   ];
 
   const heroTextDesktop = [
-    "From concept to commissioning, we handle every stage with precision, delivering seamless systems across ower, gas, and infrastructure, built for tomorrow.",
+    "From concept to commissioning, we handle every stage with precision, delivering seamless systems across power, gas, and infrastructure, built for tomorrow.",
     "From cranes to suppressors, we supply, rent, and maintain proven machines, trusted across oilfields and high-impact energy sites, to keep you moving.",
     "Our EPFs and testing units speed up asset monetization, with modular deployment and real-time field data, for smarter outcomes.",
   ];
@@ -50,8 +50,10 @@ const Hero = () => {
 
   return (
     <>
+    <main >
+
       {/* Desktop Hero Section */}
-      <div className="relative w-full overflow-hidden hidden md:block md:h-[500px] xl:h-[650px]">
+      <div className=" relative overflow-hidden hidden md:block md:h-[500px] xl:h-[650px]">
         {/* Background Images */}
         {images.map((image, index) => (
           <div
@@ -68,7 +70,8 @@ const Hero = () => {
         ))}
 
         {/* Overlay Content */}
-        <div className="absolute inset-0 bg-opacity-50 flex flex-col justify-center items-start text-white px-4 md:px-8 lg:px-16 xl:px-32">
+        {/* px-4 py-2 2xl:px-4 xl:py-6 xl:px-20 md:px-6 md:py-6 lg:px-2 */}
+        <div className="absolute inset-0 bg-opacity-50 flex flex-col justify-center items-start text-white px-4 md:px-8 lg:px-2 2xl:px-4 xl:px-20 container mx-auto">
           <h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl /* Fluid responsive font sizing */
                        font-bold mb-4 md:leading-tight font-IBM-Plex
@@ -202,6 +205,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
+    </main>
     </>
   );
 };
