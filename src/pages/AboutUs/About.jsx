@@ -7,6 +7,8 @@ import Banner from "../../components/Banner/Banner";
 import Energylevel from "../../components/meet us/Energylevel";
 import Covenant from "./Sections/Covenant";
 import WhatWeDo from "./Sections/WhatWeDo";
+import Testimonials from "../Home/Sections/ClientTestimonials/Testimonials";
+import Partners from "../Home/Sections/OurPartners/Partners";
 
 const About = () => {
   return (
@@ -20,6 +22,8 @@ const About = () => {
       <div className="bg-[#F9FFFC]">
         <MeetThePeople />
       </div>
+      <Testimonials />
+      <Partners />
       <Footer />
     </div>
   );
