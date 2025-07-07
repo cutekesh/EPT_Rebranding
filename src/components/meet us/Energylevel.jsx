@@ -14,7 +14,7 @@ const Energylevel = () => {
         </div>
       </div>
       
-      <div className="w-full text-4xl font-bold px-4 md:px-0 lg:ml-8 xl:ml-0 flex flex-col gap-2 justify-center">
+      <div className="w-full text-4xl font-bold px-6 md:px-0 lg:ml-8 xl:ml-0 flex flex-col gap-2 justify-center">
         <h2 className="text-[#333333]">Take <span className="text-[#007A4D]">Energy</span> to <br/>the next level</h2>
         <div className="w-29 border-b-2 border-b-[#007A4D]"></div>
       </div>
