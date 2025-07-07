@@ -33,9 +33,9 @@ export const works = [
 
 import image1 from "../src/assets/Engineering Leadership.png"
 import image2 from "../src/assets/project delivery.png"
-import image3 from "../src/assets/project delivery.png"
-import image4 from "../src/assets/project delivery.png"
-import image5 from "../src/assets/project delivery.png"
+import image3 from "../src/assets/concept studies.png"
+import image4 from "../src/assets/local contents.png"
+import image5 from "../src/assets/technical supports.png"
 
 export const  Testimonials = [
   {
