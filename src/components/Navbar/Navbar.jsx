@@ -122,9 +122,9 @@ const Navbar = () => {
   }, [homeLinkRef.current, headerRef.current, navRef.current]);
 
   return (
-    <header className="w-full relative" ref={headerRef}>
+    <header className=" mx-auto relative" ref={headerRef}>
       <nav
-        className="flex justify-between items-center px-4 py-2 xl:py-6 2xl:px-4 xl:px-20 md:px-6 md:py-6 lg:px-2 bg-white mx-auto container"
+        className="flex justify-between items-center  py-2 xl:py-6  md:py-6 bg-white w-11/12 mx-auto container"
         ref={navRef}
       >
         {/* Logo */}

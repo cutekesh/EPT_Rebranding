@@ -7,7 +7,7 @@ import equip from "../../../../assets/equip and support.jpeg";
 
 const EPTAdvantage = () => {
   return (
-    <div className="md:pt-[80px] pt-[22.95px] md:px-[97.95px] px-[20px] flex flex-col justify-center items-center md:items-center mx-auto md:gap-[29.38px] gap-[15.97px] w-full md:max-w-11/12">
+    <div className="md:pt-[80px] pt-[22.95px] md:px-[97.95px] px-[20px] flex flex-col justify-center items-center md:gap-[29.38px] gap-[15.97px] w-full md:max-w-11/12">
       <div className="flex flex-col items-center">
         <p className="text-black md:text-[27.43px] font-[400] font-Inter text-[14.75px]">
           WHY CHOOSE US?
@@ -17,7 +17,7 @@ const EPTAdvantage = () => {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto w-full items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto w-full">
         <div
           className="group relative rounded-lg text-start w-full flex flex-col justify-end"
           style={{
