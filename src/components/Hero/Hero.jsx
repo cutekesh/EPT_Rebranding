@@ -11,7 +11,7 @@ const Hero = () => {
   ];
 
   const heroTextDesktop = [
-    "From concept to commissioning, we handle every stage with precision, delivering seamless systems across ower, gas, and infrastructure, built for tomorrow.",
+    "From concept to commissioning, we handle every stage with precision, delivering seamless systems across power, gas, and infrastructure, built for tomorrow.",
     "From cranes to suppressors, we supply, rent, and maintain proven machines, trusted across oilfields and high-impact energy sites, to keep you moving.",
     "Our EPFs and testing units speed up asset monetization, with modular deployment and real-time field data, for smarter outcomes.",
   ];
@@ -44,14 +44,16 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
+    }, 5000); 
     return () => clearInterval(interval);
   }, [images.length]);
 
   return (
     <>
+    <main >
+
       {/* Desktop Hero Section */}
-      <div className="relative w-full overflow-hidden hidden md:block md:h-[500px] xl:h-[650px]">
+      <div className=" relative overflow-hidden hidden md:block md:h-[500px] xl:h-[650px]">
         {/* Background Images */}
         {images.map((image, index) => (
           <div
@@ -68,7 +70,7 @@ const Hero = () => {
         ))}
 
         {/* Overlay Content */}
-        <div className="absolute inset-0 bg-opacity-50 flex flex-col justify-center items-start text-white px-4 md:px-8 lg:px-16 xl:px-32">
+        <div className="absolute inset-0 bg-opacity-50 flex flex-col justify-center items-start text-white px-4 md:px-8 lg:px-2 2xl:px-4 xl:px-20 container mx-auto">
           <h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl /* Fluid responsive font sizing */
                        font-bold mb-4 md:leading-tight font-IBM-Plex
@@ -157,16 +159,16 @@ const Hero = () => {
         ></div>
 
         <div className="relative z-10 text-white px-4 py-8 flex flex-col items-center justify-center">
-          {/* Hero Title for Mobile - Responsive font sizes for different mobile screens */}
+          {/* Hero Title for Mobile */}
           <h1
             className="text-3xl  xs:text-2xl sm:text-3xl  font-bold mb-4 leading-tight font-Inter"
             dangerouslySetInnerHTML={{ __html: heroTitleMobile }}
           ></h1>
-          {/* Hero Text for Mobile - Responsive font sizes for different mobile screens */}
+          {/* Hero Text for Mobile  */}
           <p className="font-Inter font-medium text-lg  xs:text-sm sm:text-base leading-relaxed max-w-xs mb-8">
             {heroTextMobile}
           </p>
-          {/* Explore Services Button for Mobile - Responsive sizing and centering */}
+          {/* Explore Services Button for Mobile */}
           <button
             className="group relative inline-flex items-center justify-center
                        bg-[#F6C200] text-black
@@ -202,6 +204,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
+    </main>
     </>
   );
 };
