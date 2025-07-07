@@ -56,7 +56,7 @@ const Expertise = () => {
 
   return (
     <>
-      <div className="md:py-[80px] py-[22.95px] px-[15px] flex flex-col justify-center items-center gap-[5.15px] md:gap-[29.38px] w-full md:max-w-11/12">
+      <div className="md:py-[80px] py-[22.95px] px-[15px] flex flex-col justify-center mx-auto items-center gap-[5.15px] md:gap-[29.38px] w-full md:max-w-11/12">
         <div className="flex flex-col items-center">
           <p className="text-black md:text-[27.43px] font-[400] font-Inter text-[14.75px]">
             WHAT WE DO
