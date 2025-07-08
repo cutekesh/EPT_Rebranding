@@ -11,12 +11,14 @@ const Contact = () => {
       <div className="w-11/12 mx-auto py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 container">
       {/* Top-Left: CONTACT US Heading */}
       <div className="lg:col-span-1">
-        <h1 className="text-4xl md:text-5xl font-bold text-[#000101] mb-2 md:mb-0 font-IBM w-[440px] h-[48px] ">CONTACT US</h1>
+        {/* Removed fixed width (w-[440px]) to prevent mobile overflow */}
+        <h1 className="text-4xl md:text-5xl font-bold text-[#000101] mb-2 md:mb-0 font-IBM h-[48px] ">CONTACT US</h1>
       </div>
 
       {/* Top-Right: Introductory Text */}
       <div className="lg:col-span-1">
-        <p className="text-[20px] text-[#000101] mb-4 w-[635px] h-[48px] font-Inter font-normal">
+        {/* The md:w-[635px] will only apply on medium screens and up, so it's fine for mobile */}
+        <p className="text-[20px] text-[#000101] mb-4 md:w-[635px] md:h-[48px] font-Inter font-normal">
           If you have any questions, please feel free to get in touch with us via phone, text, email, the form below, or even social media!
         </p>
       </div>

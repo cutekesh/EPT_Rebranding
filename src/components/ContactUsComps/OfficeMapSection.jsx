@@ -11,7 +11,7 @@ const OfficeMapSection = () => {
 
 
   return (
-    <div className='text-black bg-white p-6 md:p-8 rounded-lg'>
+    <div className='text-black'>
      MAPPPPPPPPPPPP
     </div>
   );
