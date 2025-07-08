@@ -13,7 +13,7 @@ const WhatWeDo = () => {
       {/* What We Do Section */}
       <div className="bg-[#F9FFFC] w-full">
         
-        <section className="px-4 py-12 md:py-16 xl:py-20 2xl:px-4 xl:px-20 md:px-6 lg:px-2 mx-auto container flex flex-col lg:flex-row items-center lg:items-stretch gap-12 min-h-[600px]">
+        <section className=" py-12 md:py-16 mx-auto max-w-11/12 flex flex-col lg:flex-row items-center lg:items-stretch gap-12 min-h-[600px]">
           {/* Left Content: Text and Bullet Points */}
           <div className="lg:w-1/2 text-left order-first lg:order-first">
             <h2 className="text-4xl xl:text-6xl md:text-5xl font-bold text-[#333333] font-IBM w-[100%] mb-2 animate__animated animate__backInLeft">
@@ -95,7 +95,7 @@ const WhatWeDo = () => {
       >
         <div className="absolute inset-0 "></div>
 
-        <div className="container mx-auto text-center relative z-10 text-white px-4 py-2 xl:py-6 2xl:px-4 xl:px-20 md:px-6 md:py-6 lg:px-2">
+        <div className="container mx-auto text-center relative z-10 text-white  py-2 xl:py-6 md:py-6">
           <h2 className="text-4xl md:text-5xl font-bold mb-10 font-IBM">
             Our Clients Enjoy
           </h2>

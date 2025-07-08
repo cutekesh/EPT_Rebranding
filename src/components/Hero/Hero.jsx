@@ -70,7 +70,7 @@ const Hero = () => {
         ))}
 
         {/* Overlay Content */}
-        <div className="absolute inset-0 bg-opacity-50 flex flex-col justify-center items-start text-white mx-auto container w-11/12">
+        <div className="absolute inset-0 bg-opacity-50 flex flex-col justify-center items-start text-white mx-auto w-11/12 container">
           <h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl /* Fluid responsive font sizing */
                        font-bold mb-4 md:leading-tight font-IBM-Plex

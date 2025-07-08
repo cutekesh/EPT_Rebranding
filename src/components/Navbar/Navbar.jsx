@@ -122,7 +122,7 @@ const Navbar = () => {
   }, [homeLinkRef.current, headerRef.current, navRef.current]);
 
   return (
-    <header className=" mx-auto relative" ref={headerRef}>
+    <header className=" relative" ref={headerRef}>
       <nav
         className="flex justify-between items-center  py-2 xl:py-6  md:py-6 bg-white w-11/12 mx-auto container"
         ref={navRef}
@@ -282,12 +282,12 @@ const Navbar = () => {
                 <a
                   href={link.path}
                   className="text-black font-Inter text-[16px] font-[500]
-                             bg-[#E6F3EC]
+                             
                              w-[257px] h-[55px] 
                              md:w-full 
                              p-3 rounded-md
                              flex items-center justify-center text-center
-                             hover:bg-[#008A3F] hover:text-white
+                             hover:bg-[#E6F3EC]
                              transition-colors duration-200
                              relative group"
                   onMouseEnter={() => {
@@ -301,9 +301,7 @@ const Navbar = () => {
                   }}
                 >
                   {link.name}
-                  {/* Underline effect for dropdown buttons */}
-                  <span className="absolute left-0 bottom-0 w-full h-[2px] bg-[#F6C200] transition-transform duration-300 ease-out scale-x-0 origin-left group-hover:scale-x-100"></span>
-
+                 
                   {/* Nested Dropdown for Engineering & Project Management */}
                   {link.subLinks && activeSubDropdownId === link.id && (
                     <div
@@ -326,11 +324,10 @@ const Navbar = () => {
                           key={subIndex}
                           href={subLink.path}
                           className="text-black font-Inter text-[16px] font-[500]
-                                     bg-[#E6F3EC]
+                                     hover:bg-[#E6F3EC]
                                      w-full h-[55px]
                                      p-3 rounded-md
                                      flex items-center justify-center text-center
-                                     hover:bg-[#008A3F] hover:text-white
                                      transition-colors duration-300
                                      relative group"
                         >
