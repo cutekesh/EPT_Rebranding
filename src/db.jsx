@@ -110,3 +110,67 @@ export const execuctives = [
     image: Img4
   }
 ]
+
+import Pic from "../src/assets/client consultation1.png"
+import Pic2 from "../src/assets/site analysis.png"
+import Pic3 from "../src/assets/preliminary design.png"
+import Pic4 from "../src/assets/file documentation.png"
+
+export const FeedProcess = [
+  {
+    id: 1,
+    title: "CLIENT CONSULTATION",
+    desc: "We begin every project with a deep discovery session to align with your goals. This includes scope definition, risk identification, regulatory requirements, and strategic objectives.",
+    img: Pic
+  },
+  {
+    id: 2,
+    title: "SITE ANALYSIS",
+    desc: "Our engineering team conducts detailed site assessments to evaluate technical, environmental, and operational conditions critical to project feasibility and design accuracy.",
+    img: Pic2
+  },
+  {
+    id: 3,
+    title: "PRELIMINARY DESIGN",
+    desc: "We develop early-stage engineering concepts, system layouts, and process models tailored to your plant’s operational needs — optimized for constructability and efficiency.",
+    img: Pic3
+  },
+  {
+    id: 4,
+    title: "FILE DOCUMENTATION",
+    desc: "The preliminary work is transformed into a comprehensive FEED package, including detailed engineering documents and design specifications ready for procurement and execution.",
+    img: Pic4
+  }
+]
+
+import Feed1 from "../src/assets/streamline-freehand_role-playing-games-icon-weapon-equipment-crate-chest.png"
+// import Feed1 from "../src/assets/streamline-freehand_role-playing-games-icon-weapon-equipment-crate-chest.png"
+// import Feed1 from "../src/assets/streamline-freehand_role-playing-games-icon-weapon-equipment-crate-chest.png"
+// import Feed1 from "../src/assets/streamline-freehand_role-playing-games-icon-weapon-equipment-crate-chest.png"
+
+export const Feeds = [
+  {
+    id: 1,
+    title: "Equipment Design",
+    desc: "Equipment layout, sizing, and design specifications",
+    img: Feed1
+  },
+  {
+    id: 2,
+    title: "Equipment Design",
+    desc: "Control logic, safety systems, and instrumentation setup",
+    img: Feed1
+  },
+  {
+    id: 3,
+    title: " Material & Ratings",
+    desc: "Material selection and rated pressure/temperature limits",
+    img: Feed1
+  },
+  {
+    id: 4,
+    title: "Control & Safety",
+    desc: "Utility planning, site tie-ins, and offsite integration",
+    img: Feed1
+  }
+]
