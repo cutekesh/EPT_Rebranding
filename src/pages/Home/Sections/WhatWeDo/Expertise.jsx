@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import concept from "../../../../assets/concept studies.png";
+import concept from "../../../../assets/concept studies.jpeg";
 import procurement from "../../../../assets/procurement.jpeg";
 import comission from "../../../../assets/comissioning.jpeg";
 import engineers from "../../../../assets/engineering.jpeg";
