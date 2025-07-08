@@ -10,7 +10,7 @@ const Contact = () => {
   return (
     <div className="bg-white">
       <Navbar />
-      <div className="w-11/12 mx-auto py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 container">
+      <div className="w-11/12 mx-auto py-20 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 container">
         {/* Top-Left: CONTACT US Heading */}
         <div className="lg:col-span-1">
           {/* Removed fixed width (w-[440px]) to prevent mobile overflow */}
