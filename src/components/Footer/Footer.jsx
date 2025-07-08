@@ -6,7 +6,7 @@ import xlogo from "../../assets/streamline-logos_x-twitter-logo-block.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#013F1E] text-[#FBFEFF] px-6 py-8 lg:py-13">
+    <footer className="bg-[#013F1E] text-[#FBFEFF] py-8 lg:py-13 mx-auto">
       <div className="max-w-11/12 mx-auto">
         <div className="lg:flex lg:justify-between items-start lg:mb-10">
           {/* Logo & Newsletter */}
