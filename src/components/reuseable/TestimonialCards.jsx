@@ -3,7 +3,7 @@ import { useRef } from 'react';
 const TestimonialCards = () => {
   return (
     <div>
-      <div className="w-full mt-26 flex gap-2 scrollbar-hide" ref={useRef(null)}>
+      <div className="w-full mt-16 md:mt-26 flex gap-2 scrollbar-hide" ref={useRef(null)}>
         {Testimonials.map((testimonial) => (
           <div
             className="relative bg-[#F9FFFC] md:bg-white w-full max-w-md rounded-md text-[#000101] border border-[#00000040] text-center py-10 px-2 flex-shrink-0 font-Inter"
@@ -18,7 +18,7 @@ const TestimonialCards = () => {
             </div>
             <div className="flex flex-col-reverse md:flex-col gap-4 py-4">
               <h4 className="text-[#008A3F] text-lg md:text-xl font-bold">{testimonial.title}</h4>
-              <p className="text-sm font-normal">{testimonial.desc}</p>
+              <p className="text-sm">{testimonial.desc}</p>
             </div>
             <div>
               <h6 className="font-bold">{testimonial.name}</h6>
