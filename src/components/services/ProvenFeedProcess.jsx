@@ -4,7 +4,7 @@ const ProvenFeedProcess = () => {
   return (
     <div className="w-11/12 mx-auto mt-4 md:mt-16">
       <div className="text-center space-y-1">
-        <h1 className="text-[#008A3F] text-xl md:text-4xl font-bold">Our Proven FEED Process</h1>
+        <h1 className="text-[#013F1E] text-xl md:text-4xl font-bold">Our Proven FEED Process</h1>
         <p className="text-[#000101] text-sm md:text-base font-Inter font-medium">We take your goals and turn them into a full technical package ready for execution.</p>
       </div>
 
