@@ -33,7 +33,7 @@ export const works = [
 
 import image1 from "../src/assets/Engineering Leadership.png";
 import image2 from "../src/assets/project delivery.png";
-import image3 from "../src/assets/concept studies.jpeg";
+import image3 from "../src/assets/sustainability commitment.png";
 import image4 from "../src/assets/local contents.png";
 import image5 from "../src/assets/technical supports.png";
 
@@ -144,9 +144,9 @@ export const FeedProcess = [
 ];
 
 import Feed1 from "../src/assets/streamline-freehand_role-playing-games-icon-weapon-equipment-crate-chest.png";
-// import Feed1 from "../src/assets/streamline-freehand_role-playing-games-icon-weapon-equipment-crate-chest.png"
-// import Feed1 from "../src/assets/streamline-freehand_role-playing-games-icon-weapon-equipment-crate-chest.png"
-// import Feed1 from "../src/assets/streamline-freehand_role-playing-games-icon-weapon-equipment-crate-chest.png"
+import Feed2 from "../src/assets/logic.png"
+import Feed3 from "../src/assets/material & ratings.png"
+import Feed4 from "../src/assets/control & safety.png"
 
 export const Feeds = [
   {
@@ -159,18 +159,18 @@ export const Feeds = [
     id: 2,
     title: "Equipment Design",
     desc: "Control logic, safety systems, and instrumentation setup",
-    img: Feed1,
+    img: Feed2,
   },
   {
     id: 3,
     title: " Material & Ratings",
     desc: "Material selection and rated pressure/temperature limits",
-    img: Feed1,
+    img: Feed3,
   },
   {
     id: 4,
     title: "Control & Safety",
     desc: "Utility planning, site tie-ins, and offsite integration",
-    img: Feed1,
-  },
+    img: Feed4,
+  }
 ];
