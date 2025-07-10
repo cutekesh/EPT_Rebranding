@@ -133,7 +133,7 @@ const Login = () => {
             type="submit"
             className="w-full bg-[#008A3F] text-white py-2 rounded-md hover:bg-green-700 transition duration-200"
           >
-            Sigm up
+            Sign up
           </button>
         </form>
       </div>
