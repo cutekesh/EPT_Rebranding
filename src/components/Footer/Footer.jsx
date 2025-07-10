@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#013F1E] text-[#FBFEFF] py-8 lg:py-13 mx-auto">
       <div className="max-w-11/12 mx-auto">
-        <div className="lg:flex lg:justify-between items-start lg:mb-10">
+        <div className="lg:flex lg:justify-between items-start lg:mb-10 container">
           {/* Logo & Newsletter */}
           <div>
             <img className="mb-10" src={logo} alt="ept logo" />
