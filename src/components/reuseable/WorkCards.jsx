@@ -7,7 +7,7 @@ const WorkCards = () => {
       {/* mobile to lg view */}
       <div className="w-full flex  gap-4 py-6 overflow-x-auto">
       {works.map((work) => (
-        <div className="xl:hidden flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 h-[419.73px] relative rounded-md"
+        <div className="xl:hidden flex-shrink-0 w-11/12 sm:w-1/2 md:w-1/3 lg:w-1/4 h-[419.73px] relative rounded-md"
           key={work.id}
           style={{
             backgroundImage: work.bg,

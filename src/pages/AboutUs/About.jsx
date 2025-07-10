@@ -15,15 +15,16 @@ const About = () => {
     <div className="bg-white">
       <Navbar />
       <WhatWeDo />
-      <Covenant />
+      <div className="hidden md:block"><Covenant /></div>
+      <div className="block md:hidden -mt-4"><Testimonials /></div>
       <Banner />
       <Energylevel />
       <MeetOurCeo />
-      <div className="bg-[#F9FFFC]">
+      <div className="md:bg-[#F9FFFC]">
         <MeetThePeople />
       </div>
-      <Testimonials />
-      <Partners />
+      <div className="hidden md:block"><Testimonials /></div>
+      <div className="hidden md:block"><Partners /></div>
       <Footer />
     </div>
   );

@@ -3,7 +3,7 @@ import Image from "../../assets/our ceo.png"
 
 const MeetOurCeo = () => {
   return (
-    <div className="w-11/12 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 py-12">
+    <div className="w-11/12 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 mt-6 md:mt-12 ">
       <div className="w-full xl:w-[528px] 2xl:w-[725px] font-Inter">
         <div className="relative">
           <img className="w-full xl:w-[528px] 2xl:w-[725px]" src={Image} alt="ceo-image"/>
@@ -15,9 +15,9 @@ const MeetOurCeo = () => {
         </div>
       </div>
       <div>
-        <div className="text-4xl font-bold space-y-1 font-IBM">
-          <h3 className="text-[#333333]">Meet Our CEO</h3>
-          <div className="border-b-2 border-[#007A4D]  w-28"></div>
+        <div className="text-4xl font-bold space-y-1 -mt-12 md:-mt-0 font-IBM">
+          <h3 className="text-[#013F1E] md:text-[#333333]">Meet Our CEO</h3>
+          <div className="hidden md:block border-b-2 border-[#007A4D]  w-28"></div>
         </div>
         <div className="text-[#000101] text-lg 2xl:text-xl mt-6">
           <div className="flex flex-col gap-4">

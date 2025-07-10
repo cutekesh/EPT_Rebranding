@@ -23,17 +23,17 @@ const GettingFeedRight = () => {
   ]
 
   return (
-    <div className="w-11/12 mx-auto mt-4 mb-12 md:mt-16 md:mb-16 md:py-6">
+    <div className="w-11/12 mx-auto mt-4 mb-12 md:mt-16">
       <div>
-        <div className="font-Inter text-[#000101] text-center space-y-1 md:space-y-2">
+        <div className="font-Inter text-[#000101] text-center flex flex-col md:flex-col-reverse gap-2">
           <p className="font-medium text-sm md:text-base">Every great build starts with a great plan</p>
-          <h1 className="text-[#008A3F] text-xl md:text-4xl font-IBM font-bold">The Impact of Getting FEED Right</h1>
+          <h1 className="text-[#013F1E] text-xl md:text-3xl font-IBM font-bold">The Impact of Getting FEED Right</h1>
         </div>
 
         {/* Desktop view */}
         <div className="hidden md:grid grid-cols-3 gap-4 mt-10">
           {Impact.map((impact) => (
-          <div className="bg-[#E6F3EC] rounded-md py-6 px-4 text-[#000101] font-Inter text-center" key={impact.id}>
+          <div className="border border-[#B6B6B6] rounded-lg py-6 px-4 text-[#000101] font-Inter text-center" key={impact.id}>
             <div className="flex flex-col items-center gap-2">
               <img className="w-22" src={impact.img} alt={impact.title}/>
               <div className="font-IBM font-bold text-3xl">{impact.rate}</div>
