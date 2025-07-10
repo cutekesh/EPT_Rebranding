@@ -23,15 +23,12 @@ const WhatIsFeed = () => {
             (Front End Engineering Design)
           </h4>
         </div>
-        <div className="text-[18px] lg:text-[24px] xl:text-[28px] text-[#000101] mt-4 font-medium space-y-6 ">
-          <p>
-            Front-End Engineering & Design (FEED) is the critical step between
-            your idea and construction.
-          </p>
-          <p>
-            EPT uses its multi-discipline engineering expertise to turn early
-            studies into a detailed project plan that’s ready for execution.
-          </p>
+       
+
+        <div className="mr-6 text-[18px] lg:text-[24px] xl:text-[28px] text-[#000101] mt-4 font-medium space-y-6 lg:mr-16 xl:mr-0 xl:w-[500px] leading-7 ">
+          <p>Front-End Engineering & Design (FEED) is the critical step between your idea and construction.</p>
+          <p className='lg:pr-6'>EPT uses its multi-discipline engineering expertise to turn early studies into a detailed project plan that’s ready for execution.</p>
+
         </div>
       </div>
 

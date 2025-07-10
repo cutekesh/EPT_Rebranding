@@ -5,7 +5,7 @@ import { execuctives } from '../../db'
 const MeetThePeopleCard = () => {
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 py-12 gap-10 2xl:gap-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 py-6 md:py-12 gap-10 2xl:gap-16">
         {execuctives.map((executive) => (
           <div className="relative" key={executive.id}>
                 <img className="w-full" src={executive.image} alt="ceo-image"/>
