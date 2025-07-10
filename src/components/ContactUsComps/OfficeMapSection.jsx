@@ -10,7 +10,6 @@ const OfficeMapSection = () => {
         { name: "Lafayette Office", address: "2904 W Old Spanish Trail New Iberia, LA 70560", lat: 30.0331354, lon: -91.8466409 },
     ];
 
-    // Default to the Lagos Office (first in the array)
     const [selectedOffice, setSelectedOffice] = useState(officeLocations[0]);
 
     return (
@@ -28,10 +27,10 @@ const OfficeMapSection = () => {
                     <div key={index} className="relative"> {/* Wrapper div to position the pointer */}
                         <button
                             onClick={() => setSelectedOffice(office)}
-                            className={`w-full py-2 transition-colors duration-200 
+                            className={`w-full py-2 transition-colors duration-200 hover:cursor-pointer
                                 ${selectedOffice.name === office.name
-                                    ? "bg-[#006A3F] text-white" // Active button styles
-                                    : "bg-[#E6F3EC] text-[#000101] hover:bg-[#006A3F] hover:text-white" // Default button styles
+                                    ? "bg-[#006A3F] text-white" 
+                                    : "bg-[#E6F3EC] text-[#000101] hover:bg-[#006A3F] hover:text-white" 
                                 }`}
                         >
                             {office.name}
@@ -40,7 +39,7 @@ const OfficeMapSection = () => {
                         {selectedOffice.name === office.name && (
                             <div className="absolute top-[-8px] left-1/2 transform -translate-x-1/2
                                             w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent
-                                            border-b-8 border-b-[#006A3F] z-10"> {/* Triangle pointer */}
+                                            border-b-8 border-b-[#006A3F] z-10"> 
                             </div>
                         )}
                     </div>

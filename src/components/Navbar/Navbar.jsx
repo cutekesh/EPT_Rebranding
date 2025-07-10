@@ -2,20 +2,20 @@ import React, { useState, useEffect, useRef } from "react";
 import eptLogo from "../../assets/eptLogo.svg";
 import eptUserLogo from "../../assets/eptUserLogo.svg";
 import eptMobileMenu from "../../assets/eptMobileMenu.svg";
-import { Link, useLocation } from "react-router-dom"; // Import useLocation
+import { Link, useLocation } from "react-router-dom"; 
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
-  const [activeSubDropdownId, setActiveSubDropdownId] = useState(null); // State for which sub-dropdown is active
-  const servicesDropdownTimeoutId = useRef(null); // Use useRef for timeout ID
+  const [activeSubDropdownId, setActiveSubDropdownId] = useState(null); 
+  const servicesDropdownTimeoutId = useRef(null); 
 
   const homeLinkRef = useRef(null);
   const headerRef = useRef(null);
-  const navRef = useRef(null); // Ref for the nav element
+  const navRef = useRef(null); 
 
-  const location = useLocation(); // Get the current location object
+  const location = useLocation(); 
 
   // Handlers for Services dropdown hover behavior
   const handleMouseEnterServices = () => {
@@ -123,13 +123,12 @@ const Navbar = () => {
     };
   }, [homeLinkRef.current, headerRef.current, navRef.current]);
 
-  // Helper function to determine if a link is active
   const isActiveLink = (path) => {
-    // For services, check if the current path starts with /services
+    
     if (path === "/services") {
       return location.pathname.startsWith("/services");
     }
-    // For other links, check for exact match
+    
     return location.pathname === path;
   };
 
@@ -174,7 +173,7 @@ const Navbar = () => {
                 to="/services"
                 onClick={(e) => {
                   if (window.innerWidth >= 768) {
-                    e.preventDefault(); // Prevent immediate navigation on desktop to allow dropdown hover
+                    e.preventDefault();
                   }
                 }}
                 className="hover:text-[#007A4D] transition-colors duration-300"
@@ -236,26 +235,22 @@ const Navbar = () => {
           />
         </div>
 
-        {/* Mobile Dropdown Menu (for Home, About Us, Contact Us) */}
+        {/* Mobile Dropdown Menu  */}
         {isMenuOpen && (
           <div className="absolute top-[60px] right-1 bg-white shadow-lg rounded-lg p-4 z-50 w-full md:hidden">
             <ul className="text-[#333333] flex flex-col gap-4 items-center">
-              {/* Mobile Home Link */}
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/">Home</Link>
                 <span className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${isActiveLink("/") ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}></span>
               </li>
-              {/* Mobile Services Link */}
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/services">Services</Link>
                 <span className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${isActiveLink("/services") ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}></span>
               </li>
-              {/* Mobile About Us Link */}
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/about">About Us</Link>
                 <span className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${isActiveLink("/about") ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}></span>
               </li>
-              {/* Mobile Contact Us Link */}
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/contact">Contact Us</Link>
                 <span className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${isActiveLink("/contact") ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}></span>
@@ -293,12 +288,12 @@ const Navbar = () => {
           onMouseEnter={handleMouseEnterServices}
           onMouseLeave={handleMouseLeaveServices}
         >
-          {/* Grid for 2 columns and 3 rows */}
+          
           <div className="grid grid-cols-2 gap-x-4 gap-y-4 pt-3">
             {serviceLinks.map((link, index) => (
               <div key={link.id || index} className="relative group">
                 {" "}
-                <Link // Changed from <a> to <Link> for React Router
+                <Link 
                   to={link.path}
                   className="text-black font-Inter text-[16px] font-[500]
                              
@@ -330,7 +325,7 @@ const Navbar = () => {
                                  pointer-events-auto"
                       onMouseEnter={() => {
                         clearTimeout(servicesDropdownTimeoutId.current);
-                        setActiveSubDropdownId(link.id); // Keep this sub-dropdown active
+                        setActiveSubDropdownId(link.id); 
                       }}
                       onMouseLeave={() => {
                         servicesDropdownTimeoutId.current = setTimeout(() => {
@@ -339,7 +334,7 @@ const Navbar = () => {
                       }}
                     >
                       {link.subLinks.map((subLink, subIndex) => (
-                        <Link // Changed from <a> to <Link> for React Router
+                        <Link 
                           key={subIndex}
                           to={subLink.path}
                           className="text-black font-Inter text-[16px] font-[500]
