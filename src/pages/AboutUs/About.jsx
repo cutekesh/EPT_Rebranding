@@ -7,19 +7,24 @@ import Banner from "../../components/Banner/Banner";
 import Energylevel from "../../components/meet us/Energylevel";
 import Covenant from "./Sections/Covenant";
 import WhatWeDo from "./Sections/WhatWeDo";
+import Testimonials from "../Home/Sections/ClientTestimonials/Testimonials";
+import Partners from "../Home/Sections/OurPartners/Partners";
 
 const About = () => {
   return (
     <div className="bg-white">
       <Navbar />
       <WhatWeDo />
-      <Covenant />
+      <div className="hidden md:block"><Covenant /></div>
+      <div className="block md:hidden -mt-4"><Testimonials /></div>
       <Banner />
       <Energylevel />
       <MeetOurCeo />
-      <div className="bg-[#F9FFFC]">
+      <div className="md:bg-[#F9FFFC]">
         <MeetThePeople />
       </div>
+      <div className="hidden md:block"><Testimonials /></div>
+      <div className="hidden md:block"><Partners /></div>
       <Footer />
     </div>
   );

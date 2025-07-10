@@ -50,7 +50,7 @@ const Hero = () => {
 
   return (
     <>
-    <main >
+    <main className="">
 
       {/* Desktop Hero Section */}
       <div className=" relative overflow-hidden hidden md:block md:h-[500px] xl:h-[650px]">
@@ -58,7 +58,7 @@ const Hero = () => {
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
+            className={`absolute inset-0 transition-opacity duration-1000 w-full ${
               index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
             style={{
@@ -70,7 +70,7 @@ const Hero = () => {
         ))}
 
         {/* Overlay Content */}
-        <div className="absolute inset-0 bg-opacity-50 flex flex-col justify-center items-start text-white px-4 md:px-8 lg:px-2 2xl:px-4 xl:px-20 container mx-auto">
+        <div className="absolute inset-0 bg-opacity-50 flex flex-col justify-center items-start text-white mx-auto w-11/12 container">
           <h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl /* Fluid responsive font sizing */
                        font-bold mb-4 md:leading-tight font-IBM-Plex
