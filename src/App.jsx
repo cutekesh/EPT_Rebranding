@@ -7,6 +7,8 @@ import Services from "./pages/Services/Services";
 import Contact from "./pages/Mail/Contact";
 import Login from "./pages/Log/Login";
 import Register from "./pages/Secure/Register";
+import ResetPassword from "./pages/Reset/ResetPassword";
+import ForgotPassword from "./pages/Reset/ForgotPassword";
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
-          <Route  path="/register" element={<Register />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/passwordreset" element={<ResetPassword />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
         </Routes>
       </BrowserRouter>
     </>
