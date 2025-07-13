@@ -2,10 +2,11 @@ import React from 'react'
 import { FeedProcess } from '../../db'
 const ProvenFeedProcess = () => {
   return (
-    <div className="w-11/12 mx-auto mt-4 md:mt-16">
-      <div className="text-center space-y-1">
-        <h1 className="text-[#013F1E] text-xl md:text-3xl font-bold">Our Proven FEED Process</h1>
-        <p className="text-[#000101] text-sm md:text-base font-Inter font-medium">We take your goals and turn them into a full technical package ready for execution.</p>
+    <div className='w-full'>
+      <div className="w-11/12 mx-auto mt-4 md:mt-16 container">
+      <div className="text-center space-y-5">
+        <h1 className="text-[#013F1E] text-[31px]  lg:text-5xl font-bold">Our Proven FEED Process</h1>
+        <p className="text-[#000101] md:text-[28px] font-Inter font-normal">We take your goals and turn them into a full technical package ready for execution.</p>
       </div>
 
       {/* cards */}
@@ -49,6 +50,7 @@ const ProvenFeedProcess = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   )
 }
