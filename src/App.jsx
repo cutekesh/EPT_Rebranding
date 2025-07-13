@@ -9,21 +9,24 @@ import Login from "./pages/Log/Login";
 import Register from "./pages/Secure/Register";
 import ResetPassword from "./pages/Reset/ResetPassword";
 import ForgotPassword from "./pages/Reset/ForgotPassword";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/passwordreset" element={<ResetPassword />} />
-          <Route path="/forgotpassword" element={<ForgotPassword />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/passwordreset" element={<ResetPassword />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </>
   );
