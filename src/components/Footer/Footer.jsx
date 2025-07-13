@@ -7,8 +7,8 @@ import xlogo from "../../assets/streamline-logos_x-twitter-logo-block.png";
 const Footer = () => {
   return (
     <footer className="bg-[#013F1E] text-[#FBFEFF] py-8 lg:py-13 mx-auto">
-      <div className="max-w-11/12 mx-auto">
-        <div className="lg:flex lg:justify-between items-start lg:mb-10 container">
+      <div className="w-11/12 mx-auto container">
+        <div className="lg:flex lg:justify-between items-start lg:mb-10">
           {/* Logo & Newsletter */}
           <div>
             <img className="mb-10" src={logo} alt="ept logo" />
@@ -20,7 +20,7 @@ const Footer = () => {
               </p>
               <form className="relative lg:mb-9">
                 <input
-                  className="bg-[#FEF9E6] w-75 md:h-12 lg:rounded-lg placeholder:text-[#969797] lg:placeholder:text-[15px] px-2 lg:pb-2 lg:pt-1 focus:outline-none text-black"
+                  className="bg-white w-75 md:h-12 lg:rounded-lg placeholder:text-[#969797] lg:placeholder:text-[15px] px-2 lg:pb-2 lg:pt-1 focus:outline-none text-black"
                   type="email"
                   name="email"
                   id="email"
@@ -41,15 +41,15 @@ const Footer = () => {
                 </p>
 
                 <div className="flex lg:gap-1 items-center">
-                  <img className="w-6" src={facebooklogo} alt="facebook logo" />
+                  <img className="w-6 hover:cursor-pointer" src={facebooklogo} alt="facebook logo" />
 
                   <img
-                    className="w-6"
+                    className="w-6 hover:cursor-pointer"
                     src={instagramlogo}
                     alt="instagram logo"
                   />
 
-                  <img className="w-6" src={xlogo} alt="x logo" />
+                  <img className="w-6 hover:cursor-pointer" src={xlogo} alt="x logo" />
                 </div>
               </div>
             </div>
@@ -141,7 +141,7 @@ const Footer = () => {
             </p>
             <form className="relative max-w-[326px]">
               <input
-                className="bg-[#FEF9E6] w-75 h-11 rounded-l-lg placeholder:text-[#969797] placeholder:text-[16px] px-3
+                className="bg-white w-75 h-11 rounded-l-lg placeholder:text-[#969797] placeholder:text-[16px] px-3
               focus:outline-none text-black"
                 type="email"
                 name="email"
