@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-// import { useAuth } from "../../context/AuthContext"; // Uncomment when ready
+// import { useAuth } from "../../context/AuthContext"; // 
 import Workers from "../../assets/image 107.png";
 import Logo from "../../assets/image 2.svg";
 import { FaRegEyeSlash } from "react-icons/fa6";
@@ -13,7 +13,7 @@ const Login = () => {
   const [error, setError] = useState({});
   const navigate = useNavigate();
 
-  // const { login } = useAuth(); // Uncomment when you have AuthContext
+  // const { login } = useAuth(); // 
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -54,7 +54,7 @@ const Login = () => {
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
       <div>
-        <img src={Workers} alt="Workers" className="w-full h-full object-cover rounded-md hidden lg:block" />
+        <img src={Workers} alt="Workers" className="w-full h-full object-cover hidden lg:block" />
       </div>
 
       <div className="flex items-center justify-center px-4 sm:px-8  bg-white">
