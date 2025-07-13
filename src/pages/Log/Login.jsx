@@ -16,7 +16,7 @@ const Login = () => {
   const { login, googleLogin } = useAuth();
 
   const handleTogglePassword = () => {
-    setShowPassword((prev) => !prev);
+    setShowPassword(!showPassword);
   };
 
   const handleGoogleLoginClick = async () => {
@@ -89,11 +89,11 @@ const Login = () => {
         <img
           src={Workers}
           alt="Workers"
-          className="w-full h-full object-cover rounded-md"
+          className="w-full h-full object-cover rounded-md hidden lg:block"
         />
       </div>
 
-      <div className="flex items-center justify-center px-4 sm:px-8 md:px-16 bg-white">
+      <div className="flex items-center justify-center px-4 sm:px-8  bg-white">
         <div className="w-full max-w-md sm:max-w-lg ">
           <img
             src={Logo}
@@ -102,9 +102,10 @@ const Login = () => {
           />
 
           <div className="mb-8">
-            <h1 className="text-[22px] sm:text-[26px] lg:text-[28px] font-semibold">
+            <h1 className="text-[22px] sm:text-[26px] lg:text-[28px] font-semibold text-[#000101]">
               Welcome Back
             </h1>
+
             <p className="text-[#000000] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px]">
               Sign in to your account
             </p>
@@ -115,10 +116,10 @@ const Login = () => {
               <p className="text-red-500 text-sm">{error.general}</p>
             )}
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 mb-2">
               <label
                 htmlFor="email"
-                className="text-[15px] sm:text-[16px] font-bold uppercase"
+                className="text-[15px] sm:text-[16px] font-bold uppercase text-[#000101]"
               >
                 Email
               </label>
@@ -129,7 +130,7 @@ const Login = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your email"
-                className="text-[#2632388F] bg-[#E6F3EC] p-2 lg:px-2 lg:py-4 rounded-md outline-none"
+                className="text-[#2632388F] bg-[#E6F3EC] p-2 lg:px-2 md:py-4 rounded-md outline-none"
               />
               {error.email && (
                 <p className="text-red-500 text-sm">{error.email}</p>
@@ -139,7 +140,7 @@ const Login = () => {
             <div className="flex flex-col gap-2 relative">
               <label
                 htmlFor="password"
-                className="text-[15px] sm:text-[16px] font-bold uppercase"
+                className="text-[15px] sm:text-[16px] font-bold uppercase text-[#000101]"
               >
                 Password
               </label>
@@ -150,13 +151,13 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Password"
-                className="text-[#2632388F] bg-[#E6F3EC] p-2 lg:px-2 lg:py-4 rounded-md outline-none"
+                className="text-[#2632388F] bg-[#E6F3EC] p-2  lg:px-2 md:py-4 rounded-md outline-none"
               />
               <button
                 type="button"
                 aria-label="Toggle password visibility"
                 onClick={handleTogglePassword}
-                className="absolute right-4 translate-y-3 w-[20px] rounded-full bottom-8"
+                className="absolute right-4 translate-y-3 w-[20px] rounded-full bottom-6 lg:bottom-8 "
               >
                 {showPassword ? <MdOutlineRemoveRedEye /> : <FaRegEyeSlash />}
               </button>
@@ -165,24 +166,36 @@ const Login = () => {
               )}
             </div>
 
+
             {/* Ensure this link points to the correct route, e.g., /forgot-password */}
             <Link
               to="/forgot-password"
-              className="text-[14px] sm:text-[16px] font-medium text-end block"
+              className="text-[14px] sm:text-[16px] font-medium text-end block text-end text-[#000000]"
             >
               Forgot Password?
             </Link>
+            <label htmlFor="remember" className="flex items-center justify-center  gap-2 text-[#000101] my-6 font-normal">
+  <input type="checkbox" id="remember" />
+  <p className="text-[#000101] text-[14px]  md:text-[18px]">
+    I agree to the 
+    <span className="text-[#008A3F]"> terms of services </span> 
+    and 
+    <span className="text-[#008A3F]"> privacy policies</span>
+  </p>
+</label>
 
-            <div className="flex flex-col gap-2">
+            
+                        <div className="flex flex-col gap-2">
               <button
                 type="submit"
-                className="bg-[#008A3F] text-white p-2 lg:px-2 lg:py-4 rounded-md font-semibold hover:bg-[#006f2d] transition duration-300"
+                className="bg-[#008A3F] text-white p-2 lg:px-2 lg:py-4 rounded-md font-semibold hover:bg-[#006f2d] transition duration-300 cursor-pointer mt-2"
               >
                 Sign In
               </button>
             </div>
+            
 
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-2 my-4">
               <span className="w-full h-[1px] bg-[#000000]"></span>
               <p className="text-[#181A20D1] text-[14px] sm:text-[16px]">or</p>
               <span className="w-full h-[1px] bg-[#000000]"></span>
@@ -191,15 +204,16 @@ const Login = () => {
             <button
               type="button" // Important: change to type="button" to prevent form submission
               onClick={handleGoogleLoginClick}
-              className="flex items-center justify-center gap-4 border border-black py-3 rounded-md"
+              className="flex items-center justify-center gap-4 border border-black py-3 rounded-md mb-2 cursor-pointer"
             >
               <img alt="google icon" src={Google} />
-              <p>Continue with Google</p>
+              <p className="text-[#000101]" >Continue with Google</p>
             </button>
 
             <div className="text-center font-medium lg:text-[20px]">
-              <span>Don't have an account? </span>
+              <span className="text-[#000101]">Don't have an account? </span>
               <Link to="/register" className="text-[#008A3F] hover:underline">
+
                 Sign up
               </Link>
             </div>
