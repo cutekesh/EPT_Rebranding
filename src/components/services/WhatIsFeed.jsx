@@ -15,7 +15,8 @@ const WhatIsFeed = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto grid grid-cols-1  lg:grid-cols-2 justify-center lg:mb-16 gap-2">
+   <div className='w-full md:my-10 mt-5 mb-10 lg:my-30'> 
+     <div className="w-11/12 mx-auto container grid grid-cols-1  lg:grid-cols-2 justify-center lg:mb-16 gap-2">
       <div className="space-y-4 lg:space-y-8 lg:flex flex-col justify-center">
         <div className="font-bold text-[#013F1E]">
           <h2 className="text-[31px]  lg:text-5xl">What is FEED?</h2>
@@ -80,6 +81,7 @@ const WhatIsFeed = () => {
         </form>
       </div>
     </div>
+   </div>
   );
 };
 
