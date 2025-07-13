@@ -46,7 +46,10 @@ import React, { useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
+import { useAuth } from '../../context/AuthContext';
+import SignupImg from '../../assets/signup img.png';
+import Logo from '../../assets/eptLogo.svg';
+import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
@@ -64,24 +67,39 @@ const Register = () => {
   } = useForm();
 
   const password = watch("password");
+  const { signup, googleLogin } = useAuth();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     setLoading(true);
     setServerError("");
     setSuccessMessage("");
-    
-    try {
-      const response = await axios.post("/api/auth/register", {
-        fullName: data.fullName,
-        email: data.email,
-        password: data.password,
-      });
 
-      setSuccessMessage(response.data.message || "Registration successful!");
+    try {
+      // Ensure signup returns a boolean or throws on error
+      await signup(data.fullName, data.email, data.password);
+      setSuccessMessage("Registration successful!");
       reset();
-    } catch (error) {
-      const message = error.response?.data?.message || "Something went wrong. Please try again.";
-      setServerError(message);
+      setTimeout(() => navigate('/login'), 2000);
+    } catch (err) {
+      setServerError(err?.response?.data?.message || err?.message || "Registration failed. Please try again.");
+    }
+
+    setLoading(false);
+  };
+
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    setServerError("");
+    setSuccessMessage("");
+
+    try {
+      const success = await googleLogin();
+      if (success) {
+        navigate("/dashboard"); // adjust route as needed
+      }
+    } catch (err) {
+      setServerError(err?.message || "Google login failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -91,13 +109,13 @@ const Register = () => {
     <div className="bg-white">
       <div className="w-full min-h-screen lg:grid lg:grid-cols-2">
         <div className="hidden lg:block">
-          <img className="w-full h-full" src="/src/assets/signup img.png" alt="signup" />
+          <img className="w-full h-full object-cover" src={SignupImg} alt="Signup banner" />
         </div>
 
         <div className="flex flex-col justify-center w-full">
-          <div className="hidden lg:block w-24 mx-auto lg:mt-8">
-            <img src="/src/assets/eptLogo.svg" alt="logo" />
-          </div>
+          <Link to="/" className="hidden lg:block w-24 mx-auto lg:mt-8">
+            <img src={Logo} alt="EPT Logo" />
+          </Link>
 
           <div className="lg:mt-10 w-11/12 lg:w-9/12 mx-auto mb-8 lg:mr-20 font-Inter text-[#000101] text-xs md:text-sm">
             <div className="space-y-2">
@@ -105,8 +123,9 @@ const Register = () => {
               <p>Fill in your details below to become a member</p>
             </div>
 
-            <form id="signup" onSubmit={handleSubmit(onSubmit)} className="mt-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
               <div className="flex flex-col gap-4">
+
                 {/* Full Name */}
                 <div className="flex flex-col gap-1">
                   <label className="hidden lg:block font-bold">FULL NAME</label>
@@ -120,7 +139,7 @@ const Register = () => {
                     })}
                     type="text"
                     placeholder="Enter your name*"
-                    className={`w-full rounded-md p-2 pr-10 border transition-all duration-200 ${
+                    className={`w-full rounded-md p-2 pr-10 border ${
                       errors.fullName ? 'border-red-700' : 'border-[#BABCD4]'
                     } focus:border-[#008A3F] focus:outline-none`}
                   />
@@ -142,7 +161,7 @@ const Register = () => {
                     })}
                     type="email"
                     placeholder="Enter your email*"
-                    className={`w-full rounded-md p-2 pr-10 border transition-all duration-200 ${
+                    className={`w-full rounded-md p-2 pr-10 border ${
                       errors.email ? 'border-red-700' : 'border-[#BABCD4]'
                     } focus:border-[#008A3F] focus:outline-none`}
                   />
@@ -164,7 +183,7 @@ const Register = () => {
                     })}
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
-                    className={`w-full rounded-md p-2 pr-10 border transition-all duration-200 ${
+                    className={`w-full rounded-md p-2 pr-10 border ${
                       errors.password ? 'border-red-700' : 'border-[#BABCD4]'
                     } focus:border-[#008A3F] focus:outline-none`}
                   />
@@ -189,7 +208,7 @@ const Register = () => {
                     })}
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm your password"
-                    className={`w-full rounded-md p-2 pr-10 border transition-all duration-200 ${
+                    className={`w-full rounded-md p-2 pr-10 border ${
                       errors.confirmPassword ? 'border-red-700' : 'border-[#BABCD4]'
                     } focus:border-[#008A3F] focus:outline-none`}
                   />
@@ -209,7 +228,7 @@ const Register = () => {
                   <input
                     type="checkbox"
                     {...register('terms', { required: 'You must agree to the terms' })}
-                    className={`accent-[#008A3F] bg-white w-4 h-4 rounded-sm border transition-all duration-200 ${
+                    className={`accent-[#008A3F] bg-white w-4 h-4 rounded-sm border ${
                       errors.terms ? 'border-red-500' : 'border-gray-300'
                     } focus:ring-2 focus:ring-[#008A3F] focus:outline-none`}
                   />
@@ -231,7 +250,7 @@ const Register = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`rounded-md text-white w-full py-2 cursor-pointer transition-all duration-200 ${
+                  className={`rounded-md text-white w-full py-2 transition-all ${
                     loading ? 'bg-gray-400' : 'bg-[#008A3F]'
                   }`}
                 >
@@ -244,15 +263,20 @@ const Register = () => {
                 </div>
 
                 <button
-                  type="button"
-                  className="w-full flex gap-2 items-center justify-center border border-[#BABCD4] rounded-md py-2 cursor-not-allowed hover:opacity-90">
-                  <FcGoogle size={16} />
-                  Continue with Google
-                </button>
+                type="button"
+                onClick={handleGoogleLogin}
+                disabled={loading}
+                className={`w-full flex gap-2 items-center justify-center border border-[#BABCD4] rounded-md py-2 transition-all ${
+                  loading ? "bg-gray-200 cursor-not-allowed" : "hover:opacity-90"
+                }`}
+              >
+                <FcGoogle size={16} />
+                {loading ? "Please wait..." : "Continue with Google"}
+              </button>
 
-                <div className="text-center">
-                  Already have an account? <span className="text-[#008A3F] cursor-pointer">Sign In</span>
-                </div>
+                <Link to="/Login" className="text-center">
+                  Already have an account? <span className="text-[#008A3F]">Sign In</span>
+                </Link>
               </div>
             </form>
           </div>
@@ -263,7 +287,3 @@ const Register = () => {
 };
 
 export default Register;
-
-
-
-
