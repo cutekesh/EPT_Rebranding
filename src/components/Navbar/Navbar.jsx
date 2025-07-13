@@ -8,6 +8,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [activeSubDropdownId, setActiveSubDropdownId] = useState(null);
   const [isEngineeringSubDropdownOpen, setIsEngineeringSubDropdownOpen] = useState(false);
   const [isOverlayActive, setIsOverlayActive] = useState(false);
   const servicesDropdownTimeoutId = useRef(null);
@@ -65,7 +66,7 @@ const Navbar = () => {
       subLinks: [
         {
           name: "Front End Engineering Design",
-          path: "/services/engineering/front-end",
+          path: "/services",
         },
         {
           name: "Detailed Engineering Design",
@@ -360,7 +361,7 @@ const Navbar = () => {
           onMouseEnter={handleMouseEnterServices}
           onMouseLeave={handleMouseLeaveServices}
         >
-          <div className="grid grid-cols-2 gap-x-4 gap-y-4">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-4 pt-3">
             {serviceLinks.map((link, index) => (
               <div key={link.id || index} className="relative group">
                 <Link
@@ -377,6 +378,41 @@ const Navbar = () => {
                              ${link.id === "engineering" && isEngineeringSubDropdownOpen ? 'bg-[#008A3F] text-white' : ''}`}
                 >
                   {link.name}
+
+                  {/* Nested Dropdown for Engineering & Project Management */}
+                  {link.subLinks && activeSubDropdownId === link.id && (
+                    <div
+                      className="absolute top-0 left-full ml-4 bg-white p-4 rounded-lg shadow-lg z-50
+                                 w-[280px] h-auto flex flex-col gap-2
+                                 transition-opacity duration-300 ease-in-out opacity-100
+                                 pointer-events-auto"
+                      onMouseEnter={() => {
+                        clearTimeout(servicesDropdownTimeoutId.current);
+                        setActiveSubDropdownId(link.id);
+                      }}
+                      onMouseLeave={() => {
+                        servicesDropdownTimeoutId.current = setTimeout(() => {
+                          setActiveSubDropdownId(null);
+                        }, 150);
+                      }}
+                    >
+                      {link.subLinks.map((subLink, subIndex) => (
+                        <Link
+                          key={subIndex}
+                          to={subLink.path}
+                          className="text-black font-Inter text-[16px] font-[500]
+                                     hover:bg-[#E6F3EC]
+                                     w-full h-[55px]
+                                     p-3 rounded-md
+                                     flex items-center justify-center text-center
+                                     transition-colors duration-300
+                                     relative group"
+                        >
+                          {subLink.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </Link>
               </div>
             ))}
