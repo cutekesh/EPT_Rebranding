@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://ept-rebranding-backend.onrender.com";
+const API_BASE_URL = "https://ept-backend.onrender.com";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -24,16 +24,16 @@ api.interceptors.request.use(
 );
 
 export const auth = {
-  signup: (username, email, password) =>
-    api.post("/auth/signup", { username, email, password }),
-  login: (usernameOrEmail, password) =>
-    api.post("/auth/login", { usernameOrEmail, password }),
+  signup: (name, email, password) =>
+    api.post("/auth/signup", { name, email, password }),
+  login: (email, password) => api.post("/auth/login", { email, password }),
   getProfile: () => api.get("/auth/profile"), // Example protected route
-  // You can add more auth-related calls here (e.g., forgotPassword, resetPassword)
+
+  googleLogin: (idToken) =>
+    api.post("/auth/google-login", { id_token: idToken }),
+  forgotPassword: (email) => api.post("/auth/forgot-password", { email }),
+  resetPassword: (token, newPassword) =>
+    api.post(`/auth/reset-password/${token}`, { newPassword }),
 };
 
-// You can export other API categories here if needed
-// export const products = {
-//   getAll: () => api.get('/products'),
-//   getOne: (id) => api.get(`/products/${id}`),
-// };
+export default api;
