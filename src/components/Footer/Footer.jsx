@@ -28,7 +28,7 @@ const Footer = () => {
                 />
 
                 <button
-                  className="bg-[#008A3F] lg:px-6 h-[40px] lg:rounded-lg lg:text-[15px] font-medium absolute right-2 lg:top-1 tracking-wide hover:bg-white hover:text-[#008A3F] hover:border-[1px]"
+                  className="bg-[#008A3F] lg:px-6 h-[40px] lg:rounded-lg lg:text-[15px] font-medium absolute right-2 lg:top-1 tracking-wide hover:bg-[#006A3F] hover:border-[1px]"
                   type="submit"
                 >
                   Subscribe
@@ -41,7 +41,11 @@ const Footer = () => {
                 </p>
 
                 <div className="flex lg:gap-1 items-center">
-                  <img className="w-6 hover:cursor-pointer" src={facebooklogo} alt="facebook logo" />
+                  <img
+                    className="w-6 hover:cursor-pointer"
+                    src={facebooklogo}
+                    alt="facebook logo"
+                  />
 
                   <img
                     className="w-6 hover:cursor-pointer"
@@ -49,7 +53,11 @@ const Footer = () => {
                     alt="instagram logo"
                   />
 
-                  <img className="w-6 hover:cursor-pointer" src={xlogo} alt="x logo" />
+                  <img
+                    className="w-6 hover:cursor-pointer"
+                    src={xlogo}
+                    alt="x logo"
+                  />
                 </div>
               </div>
             </div>
@@ -150,7 +158,7 @@ const Footer = () => {
               />
 
               <button
-                className="bg-[#008A3F] px-8 h-[45.5px] rounded-lg text-[16px] font-medium absolute right-2 top-[-1px] hover:bg-white hover:text-[#008A3F] hover:border-[1px] hover:cursor-pointer"
+                className="bg-[#008A3F] px-8 h-[45.5px] rounded-lg text-[16px] font-medium absolute right-2 top-[-1px] hover:bg-[#006A3F] hover:border-[1px] hover:cursor-pointer"
                 type="submit"
               >
                 Subscribe
