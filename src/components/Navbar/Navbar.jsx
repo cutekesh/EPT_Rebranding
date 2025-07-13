@@ -2,20 +2,20 @@ import React, { useState, useEffect, useRef } from "react";
 import eptLogo from "../../assets/eptLogo.svg";
 import eptUserLogo from "../../assets/eptUserLogo.svg";
 import eptMobileMenu from "../../assets/eptMobileMenu.svg";
-import { Link, useLocation } from "react-router-dom"; 
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
-  const [activeSubDropdownId, setActiveSubDropdownId] = useState(null); 
-  const servicesDropdownTimeoutId = useRef(null); 
+  const [activeSubDropdownId, setActiveSubDropdownId] = useState(null);
+  const servicesDropdownTimeoutId = useRef(null);
 
   const homeLinkRef = useRef(null);
   const headerRef = useRef(null);
-  const navRef = useRef(null); 
+  const navRef = useRef(null);
 
-  const location = useLocation(); 
+  const location = useLocation();
 
   // Handlers for Services dropdown hover behavior
   const handleMouseEnterServices = () => {
@@ -49,7 +49,7 @@ const Navbar = () => {
       subLinks: [
         {
           name: "Front End Engineering Design",
-          path: "/services/engineering/front-end",
+          path: "/services",
         },
         {
           name: "Detailed Engineering Design",
@@ -124,11 +124,10 @@ const Navbar = () => {
   }, [homeLinkRef.current, headerRef.current, navRef.current]);
 
   const isActiveLink = (path) => {
-    
     if (path === "/services") {
       return location.pathname.startsWith("/services");
     }
-    
+
     return location.pathname === path;
   };
 
@@ -161,7 +160,13 @@ const Navbar = () => {
               >
                 Home
               </Link>
-              <span className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${isActiveLink("/") ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}></span>
+              <span
+                className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${
+                  isActiveLink("/")
+                    ? "scale-x-100"
+                    : "scale-x-0 group-hover:scale-x-100"
+                }`}
+              ></span>
             </li>
             {/* Services Link */}
             <li
@@ -180,7 +185,13 @@ const Navbar = () => {
               >
                 Services
               </Link>
-              <span className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${isActiveLink("/services") ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}></span>
+              <span
+                className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${
+                  isActiveLink("/services")
+                    ? "scale-x-100"
+                    : "scale-x-0 group-hover:scale-x-100"
+                }`}
+              ></span>
             </li>
             {/* About Us Link */}
             <li className="text-[16px] font-[500] font-Inter relative group">
@@ -190,7 +201,13 @@ const Navbar = () => {
               >
                 About Us
               </Link>
-              <span className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${isActiveLink("/about") ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}></span>
+              <span
+                className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${
+                  isActiveLink("/about")
+                    ? "scale-x-100"
+                    : "scale-x-0 group-hover:scale-x-100"
+                }`}
+              ></span>
             </li>
             {/* Contact Us Link */}
             <li className="text-[16px] font-[500] font-Inter relative group">
@@ -200,7 +217,13 @@ const Navbar = () => {
               >
                 Contact Us
               </Link>
-              <span className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${isActiveLink("/contact") ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}></span>
+              <span
+                className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${
+                  isActiveLink("/contact")
+                    ? "scale-x-100"
+                    : "scale-x-0 group-hover:scale-x-100"
+                }`}
+              ></span>
             </li>
           </ul>
         </div>
@@ -241,19 +264,43 @@ const Navbar = () => {
             <ul className="text-[#333333] flex flex-col gap-4 items-center">
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/">Home</Link>
-                <span className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${isActiveLink("/") ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}></span>
+                <span
+                  className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${
+                    isActiveLink("/")
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                ></span>
               </li>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/services">Services</Link>
-                <span className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${isActiveLink("/services") ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}></span>
+                <span
+                  className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${
+                    isActiveLink("/services")
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                ></span>
               </li>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/about">About Us</Link>
-                <span className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${isActiveLink("/about") ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}></span>
+                <span
+                  className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${
+                    isActiveLink("/about")
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                ></span>
               </li>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/contact">Contact Us</Link>
-                <span className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${isActiveLink("/contact") ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}></span>
+                <span
+                  className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${
+                    isActiveLink("/contact")
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                ></span>
               </li>
             </ul>
           </div>
@@ -288,12 +335,11 @@ const Navbar = () => {
           onMouseEnter={handleMouseEnterServices}
           onMouseLeave={handleMouseLeaveServices}
         >
-          
           <div className="grid grid-cols-2 gap-x-4 gap-y-4 pt-3">
             {serviceLinks.map((link, index) => (
               <div key={link.id || index} className="relative group">
                 {" "}
-                <Link 
+                <Link
                   to={link.path}
                   className="text-black font-Inter text-[16px] font-[500]
                              
@@ -325,7 +371,7 @@ const Navbar = () => {
                                  pointer-events-auto"
                       onMouseEnter={() => {
                         clearTimeout(servicesDropdownTimeoutId.current);
-                        setActiveSubDropdownId(link.id); 
+                        setActiveSubDropdownId(link.id);
                       }}
                       onMouseLeave={() => {
                         servicesDropdownTimeoutId.current = setTimeout(() => {
@@ -334,7 +380,7 @@ const Navbar = () => {
                       }}
                     >
                       {link.subLinks.map((subLink, subIndex) => (
-                        <Link 
+                        <Link
                           key={subIndex}
                           to={subLink.path}
                           className="text-black font-Inter text-[16px] font-[500]
