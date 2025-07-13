@@ -27,7 +27,7 @@ const Expertise = () => {
     {
       id: 3,
       image: comission,
-      title: "COMMISSIONING & START UP", // Corrected spelling
+      title: "COMMISSIONING & START UP",
       description:
         "Before any plant or system goes live \nwe make sure everything works. \nOur team carries out detailed checks \nsystem test, and safety validations.",
     },
@@ -43,7 +43,7 @@ const Expertise = () => {
       image: training,
       title: "TRAINING SERVICES",
       description:
-        "We believe knowledge empowers safe and \nefficient operations. That’s why we offer \nhands-on, structured training programs in \nthree core areas.",
+        "We believe knowledge empowers safe and \nefficient operations. That's why we offer \nhands-on, structured training programs in \nthree core areas.",
     },
     {
       id: 6,
@@ -56,37 +56,45 @@ const Expertise = () => {
 
   return (
     <>
-      <div className="md:py-[80px] py-[22.95px] px-[15px] flex flex-col justify-center items-center gap-[5.15px] md:gap-[29.38px] w-full md:max-w-11/12">
-        <div className="flex flex-col items-center">
-          <p className="text-black md:text-[27.43px] font-[400] font-Inter text-[14.75px]">
-            WHAT WE DO
-          </p>
-          <h2 className="md:text-[#008A3F] md:text-[54.85px] text-[16px] font-[700] font-Inter md:font-IBM-Plex-Sans-Hebrew text-[25.49px] text-[#013F1E]">
-            End-to-End Energy Expertise
-          </h2>
-        </div>
-        <div className="md:grid md:grid-cols-3 grid-rows-1 md:gap-[50.53px] gap-[10px] w-full md:max-w-10/12 flex overflow-x-auto">
-          {services.map((service) => (
-            <div className="group text-center md:h-[557.32px] md:w-full w-11/12 rounded-[7.84px] md:border md:border-[0.98px] border-[#969797] flex-shrink-0 md:flex-shrink md:bg-white bg-[#E6F3EC] md:hover:bg-gray-50">
-              <img src={service.image} alt="" className="w-full" />
-              <div className="flex flex-col gap-[26.45px] md:bg-white md:group-hover:bg-gray-50">
-                <h3 className="bg-black font-[700] text-white text-xl sm:text-2xl font-bold font-Inter group-hover:text-[#F6C200]">
-                  {service.title}
-                </h3>
-                <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
-                  {service.description.split("\n").map((line, i) => (
-                    <React.Fragment key={i}>
-                      {line}
-                      {i < service.description.split("\n").length - 1 && <br />}
-                    </React.Fragment>
-                  ))}
-                </p>
-                <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px]">
-                  Learn more <FaArrowRightLong />
-                </Link>
+      <div className="md:py-[80px] py-[22.95px] flex flex-col justify-center items-center gap-[5.15px] md:gap-[29.38px] mt-6">
+        <div className="w-11/12 mx-auto container space-y-6">
+          <div className="flex flex-col justify-center items-center md:mb-8 mb-4">
+            <p className="text-[#000000] md:text-[27.43px] font-[400] font-Inter text-[14.75px]">
+              WHAT WE DO
+            </p>
+            <h2 className="xl:text-[54.85px] md:text-5xl font-[700] font-IBM text-[25.49px] text-[#013F1E]">
+              End-to-End Energy Expertise
+            </h2>
+          </div>
+          {/* Modified: Added 'flex flex-nowrap' for mobile to enable horizontal scrolling */}
+          <div className="flex flex-nowrap md:grid xl:grid-cols-3 md:grid-cols-2 md:gap-8 gap-4 mx-auto overflow-x-auto w-full ">
+            {services.map((service) => (
+              <div
+                className="group text-center rounded-[7.84px] border-[0.98px] border-[#969797] flex-shrink-0 md:flex-shrink md:bg-white bg-[#E6F3EC] md:hover:bg-gray-50 md:w-full w-11/12"
+                key={service.id}
+              >
+                <img src={service.image} alt="" className="w-full" />
+                <div className="flex flex-col gap-[26.45px] md:bg-white md:group-hover:bg-gray-50">
+                  <h3 className="bg-black text-white lg:text-xl sm:text-2xl md:text-xl font-bold font-Inter group-hover:text-[#F6C200]">
+                    {service.title}
+                  </h3>
+                  <p className="font-[500] font-Inter text-[15.67px] text-[#000101] text-center">
+                    {service.description.split("\n").map((line, i) => (
+                      <React.Fragment key={i}>
+                        {line}
+                        {i < service.description.split("\n").length - 1 && (
+                          <br />
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </p>
+                  <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px] group-hover:text-[#000101] xl:mb-6 mb-4">
+                    Learn more <FaArrowRightLong />
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </>

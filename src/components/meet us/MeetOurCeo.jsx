@@ -3,11 +3,11 @@ import Image from "../../assets/our ceo.png"
 
 const MeetOurCeo = () => {
   return (
-    <div className="w-11/12 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 mt-6 md:mt-12 ">
+    <div className="w-11/12 mx-auto container grid grid-cols-1 lg:grid-cols-2 gap-16 mt-6 md:mt-12 ">
       <div className="w-full xl:w-[528px] 2xl:w-[725px] font-Inter">
         <div className="relative">
           <img className="w-full xl:w-[528px] 2xl:w-[725px]" src={Image} alt="ceo-image"/>
-          <div className="absolute w-13 h-13 md:w-28 md:h-28 lg:w-18 lg:h-18 xl:w-22 xl:h-22 2xl:w-30 2xl:h-30 bottom-13 right-0 bg-[#F6C200] rounded-full"></div>
+          <div className="absolute w-13 h-13 lg:w-28 lg:h-28 bottom-17 md:w-24 md:h-24 right-3 bg-[#F6C200] rounded-full"></div>
           <div className="mt-2">
             <h4 className="text-[#007A4D] text-lg font-bold">Ifeanyi Ezuka</h4>
             <p className="text-[#333333] text-xs font-medium">CEO EPT LIMITED</p>
@@ -21,7 +21,7 @@ const MeetOurCeo = () => {
         </div>
         <div className="text-[#000101] text-lg 2xl:text-xl mt-6">
           <div className="flex flex-col gap-4">
-            <p>"My vision for EPT is to redefine what is possible in Nigeria’s Oil and Gas industry by building an engineering powerhouse rooted in sustainability, precision, and national pride. At EPT, we are not just executing project, we are empowering futures."</p>
+            <p>"My vision for EPT is to redefine what is possible in Nigeria's Oil and Gas industry by building an engineering powerhouse rooted in sustainability, precision, and national pride. At EPT, we are not just executing project, we are empowering futures."</p>
             <p>As Founder and CEO, <span className="text-[#007A4D]">Ifeanyi Ezuka</span> is committed to delivering infrastructure that doesn’t just meet international standards, but sets new ones for Nigeria. Under his leadership, EPT champions a future where energy development is smart, safe, and inclusive where local talent is nurtured, and communities benefit directly from industrial progress.</p>
             <p>His goals are clear:</p>
           </div>

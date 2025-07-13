@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const MapComponent = ({ locationAddress = "26 Furo Ezimora Street, Lekki Phase 1, Lagos, Nigeria" }) => {
-  const [coordinates, setCoordinates] = useState({ lat: 6.4330320, lon: 3.4658390 }); // Default coordinates
+  const [coordinates, setCoordinates] = useState({ lat: 6.4330320, lon: 3.4658390 });
 
   // Fetch coordinates using Nominatim API
   useEffect(() => {
@@ -31,18 +31,17 @@ const MapComponent = ({ locationAddress = "26 Furo Ezimora Street, Lekki Phase 1
   // Construct the URL for the OpenStreetMap iframe src attribute
   const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${coordinates.lon - 0.01},${coordinates.lat - 0.005},${coordinates.lon + 0.01},${coordinates.lat + 0.005}&layer=mapnik&marker=${coordinates.lat},${coordinates.lon}`;
 
-  // Styles for the iframe container
  
 
   return (
     <div className="w-full">
       <iframe
-        className="w-full h-[300px] md:h-[500px] "
-        loading="lazy" // Lazy load the map for performance
-        allowFullScreen // Allow fullscreen mode
-        referrerPolicy="no-referrer-when-downgrade" // Recommended for security
-        src={mapSrc} // Dynamically generated map URL
-        title="Our Office Location Map (OpenStreetMap)" // Title for accessibility
+        className="w-full h-[400px] md:h-[500px] "
+        loading="lazy" 
+        allowFullScreen 
+        referrerPolicy="no-referrer-when-downgrade" 
+        src={mapSrc} 
+        title="Our Office Location Map (OpenStreetMap)" 
       ></iframe>
       <p className="text-center text-[#000101] mt-4 text-lg">
         Our Office Address:{" "}

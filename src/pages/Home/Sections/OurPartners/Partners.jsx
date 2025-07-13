@@ -12,10 +12,10 @@ import Image9 from "../../../../assets/mobil.png"
 
 const Partners = () => {
   return (
-    <div className="bg-white">
-      <div className="w-11/12 mx-auto py-10 space-y-3">
-        <div className='w-full'>
-          <h2 className="text-[#008A3F] text-center text-lg md:text-4xl font-bold font-IBM">Our Partners</h2>
+    <div className="bg-white lg:mt-16 md:mt-8">
+      <div className="w-11/12 mx-auto py-10 container space-y-3">
+        <div className='w-full space-y-6'>
+          <h2 className="text-[#008A3F] text-center xl:text-[54.85px] md:text-5xl font-[700] font-IBM text-[25.49px]">Our Partners</h2>
         <marquee behavior="scroll" direction="left">
           <div className="hidden md:flex w-full justify-between gap-10 p-2">
             <img src={Image} alt="partners-logo"/>
