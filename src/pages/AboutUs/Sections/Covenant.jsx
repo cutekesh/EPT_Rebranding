@@ -35,15 +35,15 @@ const Covenant = () => {
     },
   ];
   return (
-    <div className="flex flex-col items-center justify-center gap-4 md:gap-8 md:py-[80px] py-12 md:py-16 px-4 md:px-8 bg-white">
+    <div className="flex flex-col items-center justify-center gap-4 md:gap-8 py-12  bg-white w-11/12 container mx-auto">
       <h2 className="hidden md:block text-[#333333] font-[700] font-IBM-Plex-Sans text-[54.85px]">
         Covenant & Values
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-[60px] w-full max-w-6xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-[60px]">
         {values.map((value) => (
           <fieldset
-            className="border border-[#666666] rounded-[14.99px] md:w-[443px] md:pb-8 px-4 py-6 text-center bg-[#F9FFFC]"
+            className="border border-[#666666] rounded-[14.99px] lg:w-[500px] md:pb-8 px-4 py-6 text-center bg-[#F9FFFC]"
             key={value.id}
           >
             <legend className="flex items-center justify-center mb-2 w-24 h-24 rounded-full">
