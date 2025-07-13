@@ -67,10 +67,10 @@ const Expertise = () => {
             </h2>
           </div>
           {/* Modified: Added 'flex flex-nowrap' for mobile to enable horizontal scrolling */}
-          <div className="flex flex-nowrap md:grid xl:grid-cols-3 md:grid-cols-2 md:gap-8 gap-4 mx-auto overflow-x-auto w-full ">
+          <div className="flex flex-nowrap md:grid xl:grid-cols-3 md:grid-cols-2 md:gap-8 gap-4 mx-auto overflow-x-auto w-full">
             {services.map((service) => (
               <div
-                className="group text-center rounded-[7.84px] border-[0.98px] border-[#969797] flex-shrink-0 md:flex-shrink md:bg-white bg-[#E6F3EC] md:hover:bg-gray-50 md:w-full w-11/12"
+                className="group text-center rounded-[7.84px] border-[0.98px] border-[#969797] flex-shrink-0 md:flex-shrink md:bg-white bg-[#E6F3EC] md:hover:bg-gray-50 md:w-full w-11/12 "
                 key={service.id}
               >
                 <img src={service.image} alt="" className="w-full" />
