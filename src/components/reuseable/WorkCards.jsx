@@ -36,7 +36,7 @@ const WorkCards = () => {
     </div>
 
     {/* Desktop view for xl and 2xl */}
-    <div className="hidden w-full xl:flex gap-4 py-8">
+    <div className="hidden w-full xl:flex gap-4">
       {works.map((work) => (
         <div className="w-full h-[419.73px] relative rounded-md"
           key={work.id}
