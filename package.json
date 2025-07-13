@@ -18,6 +18,8 @@
     "axios": "^1.10.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "hook-form": "^0.0.1",
+    "firebase": "^11.10.0",
     "leaflet": "^1.9.4",
     "node-fetch": "^3.3.2",
     "react": "^19.1.0",
