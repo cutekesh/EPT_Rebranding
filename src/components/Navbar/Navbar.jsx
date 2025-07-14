@@ -9,7 +9,8 @@ const Navbar = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [activeSubDropdownId, setActiveSubDropdownId] = useState(null);
-  const [isEngineeringSubDropdownOpen, setIsEngineeringSubDropdownOpen] = useState(false);
+  const [isEngineeringSubDropdownOpen, setIsEngineeringSubDropdownOpen] =
+    useState(false);
   const [isOverlayActive, setIsOverlayActive] = useState(false);
   const servicesDropdownTimeoutId = useRef(null);
 
@@ -130,11 +131,20 @@ const Navbar = () => {
         );
 
         if (servicesDropdownRef.current) {
-          const servicesDropdownRect = servicesDropdownRef.current.getBoundingClientRect();
-          const engineeringSubDropdownLeftOffset = servicesDropdownRect.right - headerRect.left + 20;
-          const engineeringSubDropdownTopOffset = servicesDropdownRect.top - headerRect.top;
-          headerRef.current.style.setProperty("--engineering-sub-dropdown-left", `${engineeringSubDropdownLeftOffset}px`);
-          headerRef.current.style.setProperty("--engineering-sub-dropdown-top", `${engineeringSubDropdownTopOffset}px`);
+          const servicesDropdownRect =
+            servicesDropdownRef.current.getBoundingClientRect();
+          const engineeringSubDropdownLeftOffset =
+            servicesDropdownRect.right - headerRect.left + 20;
+          const engineeringSubDropdownTopOffset =
+            servicesDropdownRect.top - headerRect.top;
+          headerRef.current.style.setProperty(
+            "--engineering-sub-dropdown-left",
+            `${engineeringSubDropdownLeftOffset}px`
+          );
+          headerRef.current.style.setProperty(
+            "--engineering-sub-dropdown-top",
+            `${engineeringSubDropdownTopOffset}px`
+          );
         }
       }
     };
@@ -366,7 +376,11 @@ const Navbar = () => {
               <div key={link.id || index} className="relative group">
                 <Link
                   to={link.path}
-                  onClick={link.id === "engineering" ? handleEngineeringClick : undefined}
+                  onClick={
+                    link.id === "engineering"
+                      ? handleEngineeringClick
+                      : undefined
+                  }
                   className={`text-black font-Inter text-[16px] font-[500]
                              w-[257px] h-[55px]
                              md:w-full
@@ -375,7 +389,12 @@ const Navbar = () => {
                              hover:bg-[#008A3F] hover:text-white
                              transition-colors duration-200
                              relative group
-                             ${link.id === "engineering" && isEngineeringSubDropdownOpen ? 'bg-[#008A3F] text-white' : ''}`}
+                             ${
+                               link.id === "engineering" &&
+                               isEngineeringSubDropdownOpen
+                                 ? "bg-[#008A3F] text-white"
+                                 : ""
+                             }`}
                 >
                   {link.name}
 
@@ -437,21 +456,23 @@ const Navbar = () => {
             }, 150);
           }}
         >
-          {serviceLinks.find(link => link.id === "engineering")?.subLinks.map((subLink, subIndex) => (
-            <Link
-              key={subIndex}
-              to={subLink.path}
-              className="text-black font-Inter text-[16px] font-[500]
+          {serviceLinks
+            .find((link) => link.id === "engineering")
+            ?.subLinks.map((subLink, subIndex) => (
+              <Link
+                key={subIndex}
+                to={subLink.path}
+                className="text-black font-Inter text-[16px] font-[500]
                          hover:bg-[#008A3F] hover:text-white
                          w-full h-[55px]
                          p-3 rounded-md
                          flex items-center text-start
                          transition-colors duration-300
                          relative group"
-            >
-              {subLink.name}
-            </Link>
-          ))}
+              >
+                {subLink.name}
+              </Link>
+            ))}
         </div>
       )}
     </header>
