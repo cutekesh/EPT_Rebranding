@@ -162,13 +162,13 @@ const Navbar = () => {
         ref={navRef}
       >
         {/* Logo */}
-        <div>
+        <Link to="/">
           <img
             className="md:w-[158.67px] md:h-[45.06px] w-[120px] h-[40px]"
             src={eptLogo}
             alt="EPT Logo"
           />
-        </div>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex">

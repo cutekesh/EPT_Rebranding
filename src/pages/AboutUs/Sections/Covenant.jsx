@@ -43,7 +43,7 @@ const Covenant = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-[60px]">
         {values.map((value) => (
           <fieldset
-            className="border border-[#666666] rounded-[14.99px] lg:w-[500px] md:pb-8 px-4 py-6 text-center bg-[#F9FFFC]"
+            className="border border-[#666666] rounded-[14.99px] xl:w-[500px] md:pb-8 px-4 py-6 text-center bg-[#F9FFFC]"
             key={value.id}
           >
             <legend className="flex items-center justify-center mb-2 w-24 h-24 rounded-full">
