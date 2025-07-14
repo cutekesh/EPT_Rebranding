@@ -23,8 +23,8 @@ const GettingFeedRight = () => {
   ]
 
   return (
-    <div className="w-11/12 mx-auto mt-4 mb-12 md:mt-16">
-      <div>
+    <div className=" mt-4 mb-12 md:mt-16">
+      <div className='w-11/12 mx-auto container'>
         <div className="font-Inter text-[#000101] text-center flex flex-col md:flex-col-reverse gap-2">
           <p className="font-medium text-sm md:text-base">Every great build starts with a great plan</p>
           <h1 className="text-[#013F1E] text-xl md:text-3xl font-IBM font-bold">The Impact of Getting FEED Right</h1>

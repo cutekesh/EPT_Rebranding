@@ -3,7 +3,7 @@ import emailjs from "@emailjs/browser";
 import emailIcon from "../../assets/contactFormEmailIcon.png";
 import closeIcon from "../../assets/closeModalIcon.svg";
 
-const ContactFormSection = () => {
+const ContactFormSection = ({ onSuccess }) => { // Accept onSuccess prop
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,22 +18,22 @@ const ContactFormSection = () => {
   // State to track if the form is currently being sent (for disabling inputs)
   const [isSending, setIsSending] = useState(false);
 
-  // New state for modal visibility
-  const [showModal, setShowModal] = useState(false);
-
   // Initialize EmailJS when the component mounts
   useEffect(() => {
     try {
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
       if (publicKey) {
         emailjs.init(publicKey);
+        console.log("EmailJS initialized with public key:", publicKey);
       } else {
         console.error(
-          "EmailJS Public Key is not defined. Please check your .env file."
+          "EmailJS Public Key is not defined. Please check your .env file (VITE_EMAILJS_PUBLIC_KEY)."
         );
+        setSubmissionMessage("Error: Email service not configured. Public Key missing.");
       }
     } catch (error) {
       console.error("Failed to initialize EmailJS:", error);
+      setSubmissionMessage("Error: Failed to initialize email service.");
     }
   }, []);
 
@@ -61,7 +61,7 @@ const ContactFormSection = () => {
 
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email.trim())) {
+    } else if (!/\S+@\S+\.\S/.test(formData.email.trim())) {
       newErrors.email = "Please enter a valid email address.";
     }
 
@@ -85,24 +85,46 @@ const ContactFormSection = () => {
       setIsSending(true);
       setSubmissionMessage("");
 
-      try {
-        const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-        const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY; // Ensure publicKey is also available here
 
+      // Check if all EmailJS IDs are available before sending
+      if (!serviceID || !templateID || !publicKey) {
+        const missingKeys = [];
+        if (!serviceID) missingKeys.push("Service ID");
+        if (!templateID) missingKeys.push("Template ID");
+        if (!publicKey) missingKeys.push("Public Key");
+        const errorMessage = `Email service not fully configured. Missing: ${missingKeys.join(", ")}. Please check your .env file.`;
+        console.error(errorMessage);
+        setSubmissionMessage(errorMessage);
+        setIsSending(false);
+        setTimeout(() => setSubmissionMessage(""), 5000);
+        return;
+      }
+
+      try {
         await emailjs.send(serviceID, templateID, {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
-        });
+        }, publicKey); // Pass public key here as well, though init usually handles it.
 
-        // if message is successfully sent, show the modal
-        setShowModal(true);
+        // if message is successfully sent, notify parent to show the modal
+        if (onSuccess) {
+          onSuccess();
+        }
         setFormData({ name: "", email: "", message: "" });
         setErrors({});
       } catch (error) {
-        console.error("EmailJS send error:", error);
-        setSubmissionMessage("Failed to send your message. Please try again.");
-        // Clear message after 5 seconds if there's an error
+        console.error("EmailJS send error:", error); // Log the full error object
+        let userMessage = "Failed to send your message. Please try again.";
+        if (error.status && error.text) {
+          userMessage += ` (Status: ${error.status}, Message: ${error.text})`;
+        } else if (error.message) {
+          userMessage += ` (Error: ${error.message})`;
+        }
+        setSubmissionMessage(userMessage);
         setTimeout(() => setSubmissionMessage(""), 5000);
       } finally {
         setIsSending(false); // Re-enable inputs and button
@@ -114,9 +136,7 @@ const ContactFormSection = () => {
     }
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
+  // Removed handleCloseModal and modal JSX as it's now handled by parent (Contact.jsx)
 
   return (
     <div className="p-8 bg-[#E6F3EC] rounded-md h-full">
@@ -150,7 +170,7 @@ const ContactFormSection = () => {
           <label
             htmlFor="email"
             className="block font-Inter text-[#000101] font-bold mb-1"
-          >
+            >
             EMAIL
           </label>
           <input
@@ -173,7 +193,7 @@ const ContactFormSection = () => {
           <label
             htmlFor="message"
             className="block font-Inter text-[#000101] font-bold mb-1"
-          >
+            >
             MESSAGE
           </label>
           <textarea
@@ -205,7 +225,7 @@ const ContactFormSection = () => {
             className={`text-center mt-4 ${
               submissionMessage.includes("success")
                 ? "text-green-600"
-                : "text-red-600"
+                : submissionMessage.includes("Error:") ? "text-red-600" : "text-red-600"
             }`}
           >
             {submissionMessage}
@@ -213,38 +233,6 @@ const ContactFormSection = () => {
         )}
       </form>
       <img src="" alt="" />
-      {/* Success Modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl p-8 w-full max-w-md text-center relative">
-            {/* Close Button */}
-            <img
-              className="absolute top-3 right-3 text-2xl hover:cursor-pointer"
-              onClick={handleCloseModal}
-              src={closeIcon}
-              alt="Close modal"
-            />
-            &times;
-            <div className="flex justify-center mb-6 ">
-              <img src={emailIcon} alt="emailIcon" />
-            </div>
-            <h2 className="text-3xl font-bold text-[#000101] mb-4 font-IBM">
-              Thank you!
-            </h2>
-            <p className="text-[#000101] mb-6 font-Inter">
-              Your message has been sent. Our support team will reply to your
-              message within 24 hours.
-            </p>
-            <button
-              type="button"
-              onClick={handleCloseModal}
-              className="w-full bg-[#008A3F] text-white py-3 rounded-md hover:bg-[#006A3F] transition-colors font-bold text-lg hover:cursor-pointer"
-            >
-              Go Back
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
