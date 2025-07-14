@@ -42,13 +42,13 @@
 
 // export default Register;
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { FiEye, FiEyeOff } from 'react-icons/fi';
-import { useForm } from 'react-hook-form';
-import { useAuth } from '../../context/AuthContext';
-import SignupImg from '../../assets/signup img.png';
-import Logo from '../../assets/eptLogo.svg';
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useForm } from "react-hook-form";
+import { useAuth } from "../../context/AuthContext";
+import SignupImg from "../../assets/signup img.png";
+import Logo from "../../assets/eptLogo.svg";
 import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
@@ -80,9 +80,13 @@ const Register = () => {
       await signup(data.fullName, data.email, data.password);
       setSuccessMessage("Registration successful!");
       reset();
-      setTimeout(() => navigate('/login'), 2000);
+      setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
-      setServerError(err?.response?.data?.message || err?.message || "Registration failed. Please try again.");
+      setServerError(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Registration failed. Please try again."
+      );
     }
 
     setLoading(false);
@@ -96,7 +100,7 @@ const Register = () => {
     try {
       const success = await googleLogin();
       if (success) {
-        navigate("/dashboard"); // adjust route as needed
+        navigate("/"); // adjust route as needed
       }
     } catch (err) {
       setServerError(err?.message || "Google login failed. Please try again.");
@@ -109,7 +113,11 @@ const Register = () => {
     <div className="bg-white">
       <div className="w-full min-h-screen lg:grid lg:grid-cols-2">
         <div className="hidden lg:block">
-          <img className="w-full h-full object-cover" src={SignupImg} alt="Signup banner" />
+          <img
+            className="w-full h-full object-cover"
+            src={SignupImg}
+            alt="Signup banner"
+          />
         </div>
 
         <div className="flex flex-col justify-center w-full">
@@ -125,26 +133,27 @@ const Register = () => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
               <div className="flex flex-col gap-4">
-
                 {/* Full Name */}
                 <div className="flex flex-col gap-1">
                   <label className="hidden lg:block font-bold">FULL NAME</label>
                   <input
-                    {...register('fullName', {
-                      required: 'Full name is required',
+                    {...register("fullName", {
+                      required: "Full name is required",
                       pattern: {
                         value: /^[a-zA-Z\s'-]+$/,
-                        message: 'Please enter a valid full name',
+                        message: "Please enter a valid full name",
                       },
                     })}
                     type="text"
                     placeholder="Enter your name*"
                     className={`w-full rounded-md p-2 pr-10 border ${
-                      errors.fullName ? 'border-red-700' : 'border-[#BABCD4]'
+                      errors.fullName ? "border-red-700" : "border-[#BABCD4]"
                     } focus:border-[#008A3F] focus:outline-none`}
                   />
                   {errors.fullName && (
-                    <span className="text-red-500 text-[12px]">{errors.fullName.message}</span>
+                    <span className="text-red-500 text-[12px]">
+                      {errors.fullName.message}
+                    </span>
                   )}
                 </div>
 
@@ -152,21 +161,23 @@ const Register = () => {
                 <div className="flex flex-col gap-1">
                   <label className="hidden lg:block font-bold">EMAIL</label>
                   <input
-                    {...register('email', {
-                      required: 'Email is required',
+                    {...register("email", {
+                      required: "Email is required",
                       pattern: {
                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: 'Please enter a valid email address',
+                        message: "Please enter a valid email address",
                       },
                     })}
                     type="email"
                     placeholder="Enter your email*"
                     className={`w-full rounded-md p-2 pr-10 border ${
-                      errors.email ? 'border-red-700' : 'border-[#BABCD4]'
+                      errors.email ? "border-red-700" : "border-[#BABCD4]"
                     } focus:border-[#008A3F] focus:outline-none`}
                   />
                   {errors.email && (
-                    <span className="text-red-500 text-[12px]">{errors.email.message}</span>
+                    <span className="text-red-500 text-[12px]">
+                      {errors.email.message}
+                    </span>
                   )}
                 </div>
 
@@ -174,17 +185,17 @@ const Register = () => {
                 <div className="flex flex-col gap-1 relative">
                   <label className="hidden lg:block font-bold">PASSWORD</label>
                   <input
-                    {...register('password', {
-                      required: 'Password is required',
+                    {...register("password", {
+                      required: "Password is required",
                       minLength: {
                         value: 6,
-                        message: 'Password must be at least 6 characters',
+                        message: "Password must be at least 6 characters",
                       },
                     })}
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     className={`w-full rounded-md p-2 pr-10 border ${
-                      errors.password ? 'border-red-700' : 'border-[#BABCD4]'
+                      errors.password ? "border-red-700" : "border-[#BABCD4]"
                     } focus:border-[#008A3F] focus:outline-none`}
                   />
                   <span
@@ -194,22 +205,29 @@ const Register = () => {
                     {showPassword ? <FiEyeOff /> : <FiEye />}
                   </span>
                   {errors.password && (
-                    <span className="text-red-500 text-[12px]">{errors.password.message}</span>
+                    <span className="text-red-500 text-[12px]">
+                      {errors.password.message}
+                    </span>
                   )}
                 </div>
 
                 {/* Confirm Password */}
                 <div className="flex flex-col gap-1 relative">
-                  <label className="hidden lg:block font-bold">CONFIRM PASSWORD</label>
+                  <label className="hidden lg:block font-bold">
+                    CONFIRM PASSWORD
+                  </label>
                   <input
-                    {...register('confirmPassword', {
-                      required: 'Please confirm your password',
-                      validate: (value) => value === password || 'Passwords do not match',
+                    {...register("confirmPassword", {
+                      required: "Please confirm your password",
+                      validate: (value) =>
+                        value === password || "Passwords do not match",
                     })}
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm your password"
                     className={`w-full rounded-md p-2 pr-10 border ${
-                      errors.confirmPassword ? 'border-red-700' : 'border-[#BABCD4]'
+                      errors.confirmPassword
+                        ? "border-red-700"
+                        : "border-[#BABCD4]"
                     } focus:border-[#008A3F] focus:outline-none`}
                   />
                   <span
@@ -219,7 +237,9 @@ const Register = () => {
                     {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
                   </span>
                   {errors.confirmPassword && (
-                    <span className="text-red-500 text-[12px]">{errors.confirmPassword.message}</span>
+                    <span className="text-red-500 text-[12px]">
+                      {errors.confirmPassword.message}
+                    </span>
                   )}
                 </div>
 
@@ -227,23 +247,33 @@ const Register = () => {
                 <div className="flex items-center justify-center md:justify-start gap-2 md:px-4">
                   <input
                     type="checkbox"
-                    {...register('terms', { required: 'You must agree to the terms' })}
+                    {...register("terms", {
+                      required: "You must agree to the terms",
+                    })}
                     className={`accent-[#008A3F] bg-white w-4 h-4 rounded-sm border ${
-                      errors.terms ? 'border-red-500' : 'border-gray-300'
+                      errors.terms ? "border-red-500" : "border-gray-300"
                     } focus:ring-2 focus:ring-[#008A3F] focus:outline-none`}
                   />
                   <div className="lg:tracking-tight xl:tracking-normal">
-                    I agree to the <span className="text-[#008A3F]">terms of services</span> and <span className="text-[#008A3F]">privacy policies</span>
+                    I agree to the{" "}
+                    <span className="text-[#008A3F]">terms of services</span>{" "}
+                    and <span className="text-[#008A3F]">privacy policies</span>
                   </div>
                 </div>
                 {errors.terms && (
-                  <span className="text-red-500 text-[12px]">{errors.terms.message}</span>
+                  <span className="text-red-500 text-[12px]">
+                    {errors.terms.message}
+                  </span>
                 )}
               </div>
 
               {/* Messages */}
-              {serverError && <p className="text-red-600 mt-4">{serverError}</p>}
-              {successMessage && <p className="text-green-600 mt-4">{successMessage}</p>}
+              {serverError && (
+                <p className="text-red-600 mt-4">{serverError}</p>
+              )}
+              {successMessage && (
+                <p className="text-green-600 mt-4">{successMessage}</p>
+              )}
 
               {/* Buttons */}
               <div className="font-medium text-sm flex flex-col gap-4 mt-6">
@@ -251,7 +281,7 @@ const Register = () => {
                   type="submit"
                   disabled={loading}
                   className={`rounded-md text-white w-full py-2 transition-all ${
-                    loading ? 'bg-gray-400' : 'bg-[#008A3F]'
+                    loading ? "bg-gray-400" : "bg-[#008A3F]"
                   }`}
                 >
                   {loading ? "Submitting..." : "Sign Up"}
@@ -263,19 +293,22 @@ const Register = () => {
                 </div>
 
                 <button
-                type="button"
-                onClick={handleGoogleLogin}
-                disabled={loading}
-                className={`w-full flex gap-2 items-center justify-center border border-[#BABCD4] rounded-md py-2 transition-all ${
-                  loading ? "bg-gray-200 cursor-not-allowed" : "hover:opacity-90"
-                }`}
-              >
-                <FcGoogle size={16} />
-                {loading ? "Please wait..." : "Continue with Google"}
-              </button>
+                  type="button"
+                  onClick={handleGoogleLogin}
+                  disabled={loading}
+                  className={`w-full flex gap-2 items-center justify-center border border-[#BABCD4] rounded-md py-2 transition-all ${
+                    loading
+                      ? "bg-gray-200 cursor-not-allowed"
+                      : "hover:opacity-90"
+                  }`}
+                >
+                  <FcGoogle size={16} />
+                  {loading ? "Please wait..." : "Continue with Google"}
+                </button>
 
                 <Link to="/Login" className="text-center">
-                  Already have an account? <span className="text-[#008A3F]">Sign In</span>
+                  Already have an account?{" "}
+                  <span className="text-[#008A3F]">Sign In</span>
                 </Link>
               </div>
             </form>
