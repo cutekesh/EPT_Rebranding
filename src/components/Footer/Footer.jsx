@@ -20,7 +20,7 @@ const Footer = () => {
               </p>
               <form className="relative lg:mb-9">
                 <input
-                  className="bg-white w-75 md:h-12 lg:rounded-lg placeholder:text-[#969797] lg:placeholder:text-[15px] px-2 lg:pb-2 lg:pt-1 focus:outline-none text-black"
+                  className="bg-white w-full md:h-12 lg:rounded-md placeholder:text-[#969797] lg:placeholder:text-[15px] px-2 lg:pb-2 lg:pt-1 focus:outline-none text-black"
                   type="email"
                   name="email"
                   id="email"
@@ -28,7 +28,7 @@ const Footer = () => {
                 />
 
                 <button
-                  className="bg-[#008A3F] lg:px-6 h-[40px] lg:rounded-lg lg:text-[15px] font-medium absolute right-2 lg:top-1 tracking-wide hover:bg-white hover:text-[#008A3F] hover:border-[1px]"
+                  className="bg-[#008A3F] lg:px-6 h-[48px] rounded-md lg:text-[15px] font-medium absolute right-0 lg:top- tracking-wide hover:bg-white hover:text-[#008A3F] hover:border-[1px]"
                   type="submit"
                 >
                   Subscribe
@@ -132,16 +132,14 @@ const Footer = () => {
             </div>
           </div>
 
-          <hr className="lg:hidden" />
-
           {/* For moblie view only */}
           <div className="lg:hidden">
             <p className="mt-8 text-[18px] font-semibold tracking-wide mb-4">
               Subscribe to Our Newsletters
             </p>
-            <form className="relative max-w-[326px]">
+            <form className="relative w-full md:w-[326px]">
               <input
-                className="bg-white w-75 h-11 rounded-l-lg placeholder:text-[#969797] placeholder:text-[16px] px-3
+                className="bg-white w-full h-11 rounded-md placeholder:text-[#969797] placeholder:text-sm px-3
               focus:outline-none text-black"
                 type="email"
                 name="email"
@@ -150,7 +148,7 @@ const Footer = () => {
               />
 
               <button
-                className="bg-[#008A3F] px-8 h-[45.5px] rounded-lg text-[16px] font-medium absolute right-2 top-[-1px] hover:bg-white hover:text-[#008A3F] hover:border-[1px] hover:cursor-pointer"
+                className="bg-[#008A3F] px-6 h-[45.5px] rounded-md text-[16px] font-medium absolute right-0 top-[-1px] hover:bg-white hover:text-[#008A3F] hover:border-[1px] hover:cursor-pointer"
                 type="submit"
               >
                 Subscribe
@@ -171,7 +169,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <hr className="lg:hidden" />
+        <hr className="" />
 
         {/* Footer Bottom text */}
         <div className="lg:w-100 lg:m-auto mb-5">
