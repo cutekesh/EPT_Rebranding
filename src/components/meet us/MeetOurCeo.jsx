@@ -7,7 +7,7 @@ const MeetOurCeo = () => {
       <div className="w-full xl:w-[528px] 2xl:w-[725px] font-Inter">
         <div className="relative">
           <img className="w-full xl:w-[528px] 2xl:w-[725px]" src={Image} alt="ceo-image"/>
-          <div className="absolute w-13 h-13 lg:w-28 lg:h-28 bottom-17 md:w-24 md:h-24 right-3 bg-[#F6C200] rounded-full"></div>
+          <div className="absolute w-11 h-11 lg:w-16 lg:h-16 bottom-15 md:w-24 md:h-24 xl:w-20 xl:h-20 2xl:w-24 2xl:h-24 right-1 bg-[#F6C200] rounded-full"></div>
           <div className="mt-2">
             <h4 className="text-[#007A4D] text-lg font-bold">Ifeanyi Ezuka</h4>
             <p className="text-[#333333] text-xs font-medium">CEO EPT LIMITED</p>
