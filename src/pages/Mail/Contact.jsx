@@ -28,7 +28,7 @@ const Contact = () => {
     <div className="bg-white">
       <Navbar />
       {/* Main content wrapper for the Contact page. Opacity is applied here. */}
-      <div className={`w-11/12 mx-auto md:py-20 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 container items-stretch transition-opacity duration-300 ${showModal ? 'opacity-25' : 'opacity-100'}`}>
+      <div className={`w-11/12 mx-auto md:py-20 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 container items-stretch transition-opacity duration-300 ${showModal ? 'opacity-100' : 'opacity-100'}`}>
         <div className="lg:col-span-1 order-first md:order-first lg:order-none">
           <h1 className="text-4xl md:text-6xl font-bold text-[#013F1E] mb-0 md:mb-4 font-IBM flex justify-center lg:justify-start uppercase lg:normal-case">
             Contact Us
