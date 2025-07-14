@@ -183,7 +183,7 @@ const Login = () => {
             {/* Ensure this link points to the correct route, e.g., /forgot-password */}
             <Link
               to="/forgot-password"
-              className="text-[14px] sm:text-[16px] font-medium text-end block text-end text-[#000000]"
+              className="text-[14px] sm:text-[16px] font-medium text-end block text-[#000000]"
             >
               Forgot Password?
             </Link>
