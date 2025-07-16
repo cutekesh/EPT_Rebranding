@@ -21,9 +21,19 @@ const WhatIsFeed = () => {
   };
 
   // Function to close the modal AND navigate to home page
-  const handleCloseModal = () => {
+  const handleNavigateHome = () => {
     setShowModal(false);
     navigate("/"); // Navigate to the home page
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleOutsideClick = (e) => {
+    if (e.target.id === "modal-backdrop") {
+      handleCloseModal();
+    }
   };
 
   const onSubmit = (data) => {
@@ -37,7 +47,11 @@ const WhatIsFeed = () => {
 
   return (
     // Apply opacity to the main content div based on modal state
-    <div className={`w-full md:my-10 mt-5 mb-10 lg:my-30 transition-opacity duration-300 ${showModal ? 'opacity-100' : 'opacity-100'}`}>
+    <div
+      className={`w-full md:my-10 mt-5 mb-10 lg:my-30 transition-opacity duration-300 ${
+        showModal ? "opacity-100" : "opacity-100"
+      }`}
+    >
       <div className="w-11/12 mx-auto container grid grid-cols-1 lg:grid-cols-2 justify-center lg:mb-16 gap-2">
         <div className="space-y-4 lg:space-y-8 lg:flex flex-col justify-center">
           <div className="font-bold text-[#013F1E]">
@@ -145,9 +159,13 @@ const WhatIsFeed = () => {
         </div>
       </div>
 
-      {/* Success Modal - This is rendered outside the opacity-affected div */}
+      {/* Success Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/80 flex justify-center items-center z-50 p-4">
+        <div
+          id="modal-backdrop"
+          onClick={handleOutsideClick}
+          className="fixed inset-0 bg-black/80 flex justify-center items-center z-50 p-4"
+        >
           <div className="bg-white rounded-lg shadow-xl p-14 md:w-[480px] md:h-[460px] w-[340px] h-[360px] text-center relative">
             {/* Close Button */}
             <img
@@ -160,11 +178,12 @@ const WhatIsFeed = () => {
               <img src={consultationIcon} alt="emailIcon" />
             </div>
             <p className="text-[#000101] md:my-10 font-Inter md:text-2xl my-6">
-              Your message consultation has been successfully booked and an email has been sent!
+              Your message consultation has been successfully booked and an
+              email has been sent!
             </p>
             <button
               type="button"
-              onClick={handleCloseModal}
+              onClick={handleNavigateHome}
               className="w-full bg-[#008A3F] text-white py-3 rounded-md hover:bg-[#006A3F] transition-colors font-bold md:text-lg hover:cursor-pointer"
             >
               Home
