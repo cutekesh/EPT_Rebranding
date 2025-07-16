@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import banner from "../../assets/image 107.png";
@@ -11,9 +11,24 @@ const ForgotPassword = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Reset link requested for:", data.email);
-    // Call your reset API here
+  const [loading, setLoading] = useState(false); // ← loading state
+
+  const onSubmit = async (data) => {
+    if (loading) return;
+    setLoading(true);
+
+    try {
+      console.log("Reset link requested for:", data.email);
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Show success (replace with toast/notification in real project)
+      alert("Password reset link sent to " + data.email);
+    } catch (error) {
+      console.error("Error sending reset link:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -28,12 +43,10 @@ const ForgotPassword = () => {
         </div>
 
         <div className="flex items-center justify-center p-5">
-          <div className="w-full md:w-10/12  mx-auto text-[#000101]">
-            <Link to="/"><img
-              src={logo}
-              alt="EPT logo"
-              className="w-[100px] mx-auto mb-10"
-            /></Link>
+          <div className="w-full md:w-10/12 mx-auto text-[#000101]">
+            <Link to="/">
+              <img src={logo} alt="EPT logo" className="w-[100px] mx-auto mb-10" />
+            </Link>
 
             <h2 className="text-xl md:text-2xl lg:text-[25px] font-semibold font-Inter mb-1">
               Forgot Password?
@@ -74,18 +87,18 @@ const ForgotPassword = () => {
 
               <button
                 type="submit"
-                className="bg-[#008A3F] mt-4 text-white text-base w-full py-3 rounded-md hover:bg-white hover:text-[#008A3F] hover:border hover:border-[#008A3F] transition"
+                disabled={loading}
+                className={`bg-[#008A3F] mt-4 text-white text-base w-full py-3 rounded-md transition 
+                ${loading ? "opacity-70 cursor-not-allowed" : "hover:bg-white hover:text-[#008A3F] hover:border hover:border-[#008A3F]"}`}
               >
-                Send reset link
+                {loading ? "Sending..." : "Send reset link"}
               </button>
             </form>
 
             {/* Divider */}
             <div className="flex items-center my-6">
               <hr className="flex-grow border-t border-[#000000]" />
-              <span className="mx-4 text-[#000000] font-medium text-sm lg:text-base">
-                Or
-              </span>
+              <span className="mx-4 text-[#000000] font-medium text-sm lg:text-base">Or</span>
               <hr className="flex-grow border-t border-[#000000]" />
             </div>
 
@@ -97,7 +110,6 @@ const ForgotPassword = () => {
             </p>
           </div>
         </div>
-
       </div>
     </div>
   );
