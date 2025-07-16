@@ -28,7 +28,7 @@ const MapComponent = ({ locationAddress = "26 Furo Ezimora Street, Lekki Phase 1
     fetchCoordinates();
   }, [locationAddress]);
 
-  // Construct the URL for the OpenStreetMap iframe src attribute
+  // URL for the OpenStreetMap iframe src attribute
   const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${coordinates.lon - 0.01},${coordinates.lat - 0.005},${coordinates.lon + 0.01},${coordinates.lat + 0.005}&layer=mapnik&marker=${coordinates.lat},${coordinates.lon}`;
 
  

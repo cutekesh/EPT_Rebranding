@@ -3,7 +3,7 @@ import emailjs from "@emailjs/browser";
 import emailIcon from "../../assets/contactFormEmailIcon.png";
 import closeIcon from "../../assets/closeModalIcon.svg";
 
-const ContactFormSection = ({ onSuccess }) => { // Accept onSuccess prop
+const ContactFormSection = ({ onSuccess }) => { 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -108,7 +108,7 @@ const ContactFormSection = ({ onSuccess }) => { // Accept onSuccess prop
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
-        }, publicKey); // Pass public key here as well, though init usually handles it.
+        }, publicKey);
 
         // if message is successfully sent, notify parent to show the modal
         if (onSuccess) {
@@ -117,7 +117,7 @@ const ContactFormSection = ({ onSuccess }) => { // Accept onSuccess prop
         setFormData({ name: "", email: "", message: "" });
         setErrors({});
       } catch (error) {
-        console.error("EmailJS send error:", error); // Log the full error object
+        console.error("EmailJS send error:", error); 
         let userMessage = "Failed to send your message. Please try again.";
         if (error.status && error.text) {
           userMessage += ` (Status: ${error.status}, Message: ${error.text})`;
@@ -127,7 +127,7 @@ const ContactFormSection = ({ onSuccess }) => { // Accept onSuccess prop
         setSubmissionMessage(userMessage);
         setTimeout(() => setSubmissionMessage(""), 5000);
       } finally {
-        setIsSending(false); // Re-enable inputs and button
+        setIsSending(false); 
       }
     } else {
       setSubmissionMessage("Please correct the errors in the form.");
@@ -136,7 +136,6 @@ const ContactFormSection = ({ onSuccess }) => { // Accept onSuccess prop
     }
   };
 
-  // Removed handleCloseModal and modal JSX as it's now handled by parent (Contact.jsx)
 
   return (
     <div className="p-8 bg-[#E6F3EC] rounded-md h-full">
@@ -153,7 +152,7 @@ const ContactFormSection = ({ onSuccess }) => { // Accept onSuccess prop
               type="text"
               id="name"
               placeholder="Enter your name*"
-              className={`w-full p-3 font-Inter bg-[#FFFFFF] rounded-md focus:outline-none text-[#969797] hover:ring-1 hover:ring-[#008A3F] ${
+              className={`w-full p-3 font-Inter bg-[#FFFFFF] rounded-md focus:outline-none text-black placeholder:text-[#969797] hover:ring-1 hover:ring-[#008A3F] ${
                 errors.name ? "border-red-500 ring-red-500" : ""
               }`}
               value={formData.name}
@@ -177,7 +176,7 @@ const ContactFormSection = ({ onSuccess }) => { // Accept onSuccess prop
             type="email"
             id="email"
             placeholder="Enter your email*"
-            className={`w-full p-3 font-Inter bg-[#FFFFFF] rounded-md focus:outline-none text-[#969797] hover:ring-1 hover:ring-[#008A3F] ${
+            className={`w-full p-3 font-Inter bg-[#FFFFFF] rounded-md focus:outline-none text-black placeholder:text-[#969797] hover:ring-1 hover:ring-[#008A3F] ${
               errors.email ? "border-red-500 ring-red-500" : ""
             }`}
             value={formData.email}
@@ -200,7 +199,7 @@ const ContactFormSection = ({ onSuccess }) => { // Accept onSuccess prop
             id="message"
             placeholder="Write your message here*"
             rows="7"
-            className={`w-full p-3 font-Inter bg-[#FFFFFF] rounded-md focus:outline-none text-[#969797] hover:ring-1 hover:ring-[#008A3F] resize-y ${
+            className={`w-full p-3 font-Inter bg-[#FFFFFF] rounded-md focus:outline-none text-black placeholder:text-[#969797] hover:ring-1 hover:ring-[#008A3F] resize-y ${
               errors.message ? "border-red-500 ring-red-500" : ""
             }`}
             value={formData.message}
