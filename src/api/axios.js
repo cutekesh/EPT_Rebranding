@@ -25,15 +25,15 @@ api.interceptors.request.use(
 
 export const auth = {
   signup: (name, email, password) =>
-    api.post("/auth/signup", { name, email, password }),
-  login: (email, password) => api.post("/auth/login", { email, password }),
-  getProfile: () => api.get("/auth/profile"), // Example protected route
+    api.post("/api/auth/signup", { name, email, password }),
+  login: (email, password) => api.post("/api/auth/login", { email, password }),
+  getProfile: () => api.get("/api/auth/profile"), // Example protected route
 
   googleLogin: (idToken) =>
-    api.post("/auth/google-login", { id_token: idToken }),
+    api.post("/api/auth/google-login", { id_token: idToken }),
   forgotPassword: (email) => api.post("/auth/forgot-password", { email }),
   resetPassword: (token, newPassword) =>
-    api.post(`/auth/reset-password/${token}`, { newPassword }),
+    api.post(`/api/auth/reset-password/${token}`, { newPassword }),
 };
 
 export default api;

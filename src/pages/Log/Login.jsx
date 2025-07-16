@@ -6,12 +6,16 @@ import Logo from "../../assets/image 2.svg";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import Google from "../../assets/flat-color-icons_google.svg";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState({});
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const { reset } = useForm();
 
   const { login, googleLogin } = useAuth();
 
@@ -20,6 +24,7 @@ const Login = () => {
   };
 
   const handleGoogleLoginClick = async () => {
+    setLoading(true);
     setError({});
     try {
       const success = await googleLogin();
@@ -36,6 +41,7 @@ const Login = () => {
           err.message || "Google login failed due to an unexpected error.",
       });
     }
+    setLoading(false);
   };
 
   const handleChange = (e) => {
@@ -44,6 +50,7 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const { email, password } = formData;
 
@@ -68,7 +75,8 @@ const Login = () => {
       const success = await login(email, password); // Pass email and password
       if (success) {
         setError({}); // Clear errors on successful login
-        navigate("/dashboard"); // Redirect to dashboard on success
+        reset();
+        navigate("/"); // Redirect to dashboard on success
       } else {
         // Error message will be set by AuthContext's login function if it returns false
         // or you can set a generic one here if AuthContext doesn't handle it
@@ -81,6 +89,7 @@ const Login = () => {
           "Login failed due to an unexpected error.",
       });
     }
+    setLoading(false);
   };
 
   return (
@@ -95,11 +104,13 @@ const Login = () => {
 
       <div className="flex items-center justify-center px-4 sm:px-8  bg-white">
         <div className="w-full max-w-md sm:max-w-lg ">
-          <img
-            src={Logo}
-            alt="Logo"
-            className="w-24 mb-14 mx-auto hidden lg:block"
-          />
+          <Link to="/">
+            <img
+              src={Logo}
+              alt="Logo"
+              className="w-24 mb-14 mx-auto hidden lg:block"
+            />
+          </Link>
 
           <div className="mb-8">
             <h1 className="text-[22px] sm:text-[26px] lg:text-[28px] font-semibold text-[#000101]">
@@ -144,6 +155,7 @@ const Login = () => {
               >
                 Password
               </label>
+
               <input
                 id="password"
                 name="password"
@@ -153,11 +165,12 @@ const Login = () => {
                 placeholder="Password"
                 className="text-[#2632388F] bg-[#E6F3EC] p-2  lg:px-2 md:py-4 rounded-md outline-none"
               />
+
               <button
                 type="button"
                 aria-label="Toggle password visibility"
                 onClick={handleTogglePassword}
-                className="absolute right-4 translate-y-3 w-[20px] rounded-full bottom-6 lg:bottom-8 "
+                className="absolute right-4 translate-y-3 w-[20px] rounded-full bottom-6 lg:bottom-8 text-gray-600"
               >
                 {showPassword ? <MdOutlineRemoveRedEye /> : <FaRegEyeSlash />}
               </button>
@@ -166,26 +179,15 @@ const Login = () => {
               )}
             </div>
 
-
             {/* Ensure this link points to the correct route, e.g., /forgot-password */}
             <Link
               to="/forgot-password"
-              className="text-[14px] sm:text-[16px] font-medium text-end block text-end text-[#000000]"
+              className="text-[14px] sm:text-[16px] font-medium text-end block text-[#000000]"
             >
               Forgot Password?
             </Link>
-            <label htmlFor="remember" className="flex items-center justify-center  gap-2 text-[#000101] my-6 font-normal">
-  <input type="checkbox" id="remember" />
-  <p className="text-[#000101] text-[14px]  md:text-[18px]">
-    I agree to the 
-    <span className="text-[#008A3F]"> terms of services </span> 
-    and 
-    <span className="text-[#008A3F]"> privacy policies</span>
-  </p>
-</label>
 
-            
-                        <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2">
               <button
                 type="submit"
                 className="bg-[#008A3F] text-white p-2 lg:px-2 lg:py-4 rounded-md font-semibold hover:bg-[#006f2d] transition duration-300 cursor-pointer mt-2"
@@ -193,7 +195,6 @@ const Login = () => {
                 Sign In
               </button>
             </div>
-            
 
             <div className="flex items-center justify-center gap-2 my-4">
               <span className="w-full h-[1px] bg-[#000000]"></span>
@@ -204,16 +205,17 @@ const Login = () => {
             <button
               type="button" // Important: change to type="button" to prevent form submission
               onClick={handleGoogleLoginClick}
-              className="flex items-center justify-center gap-4 border border-black py-3 rounded-md mb-2 cursor-pointer"
+              className={`w-full flex gap-2 items-center justify-center border border-[#BABCD4] rounded-md py-2 transition-all ${
+                loading ? "bg-gray-200 cursor-not-allowed" : "hover:opacity-90"
+              }`}
             >
               <img alt="google icon" src={Google} />
-              <p className="text-[#000101]" >Continue with Google</p>
+              <p className="text-[#000101]">Continue with Google</p>
             </button>
 
             <div className="text-center font-medium lg:text-[20px]">
               <span className="text-[#000101]">Don't have an account? </span>
               <Link to="/register" className="text-[#008A3F] hover:underline">
-
                 Sign up
               </Link>
             </div>
