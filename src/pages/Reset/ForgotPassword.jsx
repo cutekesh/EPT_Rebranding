@@ -23,17 +23,17 @@ const ForgotPassword = () => {
           <img
             src={banner}
             alt="three men standing"
-            className="w-full h-full object-cover"
+            className="w-full h-screen object-cover"
           />
         </div>
 
         <div className="flex items-center justify-center p-5">
-          <div className="w-full md:w-10/12 mx-auto text-[#000101]">
-            <img
+          <div className="w-full md:w-10/12  mx-auto text-[#000101]">
+            <Link to="/"><img
               src={logo}
               alt="EPT logo"
               className="w-[100px] mx-auto mb-10"
-            />
+            /></Link>
 
             <h2 className="text-xl md:text-2xl lg:text-[25px] font-semibold font-Inter mb-1">
               Forgot Password?
