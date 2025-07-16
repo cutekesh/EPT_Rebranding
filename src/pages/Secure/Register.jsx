@@ -1,109 +1,104 @@
-// import React, { useState } from "react";
-// import { useAuth } from "../../context/AuthContext";
-
-// const Register = () => {
-//   // State for holding form input values: email, password, and repeatPassword.
-//   const [formData, setFormData] = useState({
-//     email: "",
-//     password: "",
-//     repeatPassword: "",
-//   });
-//   // State for holding error messages during registration.
-//   const [error, setError] = useState("");
-//   // State for holding success messages when registration is successful.
-//   const [success, setSuccess] = useState("");
-//   // Extract the register function from the Auth context to handle registration.
-//   const { register } = useAuth(); // Get the register function from the AuthContext
-
-//   // Event handler for updating form data when the user types in input fields.
-//   const handleChange = (event) => {
-//     // Update the corresponding property in formData based on the input's name attribute.
-//     setFormData({ ...formData, [event.target.name]: event.target.value });
-//   };
-
-//   // Event handler for form submission.
-//   const handleSubmit = async (event) => {
-//     // Prevent the default form submission behavior (which would refresh the page).
-//     event.preventDefault();
-//     try {
-//       // Call the register function (from Auth context) with the form data.
-//       await register(formData);
-//       // If registration is successful, show a success message.
-//       setSuccess("Registration successful. Please log in.");
-//       // Clear any previous error messages.
-//       setError("");
-//     } catch (err) {
-//       // If an error occurs, update the error state with the server's message or a default one.
-//       setError(err.response?.data?.message || "Registration failed");
-//     }
-//   };
-//   return <div></div>;
-// };
-
-// export default Register;
-
 import React, { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { FiEye, FiEyeOff } from "react-icons/fi";
-import { useForm } from "react-hook-form";
-import { useAuth } from "../../context/AuthContext";
-import SignupImg from "../../assets/signup img.png";
-import Logo from "../../assets/eptLogo.svg";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form"; // Assuming you're using react-hook-form
+import { FiEye, FiEyeOff } from "react-icons/fi"; // For password visibility icons
+import { FcGoogle } from "react-icons/fc"; // For Google icon
+
+// Your assets
+import SignupImg from "../../assets/image 107.png"; // Adjust path as needed
+import Logo from "../../assets/image 2.svg"; // Adjust path as needed
+
+// Your AuthContext
+import { useAuth } from "../../context/AuthContext"; // Correct path to your AuthContext
 
 const Register = () => {
-  const [loading, setLoading] = useState(false);
-  const [serverError, setServerError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false); // For loading state of buttons
+  const [serverError, setServerError] = useState(""); // For backend error messages
+  const [successMessage, setSuccessMessage] = useState(""); // For backend success messages
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm();
-
-  const password = watch("password");
-  const { signup, googleLogin } = useAuth();
+  const { signup, googleLogin } = useAuth(); // Destructure signup and googleLogin from your context
   const navigate = useNavigate();
 
+  // Initialize react-hook-form
+  const {
+    register,
+    handleSubmit: handleFormSubmit, // Rename handleSubmit to avoid conflict with our own
+    watch, // To watch password field for confirm password validation
+    formState: { errors },
+    reset, // To reset form after submission
+  } = useForm({
+    mode: "onBlur", // Validate on blur
+  });
+
+  const password = watch("password"); // Watch the password field
+
+  // This handleChange is generally not needed with react-hook-form's register,
+  // but we'll keep it if you have other side effects on change.
+  // For standard form inputs with RHF, you usually just rely on {...register()}
+  const handleChange = (e) => {
+    // You can add any specific logic here if needed,
+    // otherwise, RHF handles the input values automatically.
+    setServerError(""); // Clear server errors on input change
+    setSuccessMessage(""); // Clear success messages on input change
+  };
+
+  // --- Handle Standard Signup ---
   const onSubmit = async (data) => {
     setLoading(true);
     setServerError("");
     setSuccessMessage("");
 
-    try {
-      // Ensure signup returns a boolean or throws on error
-      await signup(data.fullName, data.email, data.password);
-      setSuccessMessage("Registration successful!");
-      reset();
-      setTimeout(() => navigate("/login"), 2000);
-    } catch (err) {
-      setServerError(
-        err?.response?.data?.message ||
-          err?.message ||
-          "Registration failed. Please try again."
-      );
-    }
+    // Destructure data from react-hook-form
+    const { name, email, password } = data;
 
-    setLoading(false);
+    try {
+      // Call your signup function from AuthContext
+      const success = await signup(name, email, password); // Pass 'name' as fullName
+
+      if (success) {
+        setSuccessMessage("Registration successful! Redirecting to login...");
+        reset(); // Clear form fields
+        setTimeout(() => {
+          navigate("/login"); // Redirect on success
+        }, 2000); // Give user time to read success message
+      } else {
+        // This 'else' might be hit if signup explicitly returns false,
+        // but typically AuthContext throws errors for failures.
+        setServerError("Signup failed. Please try again.");
+      }
+    } catch (err) {
+      // Catch errors thrown by AuthContext (e.g., from backend validation)
+      console.error("Signup error:", err);
+      setServerError(err || "An unexpected error occurred during signup.");
+    } finally {
+      setLoading(false);
+    }
   };
 
+  // --- Handle Google Login ---
   const handleGoogleLogin = async () => {
     setLoading(true);
     setServerError("");
     setSuccessMessage("");
 
     try {
-      const success = await googleLogin();
+      const success = await googleLogin(); // Call googleLogin from AuthContext
       if (success) {
-        navigate("/"); // adjust route as needed
+        setSuccessMessage("Google login successful! Redirecting...");
+        setTimeout(() => {
+          navigate("/"); // Redirect on success
+        }, 1500);
+      } else {
+        // This path is hit if the user closes the popup or if googleLogin returns false
+        setServerError(
+          "Google login was cancelled or failed. Please try again."
+        );
       }
     } catch (err) {
-      setServerError(err?.message || "Google login failed. Please try again.");
+      console.error("Google login error:", err);
+      setServerError(err || "Google login failed due to an unexpected error.");
     } finally {
       setLoading(false);
     }
@@ -131,13 +126,14 @@ const Register = () => {
               <p>Fill in your details below to become a member</p>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
+            {/* --- Use react-hook-form's handleSubmit --- */}
+            <form onSubmit={handleFormSubmit(onSubmit)} className="mt-4">
               <div className="flex flex-col gap-4">
                 {/* Full Name */}
                 <div className="flex flex-col gap-1">
                   <label className="hidden lg:block font-bold">FULL NAME</label>
                   <input
-                    {...register("fullName", {
+                    {...register("name", {
                       required: "Full name is required",
                       pattern: {
                         value: /^[a-zA-Z\s'-]+$/,
@@ -149,6 +145,7 @@ const Register = () => {
                     className={`w-full rounded-md p-2 pr-10 border ${
                       errors.fullName ? "border-red-700" : "border-[#BABCD4]"
                     } focus:border-[#008A3F] focus:outline-none`}
+                    onChange={handleChange} // Keep if you have side effects, otherwise can remove
                   />
                   {errors.fullName && (
                     <span className="text-red-500 text-[12px]">
@@ -173,6 +170,7 @@ const Register = () => {
                     className={`w-full rounded-md p-2 pr-10 border ${
                       errors.email ? "border-red-700" : "border-[#BABCD4]"
                     } focus:border-[#008A3F] focus:outline-none`}
+                    onChange={handleChange} // Keep if you have side effects, otherwise can remove
                   />
                   {errors.email && (
                     <span className="text-red-500 text-[12px]">
@@ -197,6 +195,7 @@ const Register = () => {
                     className={`w-full rounded-md p-2 pr-10 border ${
                       errors.password ? "border-red-700" : "border-[#BABCD4]"
                     } focus:border-[#008A3F] focus:outline-none`}
+                    onChange={handleChange} // Keep if you have side effects, otherwise can remove
                   />
                   <span
                     onClick={() => setShowPassword((prev) => !prev)}
@@ -220,7 +219,7 @@ const Register = () => {
                     {...register("confirmPassword", {
                       required: "Please confirm your password",
                       validate: (value) =>
-                        value === password || "Passwords do not match",
+                        value === password || "Passwords do not match", // Direct comparison with watched 'password'
                     })}
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm your password"
@@ -229,6 +228,7 @@ const Register = () => {
                         ? "border-red-700"
                         : "border-[#BABCD4]"
                     } focus:border-[#008A3F] focus:outline-none`}
+                    onChange={handleChange} // Keep if you have side effects, otherwise can remove
                   />
                   <span
                     onClick={() => setShowConfirmPassword((prev) => !prev)}
@@ -253,6 +253,7 @@ const Register = () => {
                     className={`accent-[#008A3F] bg-white w-4 h-4 rounded-sm border ${
                       errors.terms ? "border-red-500" : "border-gray-300"
                     } focus:ring-2 focus:ring-[#008A3F] focus:outline-none`}
+                    onChange={handleChange} // Keep if you have side effects, otherwise can remove
                   />
                   <div className="lg:tracking-tight xl:tracking-normal">
                     I agree to the{" "}
@@ -281,7 +282,9 @@ const Register = () => {
                   type="submit"
                   disabled={loading}
                   className={`rounded-md text-white w-full py-2 transition-all ${
-                    loading ? "bg-gray-400" : "bg-[#008A3F]"
+                    loading
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-[#008A3F] hover:bg-[#006f2d]"
                   }`}
                 >
                   {loading ? "Submitting..." : "Sign Up"}
@@ -293,7 +296,7 @@ const Register = () => {
                 </div>
 
                 <button
-                  type="button"
+                  type="button" // Important: set type="button" to prevent form submission
                   onClick={handleGoogleLogin}
                   disabled={loading}
                   className={`w-full flex gap-2 items-center justify-center border border-[#BABCD4] rounded-md py-2 transition-all ${
@@ -306,7 +309,7 @@ const Register = () => {
                   {loading ? "Please wait..." : "Continue with Google"}
                 </button>
 
-                <Link to="/Login" className="text-center">
+                <Link to="/login" className="text-center">
                   Already have an account?{" "}
                   <span className="text-[#008A3F]">Sign In</span>
                 </Link>

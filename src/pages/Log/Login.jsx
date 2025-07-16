@@ -6,7 +6,7 @@ import Logo from "../../assets/image 2.svg";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import Google from "../../assets/flat-color-icons_google.svg";
-import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,6 +14,8 @@ const Login = () => {
   const [error, setError] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const { reset } = useForm();
 
   const { login, googleLogin } = useAuth();
 
@@ -73,6 +75,7 @@ const Login = () => {
       const success = await login(email, password); // Pass email and password
       if (success) {
         setError({}); // Clear errors on successful login
+        reset();
         navigate("/"); // Redirect to dashboard on success
       } else {
         // Error message will be set by AuthContext's login function if it returns false
@@ -101,11 +104,13 @@ const Login = () => {
 
       <div className="flex items-center justify-center px-4 sm:px-8  bg-white">
         <div className="w-full max-w-md sm:max-w-lg ">
-          <img
-            src={Logo}
-            alt="Logo"
-            className="w-24 mb-14 mx-auto hidden lg:block"
-          />
+          <Link to="/">
+            <img
+              src={Logo}
+              alt="Logo"
+              className="w-24 mb-14 mx-auto hidden lg:block"
+            />
+          </Link>
 
           <div className="mb-8">
             <h1 className="text-[22px] sm:text-[26px] lg:text-[28px] font-semibold text-[#000101]">
@@ -150,28 +155,22 @@ const Login = () => {
               >
                 Password
               </label>
-              <div className="bg-[#E6F3EC]">
-                <input
-                  id="password"
-                  name="password"
-                  type={showPassword ? "text" : "password"}
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="Password"
-                  className="text-[#2632388F] bg-[#E6F3EC] p-2  lg:px-2 md:py-4 rounded-md outline-none"
-                />
-                <span
-                  onClick={() => setShowPassword((prev) => !prev)}
-                  className="absolute right-3 top-3 lg:top-[38px] cursor-pointer text-gray-600"
-                >
-                  {showPassword ? <FiEyeOff /> : <FiEye />}
-                </span>
-              </div>
+
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Password"
+                className="text-[#2632388F] bg-[#E6F3EC] p-2  lg:px-2 md:py-4 rounded-md outline-none"
+              />
+
               <button
                 type="button"
                 aria-label="Toggle password visibility"
                 onClick={handleTogglePassword}
-                className="absolute right-4 translate-y-3 w-[20px] rounded-full bottom-6 lg:bottom-8 "
+                className="absolute right-4 translate-y-3 w-[20px] rounded-full bottom-6 lg:bottom-8 text-gray-600"
               >
                 {showPassword ? <MdOutlineRemoveRedEye /> : <FaRegEyeSlash />}
               </button>
