@@ -24,7 +24,7 @@ const OfficeMapSection = () => {
             {/* Buttons to select office addresses */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2 mt-4">
                 {officeLocations.map((office, index) => (
-                    <div key={index} className="relative"> {/* Wrapper div to position the pointer */}
+                    <div key={index} className="relative">
                         <button
                             onClick={() => setSelectedOffice(office)}
                             className={`w-full py-2 transition-colors duration-200 hover:cursor-pointer
@@ -35,7 +35,7 @@ const OfficeMapSection = () => {
                         >
                             {office.name}
                         </button>
-                        {/* Pointer element - visible only when the button is active */}
+                       
                         {selectedOffice.name === office.name && (
                             <div className="absolute top-[-8px] left-1/2 transform -translate-x-1/2
                                             w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent
