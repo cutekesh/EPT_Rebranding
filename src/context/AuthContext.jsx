@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
           console.error("Token validation failed or expired:", error);
           localStorage.removeItem("jwtToken"); // Clear invalid token
           setUser(null);
-          navigate("/login"); // Redirect to login on token expiry
+          navigate("/"); // Redirect to login on token expiry
         } finally {
           setIsLoading(false);
         }
