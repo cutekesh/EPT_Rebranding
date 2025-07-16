@@ -32,7 +32,6 @@ const Footer = () => {
 
                 <button
                   className="bg-[#008A3F] lg:px-6 h-[48px] rounded-md lg:text-[15px] font-medium absolute right-0 lg:top- tracking-wide hover:bg-white hover:text-[#008A3F] hover:border-[1px]"
-
                   type="submit"
                 >
                   Subscribe
@@ -108,7 +107,7 @@ const Footer = () => {
               </li>
 
               <li className="mb-4 hover:underline">
-                <a href="#">Equipment Rental</a>
+                <Link to="/equipments">Equipment Rental</Link>
               </li>
 
               <li className="mb-4 hover:underline">
@@ -160,9 +159,7 @@ const Footer = () => {
               />
 
               <button
-
                 className="bg-[#008A3F] px-6 h-[45.5px] rounded-md text-[16px] font-medium absolute right-0 top-[-1px] hover:bg-white hover:text-[#008A3F] hover:border-[1px] hover:cursor-pointer"
-
                 type="submit"
               >
                 Subscribe

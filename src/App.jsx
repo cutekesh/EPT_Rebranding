@@ -10,6 +10,7 @@ import Register from "./pages/Secure/Register";
 import ResetPassword from "./pages/Reset/ResetPassword";
 import ForgotPassword from "./pages/Reset/ForgotPassword";
 import { AuthProvider } from "./context/AuthContext";
+import Equipments from "./pages/Equipments/Equipments";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/equipments" element={<Equipments />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/passwordreset" element={<ResetPassword />} />
