@@ -5,7 +5,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import Worker from "../../assets/image 107.png";
 import Logo from "../../assets/image 2.svg";
 import { useAuth } from "../../context/AuthContext";
 
