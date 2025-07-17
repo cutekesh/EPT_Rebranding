@@ -4,6 +4,7 @@ import logo from "../../assets/white ept logo.png";
 import facebooklogo from "../../assets/raphael_facebook.png";
 import instagramlogo from "../../assets/streamline_instagram-solid.png";
 import xlogo from "../../assets/streamline-logos_x-twitter-logo-block.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (

@@ -10,7 +10,7 @@ const ContactInfoSection = () => {
         <h2 className="text-xl md:text-[28px] font-bold text-[#000101] mb-">
           Get In Touch With Us
         </h2>
-        <p className="text-base text-[#000101] font-Inter font-normal my-4">
+        <p className="text-[20px] text-[#000101] font-Inter font-normal my-4">
           If you have any questions, please feel free to get in touch with us
           via phone, text, email, the form below, or even social media!
         </p>

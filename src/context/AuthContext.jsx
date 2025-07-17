@@ -114,8 +114,9 @@ export const AuthProvider = ({ children }) => {
 
   const initiateForgotPassword = async (email) => {
     try {
-      const responseMessage = await apiAuth.forgotPassword(email);
-      return responseMessage;
+      const response = await apiAuth.forgotPassword(email);
+      // Only return the message string, not the whole response object
+      return response.data.message;
     } catch (err) {
       console.error(
         "Forgot password request failed:",
@@ -129,8 +130,8 @@ export const AuthProvider = ({ children }) => {
 
   const completePasswordReset = async (token, newPassword) => {
     try {
-      const responseMessage = await apiAuth.resetPassword(token, newPassword);
-      return responseMessage;
+      const response = await apiAuth.resetPassword(token, newPassword);
+      return response.data.message; // Return only the message string
     } catch (err) {
       console.error(
         "Password reset failed:",
@@ -141,7 +142,6 @@ export const AuthProvider = ({ children }) => {
         : "Error resetting password.";
     }
   };
-
   return (
     <AuthContext.Provider
       value={{
