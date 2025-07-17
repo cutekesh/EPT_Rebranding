@@ -94,7 +94,7 @@ const Login = () => {
               <img
                 src={Logo}
                 alt="Logo"
-                className="w-24 mb-14 mx-auto hidden lg:block"
+                className="w-24 mb-14 mx-auto"
               />
             </Link>
 

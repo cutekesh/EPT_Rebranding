@@ -340,7 +340,7 @@ const Navbar = () => {
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
           <div
-            className="absolute top-[60px] right-1 bg-white shadow-lg rounded-lg p-4 z-50 w-full md:hidden"
+            className="absolute top-[60px] right-1 bg-white shadow-lg drop-shadow-md rounded-lg p-4 z-50 w-full md:hidden"
             ref={mobileMenuRef}
           >
             <ul className="text-[#333333] flex flex-col gap-4 items-center">
@@ -354,6 +354,7 @@ const Navbar = () => {
                   }`}
                 ></span>
               </li>
+              <div className="w-full border-b border-[#BABCD4]"></div>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/services">Services</Link>
                 <span
@@ -364,6 +365,7 @@ const Navbar = () => {
                   }`}
                 ></span>
               </li>
+              <div className="w-full border-b border-[#BABCD4]"></div>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/about">About Us</Link>
                 <span
@@ -374,6 +376,7 @@ const Navbar = () => {
                   }`}
                 ></span>
               </li>
+              <div className="w-full border-b border-[#BABCD4]"></div>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/contact">Contact Us</Link>
                 <span
@@ -384,6 +387,7 @@ const Navbar = () => {
                   }`}
                 ></span>
               </li>
+              <div className="w-full border-b border-[#BABCD4]"></div>
             </ul>
           </div>
         )}
