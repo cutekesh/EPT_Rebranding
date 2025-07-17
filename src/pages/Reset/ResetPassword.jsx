@@ -1,13 +1,16 @@
+
 import React from "react";
 import Worker from "../../assets/image 107.png";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import Worker from "../../assets/image 107.png";
 import Logo from "../../assets/image 2.svg";
 import { useAuth } from "../../context/AuthContext";
 
 const ResetPassword = () => {
+
   //   const [showPassword, setShowPassword] = useState(false);
   //   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   //   const [error, setError] = useState("");
@@ -142,6 +145,7 @@ const ResetPassword = () => {
 
   const { completePasswordReset } = useAuth(); // Destructure the function from your context
 
+
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
@@ -160,6 +164,7 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); // Start loading
+
     setError(""); // Clear previous client-side error
     setServerError(""); // Clear previous server error
     setServerMessage(""); // Clear previous success message
@@ -280,6 +285,7 @@ const ResetPassword = () => {
                 </label>
                 <input
                   type={showConfirmPassword ? "text" : "password"}
+
                   name="confirmPassword" // Changed name to match state variable name
                   required
                   value={formData.confirmPassword}
@@ -290,6 +296,7 @@ const ResetPassword = () => {
                 <button
                   type="button"
                   onClick={handleToggleConfirmPassword}
+
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 w-[20px] lg:bottom-6 lg:top-auto" // Adjusted top for better alignment
                 >
                   {showConfirmPassword ? (

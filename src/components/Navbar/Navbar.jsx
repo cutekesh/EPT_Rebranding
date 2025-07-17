@@ -20,6 +20,8 @@ const Navbar = () => {
   const navRef = useRef(null);
   const servicesDropdownRef = useRef(null);
   const engineeringSubDropdownRef = useRef(null);
+  const userMenuRef = useRef(null);
+  const mobileMenuRef = useRef(null);
 
   const location = useLocation();
 
@@ -30,7 +32,6 @@ const Navbar = () => {
   };
 
   const handleMouseLeaveServices = () => {
-    // Only close if engineering sub-dropdown is not open
     if (!isEngineeringSubDropdownOpen) {
       servicesDropdownTimeoutId.current = setTimeout(() => {
         setIsServicesDropdownOpen(false);
@@ -39,25 +40,22 @@ const Navbar = () => {
     }
   };
 
-  // Function to toggle the mobile menu
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
-  // Function to toggle the user menu
   const toggleUserMenu = () => {
     setIsUserMenuOpen((prev) => !prev);
   };
 
-  // Handler for Engineering & Project Management link click
   const handleEngineeringClick = (e) => {
     e.preventDefault();
-    e.stopPropagation(); // Prevent click from bubbling to parent onMouseLeave
-    clearTimeout(servicesDropdownTimeoutId.current); // Clear any pending close
+    e.stopPropagation();
+    clearTimeout(servicesDropdownTimeoutId.current);
     const newState = !isEngineeringSubDropdownOpen;
     setIsEngineeringSubDropdownOpen(newState);
     setIsOverlayActive(newState);
-    setIsServicesDropdownOpen(true); // Keep main dropdown open
+    setIsServicesDropdownOpen(true);
   };
 
   const serviceLinks = [
@@ -158,6 +156,57 @@ const Navbar = () => {
       clearTimeout(servicesDropdownTimeoutId.current);
     };
   }, []);
+
+  // Handle click outside for dropdowns and menus
+  useEffect(() => {
+    function handleClickOutside(event) {
+      // Services dropdown
+      if (
+        isServicesDropdownOpen &&
+        servicesDropdownRef.current &&
+        !servicesDropdownRef.current.contains(event.target) &&
+        !navRef.current.contains(event.target)
+      ) {
+        setIsServicesDropdownOpen(false);
+        setIsEngineeringSubDropdownOpen(false);
+        setIsOverlayActive(false);
+        setActiveSubDropdownId(null);
+      }
+      // Engineering sub-dropdown
+      if (
+        isEngineeringSubDropdownOpen &&
+        engineeringSubDropdownRef.current &&
+        !engineeringSubDropdownRef.current.contains(event.target) &&
+        !servicesDropdownRef.current?.contains(event.target)
+      ) {
+        setIsEngineeringSubDropdownOpen(false);
+        setIsOverlayActive(false);
+        setIsServicesDropdownOpen(false);
+      }
+      // User menu
+      if (
+        isUserMenuOpen &&
+        userMenuRef.current &&
+        !userMenuRef.current.contains(event.target) &&
+        event.target !== document.querySelector('img[alt="Auth Button"]')
+      ) {
+        setIsUserMenuOpen(false);
+      }
+      // Mobile menu
+      if (
+        isMenuOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target) &&
+        event.target !== document.querySelector('img[alt="Mobile Menu"]')
+      ) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+    // eslint-disable-next-line
+  }, [isServicesDropdownOpen, isEngineeringSubDropdownOpen, isUserMenuOpen, isMenuOpen]);
 
   const isActiveLink = (path) => {
     if (path === "/services") {
@@ -291,7 +340,12 @@ const Navbar = () => {
 
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
-          <div className="absolute top-[50px] right-0 bg-white shadow-lg rounded-lg p-4 z-50 w-full md:hidden">
+
+          <div
+            className="absolute top-[60px] right-1 bg-white shadow-lg drop-shadow-md rounded-lg p-4 z-50 w-full md:hidden"
+            ref={mobileMenuRef}
+          >
+
             <ul className="text-[#333333] flex flex-col gap-4 items-center">
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/">Home</Link>
@@ -303,6 +357,7 @@ const Navbar = () => {
                   }`}
                 ></span>
               </li>
+              <div className="w-full border-b border-[#BABCD4]"></div>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/services">Services</Link>
                 <span
@@ -313,6 +368,7 @@ const Navbar = () => {
                   }`}
                 ></span>
               </li>
+              <div className="w-full border-b border-[#BABCD4]"></div>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/about">About Us</Link>
                 <span
@@ -323,6 +379,7 @@ const Navbar = () => {
                   }`}
                 ></span>
               </li>
+              <div className="w-full border-b border-[#BABCD4]"></div>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/contact">Contact Us</Link>
                 <span
@@ -333,11 +390,13 @@ const Navbar = () => {
                   }`}
                 ></span>
               </li>
+              <div className="w-full border-b border-[#BABCD4]"></div>
             </ul>
           </div>
         )}
 
         {isUserMenuOpen && (
+
           <div className="absolute top-[50px] right-0 bg-white shadow-lg rounded-lg p-4 z-50 w-full ">
             <div className="flex flex-col gap-4">
               <Link to="/login">
@@ -346,6 +405,7 @@ const Navbar = () => {
                 </button>
               </Link>
               <Link to="/register">
+
                 <button className="text-[16px] font-[400] bg-white border-[#006A3F] text-[#008A3F] py-2 px-4 rounded-xl cursor-pointer border-1 font-Inter hover:text-black w-full ">
                   Sign Up
                 </button>
@@ -386,30 +446,19 @@ const Navbar = () => {
                       ? handleEngineeringClick
                       : undefined
                   }
-                  className={`text-black font-Inter text-[16px] font-[500]
-                             w-[257px] h-[55px]
-                             md:w-full
-                             p-3 rounded-md
-                             flex items-center text-start
-                             hover:bg-[#008A3F] hover:text-white
-                             transition-colors duration-200
-                             relative group
-                             ${
-                               link.id === "engineering" &&
-                               isEngineeringSubDropdownOpen
-                                 ? "bg-[#008A3F] text-white"
-                                 : ""
-                             }`}
+                  className={`text-black font-Inter text-[16px] font-[500] w-[257px] h-[55px] md:w-full p-3 rounded-md flex items-center text-start hover:bg-[#008A3F] hover:text-white transition-colors duration-200 relative group
+                    ${ link.id === "engineering" &&
+                    isEngineeringSubDropdownOpen
+                    ? "bg-[#008A3F] text-white"
+                    : ""
+                    }`}
                 >
                   {link.name}
 
                   {/* Nested Dropdown for Engineering & Project Management */}
                   {link.subLinks && activeSubDropdownId === link.id && (
                     <div
-                      className="absolute top-0 left-full ml-4 bg-white p-4 rounded-lg shadow-lg z-50
-                                 w-[280px] h-auto flex flex-col gap-2
-                                 transition-opacity duration-300 ease-in-out opacity-100
-                                 pointer-events-auto"
+                      className="absolute top-0 left-full ml-4 bg-white p-4 rounded-lg shadow-lg z-50 w-[280px] h-auto flex flex-col gap-2 transition-opacity duration-300 ease-in-out opacity-100 pointer-events-auto"
                       onMouseEnter={() => {
                         clearTimeout(servicesDropdownTimeoutId.current);
                         setActiveSubDropdownId(link.id);
@@ -424,14 +473,7 @@ const Navbar = () => {
                         <Link
                           key={subIndex}
                           to={subLink.path}
-                          className="text-black font-Inter text-[16px] font-[500]
-                                     hover:bg-[#E6F3EC]
-                                     w-full h-[55px]
-                                     p-3 rounded-md
-                                     flex items-center justify-center text-center
-                                     transition-colors duration-300
-                                     relative group"
-                        >
+                          className="text-black font-Inter text-[16px] font-[500] hover:bg-[#E6F3EC] w-full h-[55px] p-3 rounded-md flex items-center justify-center text-center transition-colors duration-300 relative group">
                           {subLink.name}
                         </Link>
                       ))}
@@ -467,14 +509,7 @@ const Navbar = () => {
               <Link
                 key={subIndex}
                 to={subLink.path}
-                className="text-black font-Inter text-[16px] font-[500]
-                         hover:bg-[#008A3F] hover:text-white
-                         w-full h-[55px]
-                         p-3 rounded-md
-                         flex items-center text-start
-                         transition-colors duration-300
-                         relative group"
-              >
+                className="text-black font-Inter text-[16px] font-[500] hover:bg-[#008A3F] hover:text-white w-full h-[55px] p-3 rounded-md flex items-center text-start transition-colors duration-300 relative group">
                 {subLink.name}
               </Link>
             ))}

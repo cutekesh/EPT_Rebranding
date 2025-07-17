@@ -88,7 +88,7 @@ const Expertise = () => {
                       </React.Fragment>
                     ))}
                   </p>
-                  <Link className="flex items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px] group-hover:text-[#000101] xl:mb-6 mb-4">
+                  <Link className="flex gap-2 items-center justify-center text-[#008A3F] font-[500] font-Inter text-[19.59px] group-hover:text-[#000101] xl:mb-6 mb-4">
                     Learn more <FaArrowRightLong />
                   </Link>
                 </div>

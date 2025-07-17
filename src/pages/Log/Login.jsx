@@ -41,8 +41,8 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    setLoading(true);
     e.preventDefault();
+    setLoading(true);
     const { email, password } = formData;
 
     const newErrors = {};
@@ -94,7 +94,7 @@ const Login = () => {
               <img
                 src={Logo}
                 alt="Logo"
-                className="w-24 mb-14 mx-auto hidden lg:block"
+                className="w-24 mb-14 mx-auto"
               />
             </Link>
 
@@ -180,9 +180,12 @@ const Login = () => {
               <div className="flex flex-col gap-2">
                 <button
                   type="submit"
-                  className="bg-[#008A3F] text-white p-2 lg:px-2 lg:py-4 rounded-md font-semibold hover:bg-[#006f2d] transition duration-300 cursor-pointer mt-2"
+                  disabled={loading}
+                  className={`bg-[#008A3F] text-white p-2 lg:px-2 lg:py-4 rounded-md font-semibold transition duration-300 cursor-pointer mt-2 ${
+                    loading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#006f2d]"
+                  }`}
                 >
-                  Sign In
+                  {loading ? "Signing In..." : "Sign In"}
                 </button>
               </div>
 
@@ -196,13 +199,16 @@ const Login = () => {
 
               <button
                 type="button"
+                disabled={loading}
                 onClick={handleGoogleLoginClick}
                 className={`w-full flex gap-2 items-center justify-center border border-[#BABCD4] rounded-md py-3 transition-all ${
                   loading ? "bg-gray-200 cursor-not-allowed" : "hover:opacity-90"
                 }`}
               >
                 <img alt="google icon" src={Google} />
-                <p className="text-[#000101]">Continue with Google</p>
+                <p className="text-[#000101]">
+                  {loading ? "Processing..." : "Continue with Google"}
+                </p>
               </button>
 
               <div className="text-center font-medium lg:text-[20px]">

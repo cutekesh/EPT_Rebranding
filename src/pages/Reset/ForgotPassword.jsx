@@ -15,6 +15,7 @@ const ForgotPassword = () => {
     mode: "onBlur", // Validate on blur
   });
 
+
   const { initiateForgotPassword } = useAuth(); // Destructure initiateForgotPassword from AuthContext
 
   const [loading, setLoading] = useState(false); // For loading state
@@ -59,13 +60,10 @@ const ForgotPassword = () => {
         </div>
 
         <div className="flex items-center justify-center p-5">
-          <div className="w-full md:w-10/12  mx-auto text-[#000101]">
+          <div className="w-full md:w-10/12 mx-auto text-[#000101]">
             <Link to="/">
-              <img
-                src={logo}
-                alt="EPT logo"
-                className="w-[100px] mx-auto mb-10"
-              />
+              <img src={logo} alt="EPT logo" className="w-[100px] mx-auto mb-10" />
+
             </Link>
 
             <h2 className="text-xl md:text-2xl lg:text-[25px] font-semibold font-Inter mb-1">
@@ -130,6 +128,7 @@ const ForgotPassword = () => {
                       ? "opacity-70 cursor-not-allowed"
                       : "cursor-pointer hover:bg-white hover:text-[#008A3F] hover:border hover:border-[#008A3F]"
                   }`}
+
               >
                 {loading ? "Sending..." : "Send reset link"}
               </button>
@@ -138,9 +137,7 @@ const ForgotPassword = () => {
             {/* Divider */}
             <div className="flex items-center my-6">
               <hr className="flex-grow border-t border-[#000000]" />
-              <span className="mx-4 text-[#000000] font-medium text-sm lg:text-base">
-                Or
-              </span>
+              <span className="mx-4 text-[#000000] font-medium text-sm lg:text-base">Or</span>
               <hr className="flex-grow border-t border-[#000000]" />
             </div>
 

@@ -1,4 +1,7 @@
 import React from 'react'
+import image1 from "../../assets/famicons_time-outline.png"
+import image2 from "../../assets/timer.png"
+import image3 from "../../assets/timer.png"
 
 const GettingFeedRight = () => {
   const Impact = [
@@ -6,19 +9,19 @@ const GettingFeedRight = () => {
       id: 1,
       title: "Faster project delivery",
       rate: "25%",
-      img: "/src/assets/famicons_time-outline.png"
+      img: image1
     },
     {
       id: 2,
       title: "Reduction in rework costs",
       rate: "15%",
-      img: "/src/assets/timer.png"
+      img: image2
     },
     {
       id: 3,
       title: "Client approval rate pre- EPC",
       rate: "98%",
-      img: "/src/assets/timer.png"
+      img: image3
     }
   ]
 

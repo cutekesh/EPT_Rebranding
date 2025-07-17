@@ -96,7 +96,7 @@ const Register = () => {
         </div>
 
         <div className="flex flex-col pt-24 lg:pt-0 justify-center w-full">
-          <Link to="/" className="hidden lg:block w-24 mx-auto lg:mt-8">
+          <Link to="/" className="w-24 mx-auto my-8">
             <img src={Logo} alt="EPT Logo" />
           </Link>
 
