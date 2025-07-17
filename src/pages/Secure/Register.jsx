@@ -1,75 +1,63 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form"; // Assuming you're using react-hook-form
-import { FiEye, FiEyeOff } from "react-icons/fi"; // For password visibility icons
-import { FcGoogle } from "react-icons/fc"; // For Google icon
+import { useForm } from "react-hook-form";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { FcGoogle } from "react-icons/fc";
 
-// Your assets
-import SignupImg from "../../assets/image 107.png"; // Adjust path as needed
-import Logo from "../../assets/image 2.svg"; // Adjust path as needed
+import SignupImg from "../../assets/image 107.png";
+import Logo from "../../assets/image 2.svg";
 
-// Your AuthContext
-import { useAuth } from "../../context/AuthContext"; // Correct path to your AuthContext
+import { useAuth } from "../../context/AuthContext";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [loading, setLoading] = useState(false); // For loading state of buttons
-  const [serverError, setServerError] = useState(""); // For backend error messages
-  const [successMessage, setSuccessMessage] = useState(""); // For backend success messages
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const { signup, googleLogin } = useAuth(); // Destructure signup and googleLogin from your context
+  const { signup, googleLogin } = useAuth();
   const navigate = useNavigate();
 
-  // Initialize react-hook-form
   const {
     register,
-    handleSubmit: handleFormSubmit, // Rename handleSubmit to avoid conflict with our own
-    watch, // To watch password field for confirm password validation
+    handleSubmit: handleFormSubmit,
+    watch,
     formState: { errors },
-    reset, // To reset form after submission
+    reset,
+    clearErrors,
   } = useForm({
-    mode: "onBlur", // Validate on blur
+    mode: "onBlur",
   });
 
-  const password = watch("password"); // Watch the password field
+  const password = watch("password");
 
-  // This handleChange is generally not needed with react-hook-form's register,
-  // but we'll keep it if you have other side effects on change.
-  // For standard form inputs with RHF, you usually just rely on {...register()}
   const handleChange = (e) => {
-    // You can add any specific logic here if needed,
-    // otherwise, RHF handles the input values automatically.
-    setServerError(""); // Clear server errors on input change
-    setSuccessMessage(""); // Clear success messages on input change
+    setServerError("");
+    setSuccessMessage("");
+    clearErrors(e.target.name);
   };
 
-  // --- Handle Standard Signup ---
   const onSubmit = async (data) => {
     setLoading(true);
     setServerError("");
     setSuccessMessage("");
 
-    // Destructure data from react-hook-form
     const { name, email, password } = data;
 
     try {
-      // Call your signup function from AuthContext
-      const success = await signup(name, email, password); // Pass 'name' as fullName
+      const success = await signup(name, email, password);
 
       if (success) {
         setSuccessMessage("Registration successful! Redirecting to login...");
-        reset(); // Clear form fields
+        reset();
         setTimeout(() => {
-          navigate("/login"); // Redirect on success
-        }, 2000); // Give user time to read success message
+          navigate("/login");
+        }, 2000);
       } else {
-        // This 'else' might be hit if signup explicitly returns false,
-        // but typically AuthContext throws errors for failures.
         setServerError("Signup failed. Please try again.");
       }
     } catch (err) {
-      // Catch errors thrown by AuthContext (e.g., from backend validation)
       console.error("Signup error:", err);
       setServerError(err || "An unexpected error occurred during signup.");
     } finally {
@@ -77,24 +65,20 @@ const Register = () => {
     }
   };
 
-  // --- Handle Google Login ---
   const handleGoogleLogin = async () => {
     setLoading(true);
     setServerError("");
     setSuccessMessage("");
 
     try {
-      const success = await googleLogin(); // Call googleLogin from AuthContext
+      const success = await googleLogin();
       if (success) {
         setSuccessMessage("Google login successful! Redirecting...");
         setTimeout(() => {
-          navigate("/"); // Redirect on success
+          navigate("/");
         }, 1500);
       } else {
-        // This path is hit if the user closes the popup or if googleLogin returns false
-        setServerError(
-          "Google login was cancelled or failed. Please try again."
-        );
+        setServerError("Google login was cancelled or failed. Please try again.");
       }
     } catch (err) {
       console.error("Google login error:", err);
@@ -106,17 +90,13 @@ const Register = () => {
 
   return (
     <div className="bg-white">
-      <div className="w-full min-h-screen lg:grid lg:grid-cols-2">
+      <div className="w-11/12 md:w-6/8 lg:w-full mx-auto min-h-screen lg:grid lg:grid-cols-2">
         <div className="hidden lg:block">
-          <img
-            className="w-full h-full object-cover"
-            src={SignupImg}
-            alt="Signup banner"
-          />
+          <img className="w-full h-full object-cover" src={SignupImg} alt="Signup banner" />
         </div>
 
-        <div className="flex flex-col justify-center w-full">
-          <Link to="/" className="hidden lg:block w-24 mx-auto lg:mt-8">
+        <div className="flex flex-col pt-24 lg:pt-0 justify-center w-full">
+          <Link to="/" className="w-24 mx-auto my-8">
             <img src={Logo} alt="EPT Logo" />
           </Link>
 
@@ -126,7 +106,6 @@ const Register = () => {
               <p>Fill in your details below to become a member</p>
             </div>
 
-            {/* --- Use react-hook-form's handleSubmit --- */}
             <form onSubmit={handleFormSubmit(onSubmit)} className="mt-4">
               <div className="flex flex-col gap-4">
                 {/* Full Name */}
@@ -142,15 +121,13 @@ const Register = () => {
                     })}
                     type="text"
                     placeholder="Enter your name*"
-                    className={`w-full rounded-md p-2 pr-10 border ${
-                      errors.fullName ? "border-red-700" : "border-[#BABCD4]"
-                    } focus:border-[#008A3F] focus:outline-none`}
-                    onChange={handleChange} // Keep if you have side effects, otherwise can remove
+                    onChange={handleChange}
+                    className={`w-full rounded-md p-3 pr-10 bg-[#EFEFEF] border ${
+                      errors.name ? "border-red-700" : "border-[#BABCD4]"
+                    } focus:outline-none focus:ring-1 focus:ring-[#008A3F]`}
                   />
-                  {errors.fullName && (
-                    <span className="text-red-500 text-[12px]">
-                      {errors.fullName.message}
-                    </span>
+                  {errors.name && (
+                    <span className="text-red-500 text-[12px]">{errors.name.message}</span>
                   )}
                 </div>
 
@@ -167,15 +144,13 @@ const Register = () => {
                     })}
                     type="email"
                     placeholder="Enter your email*"
-                    className={`w-full rounded-md p-2 pr-10 border ${
+                    onChange={handleChange}
+                    className={`w-full rounded-md p-3 pr-10 bg-[#EFEFEF] border ${
                       errors.email ? "border-red-700" : "border-[#BABCD4]"
-                    } focus:border-[#008A3F] focus:outline-none`}
-                    onChange={handleChange} // Keep if you have side effects, otherwise can remove
+                    } focus:outline-none focus:ring-1 focus:ring-[#008A3F]`}
                   />
                   {errors.email && (
-                    <span className="text-red-500 text-[12px]">
-                      {errors.email.message}
-                    </span>
+                    <span className="text-red-500 text-[12px]">{errors.email.message}</span>
                   )}
                 </div>
 
@@ -192,10 +167,10 @@ const Register = () => {
                     })}
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
-                    className={`w-full rounded-md p-2 pr-10 border ${
+                    onChange={handleChange}
+                    className={`w-full rounded-md p-3 pr-10 bg-[#EFEFEF] border ${
                       errors.password ? "border-red-700" : "border-[#BABCD4]"
-                    } focus:border-[#008A3F] focus:outline-none`}
-                    onChange={handleChange} // Keep if you have side effects, otherwise can remove
+                    } focus:outline-none focus:ring-1 focus:ring-[#008A3F]`}
                   />
                   <span
                     onClick={() => setShowPassword((prev) => !prev)}
@@ -204,31 +179,24 @@ const Register = () => {
                     {showPassword ? <FiEyeOff /> : <FiEye />}
                   </span>
                   {errors.password && (
-                    <span className="text-red-500 text-[12px]">
-                      {errors.password.message}
-                    </span>
+                    <span className="text-red-500 text-[12px]">{errors.password.message}</span>
                   )}
                 </div>
 
                 {/* Confirm Password */}
                 <div className="flex flex-col gap-1 relative">
-                  <label className="hidden lg:block font-bold">
-                    CONFIRM PASSWORD
-                  </label>
+                  <label className="hidden lg:block font-bold">CONFIRM PASSWORD</label>
                   <input
                     {...register("confirmPassword", {
                       required: "Please confirm your password",
-                      validate: (value) =>
-                        value === password || "Passwords do not match", // Direct comparison with watched 'password'
+                      validate: (value) => value === password || "Passwords do not match",
                     })}
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm your password"
-                    className={`w-full rounded-md p-2 pr-10 border ${
-                      errors.confirmPassword
-                        ? "border-red-700"
-                        : "border-[#BABCD4]"
-                    } focus:border-[#008A3F] focus:outline-none`}
-                    onChange={handleChange} // Keep if you have side effects, otherwise can remove
+                    onChange={handleChange}
+                    className={`w-full rounded-md p-3 pr-10 bg-[#EFEFEF] border ${
+                      errors.confirmPassword ? "border-red-700" : "border-[#BABCD4]"
+                    } focus:outline-none focus:ring-1 focus:ring-[#008A3F]`}
                   />
                   <span
                     onClick={() => setShowConfirmPassword((prev) => !prev)}
@@ -253,38 +221,30 @@ const Register = () => {
                     className={`accent-[#008A3F] bg-white w-4 h-4 rounded-sm border ${
                       errors.terms ? "border-red-500" : "border-gray-300"
                     } focus:ring-2 focus:ring-[#008A3F] focus:outline-none`}
-                    onChange={handleChange} // Keep if you have side effects, otherwise can remove
+                    onChange={handleChange}
                   />
                   <div className="lg:tracking-tight xl:tracking-normal">
                     I agree to the{" "}
-                    <span className="text-[#008A3F]">terms of services</span>{" "}
-                    and <span className="text-[#008A3F]">privacy policies</span>
+                    <span className="text-[#008A3F]">terms of services</span> and{" "}
+                    <span className="text-[#008A3F]">privacy policies</span>
                   </div>
                 </div>
                 {errors.terms && (
-                  <span className="text-red-500 text-[12px]">
-                    {errors.terms.message}
-                  </span>
+                  <span className="text-red-500 text-[12px]">{errors.terms.message}</span>
                 )}
               </div>
 
               {/* Messages */}
-              {serverError && (
-                <p className="text-red-600 mt-4">{serverError}</p>
-              )}
-              {successMessage && (
-                <p className="text-green-600 mt-4">{successMessage}</p>
-              )}
+              {serverError && <p className="text-red-600 mt-4">{serverError}</p>}
+              {successMessage && <p className="text-green-600 mt-4">{successMessage}</p>}
 
               {/* Buttons */}
               <div className="font-medium text-sm flex flex-col gap-4 mt-6">
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`rounded-md text-white w-full py-2 transition-all ${
-                    loading
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-[#008A3F] hover:bg-[#006f2d]"
+                  className={`rounded-md text-white w-full py-3 transition-all ${
+                    loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#008A3F] hover:bg-[#006f2d]"
                   }`}
                 >
                   {loading ? "Submitting..." : "Sign Up"}
@@ -296,13 +256,11 @@ const Register = () => {
                 </div>
 
                 <button
-                  type="button" // Important: set type="button" to prevent form submission
+                  type="button"
                   onClick={handleGoogleLogin}
                   disabled={loading}
-                  className={`w-full flex gap-2 items-center justify-center border border-[#BABCD4] rounded-md py-2 transition-all ${
-                    loading
-                      ? "bg-gray-200 cursor-not-allowed"
-                      : "hover:opacity-90"
+                  className={`w-full flex gap-2 items-center justify-center border border-[#BABCD4] rounded-md py-3 transition-all ${
+                    loading ? "bg-gray-200 cursor-not-allowed" : "hover:opacity-90"
                   }`}
                 >
                   <FcGoogle size={16} />
@@ -310,8 +268,7 @@ const Register = () => {
                 </button>
 
                 <Link to="/login" className="text-center">
-                  Already have an account?{" "}
-                  <span className="text-[#008A3F]">Sign In</span>
+                  Already have an account? <span className="text-[#008A3F]">Sign In</span>
                 </Link>
               </div>
             </form>
