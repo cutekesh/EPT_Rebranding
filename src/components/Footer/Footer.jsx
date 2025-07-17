@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/white ept logo.png";
 import facebooklogo from "../../assets/raphael_facebook.png";
 import instagramlogo from "../../assets/streamline_instagram-solid.png";

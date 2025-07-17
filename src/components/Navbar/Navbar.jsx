@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import eptLogo from "../../assets/eptLogo.svg";
 import eptUserLogo from "../../assets/eptUserLogo.svg";
 import eptMobileMenu from "../../assets/eptMobileMenu.svg";
+import closeIcon from "../../assets/closeIcon.svg";
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
@@ -282,15 +283,15 @@ const Navbar = () => {
           />
           <img
             className="w-[24px] h-[24px] cursor-pointer md:hidden"
-            src={eptMobileMenu}
-            alt="Mobile Menu"
+            src={isMenuOpen ? closeIcon : eptMobileMenu}
+            alt={isMenuOpen ? "Close Mobile Menu" : "Open Mobile Menu"}
             onClick={toggleMenu}
           />
         </div>
 
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
-          <div className="absolute top-[60px] right-1 bg-white shadow-lg rounded-lg p-4 z-50 w-full md:hidden">
+          <div className="absolute top-[50px] right-0 bg-white shadow-lg rounded-lg p-4 z-50 w-full md:hidden">
             <ul className="text-[#333333] flex flex-col gap-4 items-center">
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/">Home</Link>
@@ -337,14 +338,18 @@ const Navbar = () => {
         )}
 
         {isUserMenuOpen && (
-          <div className="absolute top-[60px] right-4 bg-white shadow-lg rounded-lg p-4 z-50">
+          <div className="absolute top-[50px] right-0 bg-white shadow-lg rounded-lg p-4 z-50 w-full ">
             <div className="flex flex-col gap-4">
-              <button className="text-[16px] font-[400] bg-[#008A3F] py-2 px-4 rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-green-600 hover:text-black">
-                Sign In
-              </button>
-              <button className="text-[16px] font-[400] bg-white py-2 px-4 rounded-xl cursor-pointer border-1 font-Inter hover:text-[#007A4D]">
-                Sign Up
-              </button>
+              <Link to="/login">
+                <button className="text-[16px] font-[400] bg-[#008A3F] py-2 px-4 rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-[#006A3F] w-full ">
+                  Sign In
+                </button>
+              </Link>
+              <Link to="/register">
+                <button className="text-[16px] font-[400] bg-white border-[#006A3F] text-[#008A3F] py-2 px-4 rounded-xl cursor-pointer border-1 font-Inter hover:text-black w-full ">
+                  Sign Up
+                </button>
+              </Link>
             </div>
           </div>
         )}
@@ -359,8 +364,8 @@ const Navbar = () => {
       {isServicesDropdownOpen && (
         <div
           ref={servicesDropdownRef}
-          className={`absolute xl:top-28
-                      left-[20%]
+          className={`absolute xl:top-26
+                      xl:left-[20%] md:left-15
                       bg-white p-4 rounded-lg shadow-lg z-50
                       w-[574px] h-[266px]
                       md:w-[calc(100vw-4rem)] md:max-w-[450px] md:mx-auto md:h-auto
@@ -446,7 +451,7 @@ const Navbar = () => {
           className={`absolute bg-white p-4 rounded-lg shadow-lg z-50
                       w-[280px] h-auto flex flex-col gap-2
                       transition-opacity duration-300 ease-in-out opacity-100
-                      pointer-events-auto xl:top-28 left-[46.2%]`}
+                      pointer-events-auto 2xl:top-26 xl:top-26 md:top-23.1  2xl:left-[46.2%] xl:left-[55.3%] md:left-[61.5%]`}
           onMouseEnter={() => clearTimeout(servicesDropdownTimeoutId.current)}
           onMouseLeave={() => {
             servicesDropdownTimeoutId.current = setTimeout(() => {

@@ -62,7 +62,7 @@ const Expertise = () => {
             <p className="text-[#000000] md:text-[27.43px] font-[400] font-Inter text-[14.75px]">
               WHAT WE DO
             </p>
-            <h2 className="xl:text-[54.85px] md:text-5xl font-[700] font-IBM text-[25.49px] text-[#013F1E]">
+            <h2 className="xl:text-[54.85px] md:text-5xl font-[700] font-IBM text-[25.49px] text-[#013F1E] justify-center text-center">
               End-to-End Energy Expertise
             </h2>
           </div>
