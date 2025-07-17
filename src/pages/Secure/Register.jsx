@@ -76,9 +76,11 @@ const Register = () => {
         setSuccessMessage("Google login successful! Redirecting...");
         setTimeout(() => {
           navigate("/");
-        }, 1500);
+        });
       } else {
-        setServerError("Google login was cancelled or failed. Please try again.");
+        setServerError(
+          "Google login was cancelled or failed. Please try again."
+        );
       }
     } catch (err) {
       console.error("Google login error:", err);
@@ -92,7 +94,11 @@ const Register = () => {
     <div className="bg-white">
       <div className="w-11/12 md:w-6/8 lg:w-full mx-auto min-h-screen lg:grid lg:grid-cols-2">
         <div className="hidden lg:block">
-          <img className="w-full h-full object-cover" src={SignupImg} alt="Signup banner" />
+          <img
+            className="w-full h-full object-cover"
+            src={SignupImg}
+            alt="Signup banner"
+          />
         </div>
 
         <div className="flex flex-col pt-24 lg:pt-0 justify-center w-full">
@@ -127,7 +133,9 @@ const Register = () => {
                     } focus:outline-none focus:ring-1 focus:ring-[#008A3F]`}
                   />
                   {errors.name && (
-                    <span className="text-red-500 text-[12px]">{errors.name.message}</span>
+                    <span className="text-red-500 text-[12px]">
+                      {errors.name.message}
+                    </span>
                   )}
                 </div>
 
@@ -150,7 +158,9 @@ const Register = () => {
                     } focus:outline-none focus:ring-1 focus:ring-[#008A3F]`}
                   />
                   {errors.email && (
-                    <span className="text-red-500 text-[12px]">{errors.email.message}</span>
+                    <span className="text-red-500 text-[12px]">
+                      {errors.email.message}
+                    </span>
                   )}
                 </div>
 
@@ -179,23 +189,30 @@ const Register = () => {
                     {showPassword ? <FiEyeOff /> : <FiEye />}
                   </span>
                   {errors.password && (
-                    <span className="text-red-500 text-[12px]">{errors.password.message}</span>
+                    <span className="text-red-500 text-[12px]">
+                      {errors.password.message}
+                    </span>
                   )}
                 </div>
 
                 {/* Confirm Password */}
                 <div className="flex flex-col gap-1 relative">
-                  <label className="hidden lg:block font-bold">CONFIRM PASSWORD</label>
+                  <label className="hidden lg:block font-bold">
+                    CONFIRM PASSWORD
+                  </label>
                   <input
                     {...register("confirmPassword", {
                       required: "Please confirm your password",
-                      validate: (value) => value === password || "Passwords do not match",
+                      validate: (value) =>
+                        value === password || "Passwords do not match",
                     })}
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm your password"
                     onChange={handleChange}
                     className={`w-full rounded-md p-3 pr-10 bg-[#EFEFEF] border ${
-                      errors.confirmPassword ? "border-red-700" : "border-[#BABCD4]"
+                      errors.confirmPassword
+                        ? "border-red-700"
+                        : "border-[#BABCD4]"
                     } focus:outline-none focus:ring-1 focus:ring-[#008A3F]`}
                   />
                   <span
@@ -225,18 +242,24 @@ const Register = () => {
                   />
                   <div className="lg:tracking-tight xl:tracking-normal">
                     I agree to the{" "}
-                    <span className="text-[#008A3F]">terms of services</span> and{" "}
-                    <span className="text-[#008A3F]">privacy policies</span>
+                    <span className="text-[#008A3F]">terms of services</span>{" "}
+                    and <span className="text-[#008A3F]">privacy policies</span>
                   </div>
                 </div>
                 {errors.terms && (
-                  <span className="text-red-500 text-[12px]">{errors.terms.message}</span>
+                  <span className="text-red-500 text-[12px]">
+                    {errors.terms.message}
+                  </span>
                 )}
               </div>
 
               {/* Messages */}
-              {serverError && <p className="text-red-600 mt-4">{serverError}</p>}
-              {successMessage && <p className="text-green-600 mt-4">{successMessage}</p>}
+              {serverError && (
+                <p className="text-red-600 mt-4">{serverError}</p>
+              )}
+              {successMessage && (
+                <p className="text-green-600 mt-4">{successMessage}</p>
+              )}
 
               {/* Buttons */}
               <div className="font-medium text-sm flex flex-col gap-4 mt-6">
@@ -244,7 +267,9 @@ const Register = () => {
                   type="submit"
                   disabled={loading}
                   className={`rounded-md text-white w-full py-3 transition-all ${
-                    loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#008A3F] hover:bg-[#006f2d]"
+                    loading
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-[#008A3F] hover:bg-[#006f2d]"
                   }`}
                 >
                   {loading ? "Submitting..." : "Sign Up"}
@@ -260,7 +285,9 @@ const Register = () => {
                   onClick={handleGoogleLogin}
                   disabled={loading}
                   className={`w-full flex gap-2 items-center justify-center border border-[#BABCD4] rounded-md py-3 transition-all ${
-                    loading ? "bg-gray-200 cursor-not-allowed" : "hover:opacity-90"
+                    loading
+                      ? "bg-gray-200 cursor-not-allowed"
+                      : "hover:opacity-90"
                   }`}
                 >
                   <FcGoogle size={16} />
@@ -268,7 +295,8 @@ const Register = () => {
                 </button>
 
                 <Link to="/login" className="text-center">
-                  Already have an account? <span className="text-[#008A3F]">Sign In</span>
+                  Already have an account?{" "}
+                  <span className="text-[#008A3F]">Sign In</span>
                 </Link>
               </div>
             </form>
