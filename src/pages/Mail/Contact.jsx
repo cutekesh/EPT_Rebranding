@@ -47,7 +47,7 @@ const Contact = () => {
         <h2 className="flex items-center justify-center text-[24px] font-bold text-[#000101]">
           Get In Touch With Us
         </h2>
-        <p className="text-[14px] text-[#000101] font-Inter font-normal my-4 ">
+        <p className="text-[14px] text-[#000101] font-Inter font-normal my-4 text-center">
         If you have any questions, please fill the form below get in touch with us via phone, text or visit any of our office address.
         </p>
       </div>
