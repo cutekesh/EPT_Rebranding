@@ -14,19 +14,12 @@ const ProvenFeedProcess = () => {
           </p>
         </div>
 
-        {/* cards */}
-        <div className="hidden md:grid md:grid-cols-2 justify-items-center mt-12 gap-8">
-          {FeedProcess.map((process) => (
-            <div
-              className="w-full flex flex-col border-[1.53px] border-[#E6E6E6] rounded-lg overflow-hidden group"
-              key={process.id}
-            >
-              <div className="w-full overflow-hidden">
-                <img
-                  className="w-full md:h-58 lg:h-78 xl:h-108 2xl:h-150 rounded-t-md object-cover"
-                  src={process.img}
-                  alt={process.title}
-                />
+      {/* cards */}
+      <div className="hidden md:grid md:grid-cols-2 justify-items-center mt-12 gap-8">
+        {FeedProcess.map((process) => (
+          <div className="w-full flex flex-col border-[1.53px] border-[#969797] rounded-lg overflow-hidden group" key={process.id}>
+          <div className="w-full overflow-hidden">
+            <img className="w-full md:h-58 lg:h-78 xl:h-100 rounded-t-md object-cover" src={process.img} alt={process.title} />
 
                 {/* Hover Overlay Image
             <img className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-200 transition-opacity duration-300 z-90" src="/src/assets/client consultation1.png" alt="hover-overlay"/> */}
