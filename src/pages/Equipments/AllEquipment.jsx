@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import searchIcon from "../../assets/searchIcon2.png";
 import cancelSearch from "../../assets/closeIcon.png";
 import filterIcon from "../../assets/filterIcon.png";
-import { equipments } from "./equipmentDb.js";
+import { equipments } from "./equipmentDb.js"; 
 import nextIcon from "../../assets/nextIcon.png";
 import previousIcon from "../../assets/previousIcon.png";
 
@@ -11,7 +11,6 @@ const AllEquipment = () => {
   const [itemsPerPage, setItemsPerPage] = useState(12); 
   const [searchTerm, setSearchTerm] = useState(""); 
 
-  
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -22,24 +21,21 @@ const AllEquipment = () => {
       setCurrentPage(1); 
     };
 
-    // Set initial items per page
     handleResize();
 
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Filter equipments based on search term
   const filteredEquipments = equipments.filter(equipment =>
     equipment.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     equipment.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
     equipment.dimension.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Calculate total pages
   const totalPages = Math.ceil(filteredEquipments.length / itemsPerPage);
 
-  // Get current equipments for the page
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentEquipments = filteredEquipments.slice(indexOfFirstItem, indexOfLastItem);
@@ -56,41 +52,67 @@ const AllEquipment = () => {
     setCurrentPage(pageNumber);
   };
 
-  // Generate page numbers to display in pagination
-  const getPageNumbers = () => {
-    const pages = [];
-    if (totalPages <= 10) {
-      // If 10 or fewer total pages, display all of them
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
-    } else {
-      // If more than 10 pages, display 1 2 3 4 ... 9 10
-      pages.push(1, 2, 3, 4);
-      if (currentPage > 4 && currentPage < totalPages - 1) {
-        // If current page is in the middle, show ellipsis
-        pages.push('...');
-        pages.push(currentPage); 
-        pages.push('...');
-      } else {
-        pages.push('...');
-      }
-      pages.push(totalPages - 1, totalPages);
-    }
-    return pages;
-  };
-
-  // Handle search input change
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
     setCurrentPage(1); 
   };
 
-  // Handle clear search
   const handleClearSearch = () => {
     setSearchTerm("");
     setCurrentPage(1); 
   };
+
+  const getPageNumbers = () => {
+    const pages = new Set();
+    const maxNumericButtons = 4; 
+
+    if (totalPages <= maxNumericButtons) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.add(i);
+      }
+    } else {
+      pages.add(1);
+
+      pages.add(currentPage);
+
+      pages.add(totalPages);
+
+      
+      if (pages.size < maxNumericButtons) {
+        // Try adding currentPage - 1
+        if (currentPage > 1 && !pages.has(currentPage - 1) && currentPage - 1 !== 1) {
+          pages.add(currentPage - 1);
+        }
+      }
+      if (pages.size < maxNumericButtons) {
+        if (currentPage < totalPages && !pages.has(currentPage + 1) && currentPage + 1 !== totalPages) {
+          pages.add(currentPage + 1);
+        }
+      }
+
+      if (pages.size < maxNumericButtons) {
+          if (!pages.has(2) && totalPages > 2) pages.add(2);
+      }
+      if (pages.size < maxNumericButtons) {
+          if (!pages.has(totalPages - 1) && totalPages > 2) pages.add(totalPages - 1);
+      }
+
+    }
+
+    let sortedNumericPages = Array.from(pages).sort((a, b) => a - b);
+
+    const finalPagesWithEllipses = [];
+    for (let i = 0; i < sortedNumericPages.length; i++) {
+      finalPagesWithEllipses.push(sortedNumericPages[i]);
+      if (i < sortedNumericPages.length - 1) {
+        if (sortedNumericPages[i+1] - sortedNumericPages[i] > 1) {
+          finalPagesWithEllipses.push('...');
+        }
+      }
+    }
+    return finalPagesWithEllipses;
+  };
+
 
   return (
     <div className="w-full md:my-10 my-4">
@@ -107,14 +129,14 @@ const AllEquipment = () => {
               <input
                 type="text"
                 placeholder="search equipments..."
-                id="search" 
+                id="search"
                 className="placeholder:text-[#969797] placeholder:font-normal text-black placeholder:font-Inter md:placeholder:text-[20px] placeholder:text-[14px] w-3/4 focus:outline-none text-[20px] font-Inter font-normal"
                 value={searchTerm}
                 onChange={handleSearchChange}
               />
-              {searchTerm && ( 
+              {searchTerm && (
                 <img
-                  className="rounded-full border-1 border-[#969797] p-[4px] absolute right-4 cursor-pointer w-6 h-6" 
+                  className="rounded-full border-1 border-[#969797] p-[4px] absolute right-4 cursor-pointer w-6 h-6"
                   src={cancelSearch}
                   alt="cancelSearchIcon"
                   onClick={handleClearSearch}
@@ -123,7 +145,7 @@ const AllEquipment = () => {
             </div>
             <div className="flex items-center gap-[12px] bg-[#EFEFEF] pl-[10px] p-[10px] rounded-[8px] lg:w-[108px] md:w-[100px] lg:h-[68px] md:h-[55px] h-[40px]">
               <img
-                className="cursor-pointer w-6 h-6" 
+                className="cursor-pointer w-6 h-6"
                 src={filterIcon}
                 alt="filterIcon"
               />
@@ -135,25 +157,25 @@ const AllEquipment = () => {
         </section>
 
         {/* Equipments*/}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-x-8 md:gap-y-12">
+        <section className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8 md:gap-x-8 md:gap-y-12">
           {currentEquipments.map((equipment) => (
             <div key={equipment.id} className="bg-[#EEF4F0A3] overflow-hidden">
               <img
                 src={equipment.image}
                 alt={equipment.name}
-                className="w-full object-cover rounded-[15px]" 
+                className="w-full object-cover rounded-[15px]"
               />
               <div className="p-4">
-              <h3 className="lg:text-[28px] md:text-[20x] font-bold text-[#333333] font-Inter mb-2 lg:h-[34px] ">
+              <h3 className="lg:text-[28px] md:text-[20px] font-bold text-[#333333] font-Inter mb-2 lg:h-[34px] ">
                   {equipment.name}
                 </h3>
                 <p className="text-[16px] text-[#969797] font-Inter font-normal lg:leading-[22px] lg:h-[44px] lg:w-[233px]">
                   {equipment.dimension} {equipment.category}
                 </p>
                 <p className="text-sm text-[#969797] font-Inter font-medium mb-1">
-                 
+
                 </p>
-                
+
                 <button className="mt-4 text-[#333333] font-Inter font-normal text-[16px] hover:underline hover:cursor-pointer">
                   More details
                 </button>
@@ -172,10 +194,10 @@ const AllEquipment = () => {
             >
               <img src={previousIcon} alt="Previous" className="w-6 h-6" />
             </button>
-            
+
             {getPageNumbers().map((page, index) => (
               <button
-                key={index} 
+                key={index}
                 onClick={() => typeof page === 'number' && handlePageClick(page)}
                 className={`w-10 h-10 flex items-center justify-center rounded-[4px] font-bold text-[24px] text-[#000101]
                   ${typeof page === 'number' ? 'cursor-pointer' : 'cursor-default'}
