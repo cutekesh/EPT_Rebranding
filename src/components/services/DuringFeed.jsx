@@ -18,7 +18,7 @@ const DuringFeed = () => {
           {Feeds.map((Feed) => (
             <div className="bg-[#E6F3EC] md:bg-[#EEF4F0A3] rounded-md flex flex-col md:flex gap-2 justify-center items-center text-center w-full lg:h-[330px] font-Inter text-[#000101] py-8 px-2" key={Feed.id}>
               <div className="flex flex-col items-center gap-2">
-                <img className="w-16" src={Feed.img} alt="feed-process" />
+                <img className="w-10 md:w-16" src={Feed.img} alt="feed-process" />
                 <h3 className="font-IBM font-bold text-base md:text-xl tracking-wider">{Feed.title}</h3>
               </div>
               <p className="font-normal text-center text-sm md:text-base tect-[#010505]">{Feed.desc}</p>

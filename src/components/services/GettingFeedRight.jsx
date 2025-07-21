@@ -38,7 +38,7 @@ const GettingFeedRight = () => {
           {Impact.map((impact) => (
           <div className="border border-[#B6B6B6] rounded-lg py-6 px-4 text-[#000101] font-Inter text-center" key={impact.id}>
             <div className="flex flex-col items-center gap-2">
-              <img className="w-22" src={impact.img} alt={impact.title}/>
+              <img className="w-20" src={impact.img} alt={impact.title}/>
               <div className="font-IBM font-bold text-3xl">{impact.rate}</div>
             </div>
             <p className="text-sm mt-2">{impact.title}</p>
@@ -51,7 +51,7 @@ const GettingFeedRight = () => {
           {Impact.map((impact) => (
           <div className="w-11/12 bg-[#E6F3EC] rounded-md py-6 px-4 text-[#000101] font-Inter text-center flex-shrink-0" key={impact.id}>
             <div className="flex flex-col items-center gap-2">
-              <img className="w-20" src={impact.img} alt={impact.title}/>
+              <img className="w-14" src={impact.img} alt={impact.title}/>
               <div className="font-IBM font-bold text-3xl">{impact.rate}</div>
             </div>
             <p className="text-sm mt-2">{impact.title}</p>
