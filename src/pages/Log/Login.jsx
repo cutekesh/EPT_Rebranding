@@ -16,23 +16,48 @@ const Login = () => {
   const navigate = useNavigate();
 
   const { reset } = useForm();
-  const { login, googleLogin } = useAuth();
+  const { login, firebaseGoogleLogin } = useAuth();
 
   const handleTogglePassword = () => setShowPassword(!showPassword);
 
-  const handleGoogleLoginClick = async () => {
+  // const handleGoogleLoginClick = async () => {
+  //   setLoading(true);
+  //   setError({});
+  //   try {
+  //     const success = await googleLogin();
+  //     if (success) navigate("/");
+  //     else setError({ general: "Google login was cancelled or failed. Please try again." });
+  //   } catch (err) {
+  //     setError({
+  //       general: err.message || "Google login failed due to an unexpected error.",
+  //     });
+  //   }
+  //   setLoading(false);
+  // };
+
+  const handleGoogleLogin = async () => {
     setLoading(true);
-    setError({});
+    setServerError("");
+    setSuccessMessage("");
+
     try {
-      const success = await googleLogin();
-      if (success) navigate("/");
-      else setError({ general: "Google login was cancelled or failed. Please try again." });
+      const success = await firebaseGoogleLogin();
+      if (success) {
+        setSuccessMessage("Google login successful! Redirecting...");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      } else {
+        setServerError(
+          "Google login was cancelled or failed. Please try again."
+        );
+      }
     } catch (err) {
-      setError({
-        general: err.message || "Google login failed due to an unexpected error.",
-      });
+      console.error("Google login error:", err);
+      setServerError(err || "Google login failed due to an unexpected error.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleChange = (e) => {
@@ -49,10 +74,12 @@ const Login = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!email) newErrors.email = "Email is required";
-    else if (!emailRegex.test(email)) newErrors.email = "Enter a valid email address";
+    else if (!emailRegex.test(email))
+      newErrors.email = "Enter a valid email address";
 
     if (!password) newErrors.password = "Password is required";
-    else if (password.length < 6) newErrors.password = "Password must be at least 6 characters";
+    else if (password.length < 6)
+      newErrors.password = "Password must be at least 6 characters";
 
     if (Object.keys(newErrors).length > 0) {
       setError(newErrors);
@@ -71,7 +98,9 @@ const Login = () => {
       }
     } catch (err) {
       setError({
-        general: err.response?.data?.message || "Login failed due to an unexpected error.",
+        general:
+          err.response?.data?.message ||
+          "Login failed due to an unexpected error.",
       });
     }
     setLoading(false);
@@ -91,11 +120,7 @@ const Login = () => {
         <div className="flex lg:items-center justify-center px-4 sm:px-8 bg-white">
           <div className="w-full max-w-md sm:max-w-lg">
             <Link to="/">
-              <img
-                src={Logo}
-                alt="Logo"
-                className="w-24 mb-14 mx-auto"
-              />
+              <img src={Logo} alt="Logo" className="w-24 mb-14 mx-auto" />
             </Link>
 
             <div className="mb-8">
@@ -159,11 +184,7 @@ const Login = () => {
                   onClick={handleTogglePassword}
                   className="absolute right-4 translate-y-3 w-[20px] rounded-full top-8 md:top-10 text-gray-600"
                 >
-                  {showPassword ? (
-                    <MdOutlineRemoveRedEye />
-                  ) : (
-                    <FaRegEyeSlash />
-                  )}
+                  {showPassword ? <MdOutlineRemoveRedEye /> : <FaRegEyeSlash />}
                 </button>
                 {error.password && (
                   <p className="text-red-500 text-sm">{error.password}</p>
@@ -182,7 +203,9 @@ const Login = () => {
                   type="submit"
                   disabled={loading}
                   className={`bg-[#008A3F] text-white p-2 lg:px-2 lg:py-4 rounded-md font-semibold transition duration-300 cursor-pointer mt-2 ${
-                    loading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#006f2d]"
+                    loading
+                      ? "opacity-50 cursor-not-allowed"
+                      : "hover:bg-[#006f2d]"
                   }`}
                 >
                   {loading ? "Signing In..." : "Sign In"}
@@ -200,9 +223,11 @@ const Login = () => {
               <button
                 type="button"
                 disabled={loading}
-                onClick={handleGoogleLoginClick}
+                onClick={handleGoogleLogin}
                 className={`w-full flex gap-2 items-center justify-center border border-[#BABCD4] rounded-md py-3 transition-all ${
-                  loading ? "bg-gray-200 cursor-not-allowed" : "hover:opacity-90"
+                  loading
+                    ? "bg-gray-200 cursor-not-allowed"
+                    : "hover:opacity-90"
                 }`}
               >
                 <img alt="google icon" src={Google} />

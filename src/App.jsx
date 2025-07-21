@@ -11,6 +11,7 @@ import ResetPassword from "./pages/Reset/ResetPassword";
 import ForgotPassword from "./pages/Reset/ForgotPassword";
 import { AuthProvider } from "./context/AuthContext";
 import Equipments from "./pages/Equipments/Equipments";
+import Error from "./pages/Error/Error";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
