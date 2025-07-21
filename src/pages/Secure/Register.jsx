@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
-
 import SignupImg from "../../assets/image 107.png";
 import Logo from "../../assets/image 2.svg";
-
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../../firebase"; // Adjust the import based on your firebase setup
 import { useAuth } from "../../context/AuthContext";
 
 const Register = () => {
@@ -16,7 +16,7 @@ const Register = () => {
   const [serverError, setServerError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const { signup, googleLogin } = useAuth();
+  const { signup } = useAuth();
   const navigate = useNavigate();
 
   const {
@@ -53,7 +53,7 @@ const Register = () => {
         reset();
         setTimeout(() => {
           navigate("/login");
-        }, 2000);
+        });
       } else {
         setServerError("Signup failed. Please try again.");
       }
@@ -67,24 +67,27 @@ const Register = () => {
 
   const handleGoogleLogin = async () => {
     setLoading(true);
-    setServerError("");
-    setSuccessMessage("");
-
     try {
-      const success = await googleLogin();
-      if (success) {
-        setSuccessMessage("Google login successful! Redirecting...");
-        setTimeout(() => {
-          navigate("/");
-        });
-      } else {
-        setServerError(
-          "Google login was cancelled or failed. Please try again."
-        );
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      const token = await user.getIdToken();
+
+      loginUser(userData, token, true); // Assume rememberMe for Google sign-in
+
+      toast.success("Google Sign-up successful! Redirecting...");
+      setTimeout(() => navigate("/"), 2000);
+    } catch (error) {
+      console.error("Google sign-up failed", error);
+      let googleErrorMessage = "Google sign-up failed. Please try again.";
+      if (error.code === "auth/popup-closed-by-user") {
+        googleErrorMessage = "Google sign-in window closed. Please try again.";
+      } else if (error.code === "auth/cancelled-popup-request") {
+        googleErrorMessage =
+          "Google sign-in already in progress. Please wait or try again.";
+      } else if (error.message) {
+        googleErrorMessage = error.message;
       }
-    } catch (err) {
-      console.error("Google login error:", err);
-      setServerError(err || "Google login failed due to an unexpected error.");
+      toast.error(googleErrorMessage);
     } finally {
       setLoading(false);
     }
