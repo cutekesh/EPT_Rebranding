@@ -37,36 +37,86 @@ const Footer = () => {
               </form>
 
               <div className="flex items-center gap-4">
-                <p className="text-sm tracking-tight font-medium">Connect With Us</p>
+                <p className="text-sm tracking-tight font-medium">
+                  Connect With Us
+                </p>
                 <div className="flex gap-3">
-                  <img className="w-5 cursor-pointer" src={facebooklogo} alt="facebook" />
-                  <img className="w-5 cursor-pointer" src={instagramlogo} alt="instagram" />
-                  <img className="w-5 cursor-pointer" src={xlogo} alt="twitter-x" />
+                  <img
+                    className="w-5 cursor-pointer"
+                    src={facebooklogo}
+                    alt="facebook"
+                  />
+                  <img
+                    className="w-5 cursor-pointer"
+                    src={instagramlogo}
+                    alt="instagram"
+                  />
+                  <img
+                    className="w-5 cursor-pointer"
+                    src={xlogo}
+                    alt="twitter-x"
+                  />
                 </div>
               </div>
             </div>
           </div>
 
           {/* Company Links */}
-                <div>
-                <h3 className="text-lg font-semibold mb-4">Company</h3>
-                <ul className="space-y-3 text-base">
-                  <li><Link to="#" className="hover:underline">About EPT</Link></li>
-                  <li><Link to="#" className="hover:underline">Leadership</Link></li>
-                  <li><Link to="#" className="hover:underline">Careers</Link></li>
-                  <li><Link to="#" className="hover:underline">Training & Certification</Link></li>
-                </ul>
-                </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Company</h3>
+            <ul className="space-y-3 text-base">
+              <li>
+                <Link to="#" className="hover:underline">
+                  About EPT
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="hover:underline">
+                  Leadership
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="hover:underline">
+                  Careers
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="hover:underline">
+                  Training & Certification
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-                {/* Services Links */}
+          {/* Services Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-3 text-base">
-              <li><Link to="#" className="hover:underline">EPT Services</Link></li>
-              <li><Link to="#" className="hover:underline">Engineering Design</Link></li>
-              <li><Link to="/equipments" className="hover:underline">Equipment Rental</Link></li>
-              <li><Link to="#" className="hover:underline">Project Support</Link></li>
-              <li><Link to="#" className="hover:underline">Plant Construction</Link></li>
+              <li>
+                <Link to="#" className="hover:underline">
+                  EPT Services
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="hover:underline">
+                  Engineering Design
+                </Link>
+              </li>
+              <li>
+                <Link to="/equipments" className="hover:underline">
+                  Equipment Rental
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="hover:underline">
+                  Project Support
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="hover:underline">
+                  Plant Construction
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -78,7 +128,8 @@ const Footer = () => {
                 Energy & Plant Technology Limited <br /> RC: 7956423
               </p>
               <p>
-                Lagos Office: 26 Furo Ezimora Street <br /> Lekki Phase 1, Lagos, Nigeria
+                Lagos Office: 26 Furo Ezimora Street <br /> Lekki Phase 1,
+                Lagos, Nigeria
               </p>
               <div>
                 <p>Email: sales@ept.ng</p>
@@ -87,12 +138,14 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        
+
         <hr className="mt-8 border-[#D1FFE74D] block md:hidden" />
 
         {/* Mobile Newsletter & Social */}
         <div className="lg:hidden mt-8">
-          <p className="text-base font-semibold mb-3">Subscribe to Our Newsletters</p>
+          <p className="text-base font-semibold mb-3">
+            Subscribe to Our Newsletters
+          </p>
           <form className="relative mb-6 w-full md:w-75">
             <input
               type="email"
@@ -111,8 +164,16 @@ const Footer = () => {
           <div className="flex items-center gap-6  mb-6">
             <p className="text-base font-medium">Connect With Us</p>
             <div className="flex gap-3">
-              <img className="w-5 cursor-pointer" src={facebooklogo} alt="facebook" />
-              <img className="w-5 cursor-pointer" src={instagramlogo} alt="instagram" />
+              <img
+                className="w-5 cursor-pointer"
+                src={facebooklogo}
+                alt="facebook"
+              />
+              <img
+                className="w-5 cursor-pointer"
+                src={instagramlogo}
+                alt="instagram"
+              />
               <img className="w-5 cursor-pointer" src={xlogo} alt="twitter-x" />
             </div>
           </div>
@@ -121,7 +182,9 @@ const Footer = () => {
         {/* Footer Bottom */}
         <hr className="my-8 border-[#D1FFE74D] block md:hidden" />
         <p className="text-center text-sm md:mt-10 lg:mt-16">
-          &copy; 2025 Energy & Plant Technology Ltd. All Rights Reserved.<br className="hidden md:block"/> Built with precision. Powered by innovation.
+          &copy; 2025 Energy & Plant Technology Ltd. All Rights Reserved.
+          <br className="hidden md:block" /> Built with precision. Powered by
+          innovation.
         </p>
       </div>
     </footer>

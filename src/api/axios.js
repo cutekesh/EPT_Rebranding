@@ -31,9 +31,9 @@ export const auth = {
 
   googleLogin: (idToken) =>
     api.post("/api/auth/google-login", { id_token: idToken }),
-  forgotPassword: (email) => api.post("/auth/forgot-password", { email }),
+  forgotPassword: (email) => api.post("/api/auth/forgot-password", { email }),
   resetPassword: (token, newPassword) =>
-    api.post(`/api/auth/reset-password/${token}`, { newPassword }),
+    api.post(`/api/auth/reset-password/${token}`, { password: newPassword }),
 };
 
 export default api;

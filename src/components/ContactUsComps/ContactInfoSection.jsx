@@ -6,11 +6,11 @@ import locationIcon from "../../assets/locationIcon2.svg";
 const ContactInfoSection = () => {
   return (
     <div className="flex-1 h-full  bg-white rounded-md">
-      <div className="">
-        <h2 className="text-xl md:text-[28px] font-bold text-[#000101] mb-">
+      <div className="hidden lg:block">
+        <h2 className="text-xl md:text-[28px] font-bold text-[#000101]">
           Get In Touch With Us
         </h2>
-        <p className="text-base text-[#000101] font-Inter font-normal my-4">
+        <p className="text-[20px] text-[#000101] font-Inter font-normal my-4">
           If you have any questions, please feel free to get in touch with us
           via phone, text, email, the form below, or even social media!
         </p>
