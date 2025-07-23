@@ -66,7 +66,7 @@ const Navbar = () => {
       subLinks: [
         {
           name: "Front End Engineering Design",
-          path: "/services",
+          path: "/services/engineering/front-end",
         },
         {
           name: "Detailed Engineering Design",
@@ -508,9 +508,10 @@ const Navbar = () => {
             ?.subLinks.map((subLink, subIndex) => (
               <Link
                 key={subIndex}
-                to={subLink.path}
+                to={subLink?.path || "#"}
                 className="text-black font-Inter text-[16px] font-[500] hover:bg-[#008A3F] hover:text-white w-full h-[55px] p-3 rounded-md flex items-center text-start transition-colors duration-300 relative group">
-                {subLink.name}
+                  {console.log("Navigating to:", subLink?.path)} 
+                {subLink.name || "Unnamed Link"}
               </Link>
             ))}
         </div>

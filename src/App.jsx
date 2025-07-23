@@ -11,6 +11,7 @@ import ResetPassword from "./pages/Reset/ResetPassword";
 import ForgotPassword from "./pages/Reset/ForgotPassword";
 import { AuthProvider } from "./context/AuthContext";
 import Equipments from "./pages/Equipments/Equipments";
+import Error from "./pages/Error/Error";
 
 function App() {
   return (
@@ -20,13 +21,14 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
+            <Route path="/services/engineering/front-end" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/equipments" element={<Equipments />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="*" element={<Error />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
