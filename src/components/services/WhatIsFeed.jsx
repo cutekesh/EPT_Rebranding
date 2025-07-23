@@ -36,7 +36,7 @@ const WhatIsFeed = () => {
 
   return (
     <div className="w-full mt-4 lg:mt-10 mb-10 transition-opacity duration-300">
-      <div className="max-w-screen-xl mx-auto w-11/12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <div className="container mx-auto w-11/12 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div className="space-y-4 lg:space-y-8 flex flex-col justify-center">
           <div className="font-bold text-[#013F1E]">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl">What is FEED?</h2>

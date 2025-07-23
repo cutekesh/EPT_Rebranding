@@ -7,6 +7,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import emailIcon from "../../assets/contactFormEmailIcon.png";
 import closeIcon from "../../assets/closeModalIcon.svg"; 
+import TalkToUs from "../../components/ContactUsComps/TalkToUs";
 
 const Contact = () => {
   const [showModal, setShowModal] = useState(false); 
@@ -36,12 +37,9 @@ const Contact = () => {
   return (
     <div className="bg-white">
       <Navbar />
+      <TalkToUs />
       <div className={`w-11/12 mx-auto md:py-20 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 container transition-opacity duration-300 ${showModal ? 'opacity-100' : 'opacity-100'}`}>
-        <div className="lg:col-span-1 order-first md:order-first lg:order-none">
-          <h1 className="text-4xl md:text-6xl font-bold text-[#013F1E] mb-0 md:mb-4 font-IBM flex justify-center lg:justify-start uppercase lg:normal-case">
-            Contact Us
-          </h1>
-        </div>
+        
 
         <div className="lg:hidden flex flex-col justify-center items-center">
         <h2 className="flex items-center justify-center text-[24px] font-bold text-[#000101]">
@@ -51,10 +49,6 @@ const Contact = () => {
         If you have any questions, please fill the form below get in touch with us via phone, text or visit any of our office address.
         </p>
       </div>
-
-        <div className="hidden lg:block lg:col-span-1">
-          <p className=" md:mb-4 mb-0 md:w-[635px] md:h-[48px] h-0"></p>
-        </div>
 
         <div className="h-full order-2 md:order-2 lg:order-none">
           <ContactInfoSection />
@@ -69,7 +63,7 @@ const Contact = () => {
           </h1>
         </div>
         {/* Map Section */}
-        <div className="lg:col-span-2 order-last md:order-last lg:order-none mb-10">
+        <div className="lg:col-span-2 order-last md:order-last lg:order-none">
           <OfficeMapSection />
         </div>
       </div>
