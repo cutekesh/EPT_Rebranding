@@ -79,7 +79,6 @@ const AllEquipment = () => {
 
       
       if (pages.size < maxNumericButtons) {
-        // Try adding currentPage - 1
         if (currentPage > 1 && !pages.has(currentPage - 1) && currentPage - 1 !== 1) {
           pages.add(currentPage - 1);
         }
