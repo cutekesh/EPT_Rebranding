@@ -25,7 +25,7 @@ const ProvenFeedProcess = () => {
             <img className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-200 transition-opacity duration-300 z-90" src="/src/assets/client consultation1.png" alt="hover-overlay"/> */}
               </div>
 
-              <div className="w-full">
+              <div className="w-full xl:h-54">
                 <div className="bg-black text-center">
                   <h3 className="text-[#FEFFFF] text-3xl md:text-xl lg:text-3xl font-inter font-bold py-2">
                     {process.title}
