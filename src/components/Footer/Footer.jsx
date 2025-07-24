@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/white ept logo.png";
 import facebooklogo from "../../assets/raphael_facebook.png";
 import instagramlogo from "../../assets/streamline_instagram-solid.png";
 import xlogo from "../../assets/streamline-logos_x-twitter-logo-block.png";
+import axios from "axios";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setMessage("");
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/subscribe", { email });
+      setMessage("Successfully subscribed! Check your email for confirmation.");
+      setEmail("");
+    } catch (error) {
+      setMessage("Failed to subscribe. Please try again or contact support.");
+      console.error("Subscription error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <footer className="bg-[#013F1E] text-[#FBFEFF] pt-[50px] font-Inter">
       <div className="w-11/12 container mx-auto grid grid-cols-1 lg:flex lg:gap-[60px] justify-between">
@@ -19,20 +41,25 @@ const Footer = () => {
             <p className="text-base font-semibold mb-3 mt-[35px]">
               Subscribe to Our Newsletters
             </p>
-            <form className="relative mb-6">
+            <form className="relative mb-6" onSubmit={handleSubscribe}>
               <input
                 type="email"
                 name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter email"
                 className="bg-white text-black w-full h-11 rounded-md px-4 placeholder:text-[#969797] text-sm focus:outline-none"
+                required
               />
               <button
                 type="submit"
                 className="absolute w-24 right-0.5 top-0.5 bg-[#008A3F] px-5 h-10 rounded-md text-sm font-medium hover:bg-[#006A3F]"
+                disabled={isLoading}
               >
-                Subscribe
+                {isLoading ? "Subscribing..." : "Subscribe"}
               </button>
             </form>
+            {message && <p className="text-sm text-[#D1FFE7] mt-2">{message}</p>}
 
             <div className="flex items-center gap-4 mt-[38.23px]">
               <p className="text-sm font-medium">Connect With Us</p>
@@ -93,20 +120,25 @@ const Footer = () => {
           <p className="text-base font-bold mb-3">
             Subscribe to Our Newsletters
           </p>
-          <form className="relative mb-6 w-full">
+          <form className="relative mb-6 w-full" onSubmit={handleSubscribe}>
             <input
               type="email"
               name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter email address"
               className="bg-white text-black w-full h-11 rounded-md px-4 placeholder:text-[#969797] text-sm focus:outline-none"
+              required
             />
             <button
               type="submit"
               className="absolute right-0 top-0 bg-[#008A3F] px-10 h-11 rounded-md text-[12px] font-bold hover:bg-[#006A3F]"
+              disabled={isLoading}
             >
-              Subscribe
+              {isLoading ? "Subscribing..." : "Subscribe"}
             </button>
           </form>
+          {message && <p className="text-sm text-[#D1FFE7] mt-2">{message}</p>}
 
           <div className="flex items-center gap-6">
             <p className="text-sm font-medium">Connect With Us</p>
@@ -121,9 +153,9 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="w-11/12 mx-auto lg:mt-[131px] pb-[81.04px]">
-      <hr className="my-[33px] border-[#D1FFE74D] block lg:hidden" />
+        <hr className="my-[33px] border-[#D1FFE74D] block lg:hidden" />
         <p className="text-center text-[12px] lg:text-[15.67px] font-medium">
-          &copy; 2025 Energy & Plant Technology Ltd. All Rights Reserved.
+          © 2025 Energy & Plant Technology Ltd. All Rights Reserved.
           <br className="hidden md:block" /> Built with precision. Powered by innovation.
         </p>
       </div>
