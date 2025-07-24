@@ -164,6 +164,7 @@ const Navbar = () => {
     function handleClickOutside(event) {
       // Check if the click target is a Link or within a Link
       const isLinkClick = event.target.closest('a');
+      const authButton = document.querySelector('img[alt="Auth Button"]');
 
       // Services dropdown
       if (
@@ -195,7 +196,7 @@ const Navbar = () => {
         isUserMenuOpen &&
         userMenuRef.current &&
         !userMenuRef.current.contains(event.target) &&
-        event.target !== document.querySelector('img[alt="Auth Button"]')
+        event.target !== authButton
       ) {
         setIsUserMenuOpen(false);
       }
@@ -464,7 +465,10 @@ const Navbar = () => {
 
         {/* User Menu (Tablet/Mobile) */}
         {isUserMenuOpen && (
-          <div className="absolute top-[50px] right-0 bg-white shadow-lg rounded-lg p-4 z-50 w-full">
+          <div
+            className="absolute top-[50px] right-0 bg-white shadow-lg rounded-lg p-4 z-50 w-full"
+            ref={userMenuRef}
+          >
             <div className="flex flex-col gap-4">
               {isLoading ? (
                 <div>Loading...</div> // Placeholder during auth check
