@@ -207,6 +207,7 @@ const Navbar = () => {
         event.target !== document.querySelector('img[alt="Mobile Menu"]')
       ) {
         setIsMenuOpen(false);
+        setIsServicesDropdownOpen(false); // Close mobile services dropdown on outside click
       }
     }
 
@@ -359,7 +360,7 @@ const Navbar = () => {
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
           <div
-            className="absolute top-[60px] right-1 bg-white shadow-lg drop-shadow-md rounded-lg p-4 z-50 w-full md:hidden"
+            className="absolute top-[52px] right-0 bg-white shadow-lg drop-shadow-md p-4 z-50 w-full md:hidden"
             ref={mobileMenuRef}
           >
             <ul className="text-[#333333] flex flex-col gap-4 items-center">
@@ -375,14 +376,64 @@ const Navbar = () => {
               </li>
               <div className="w-full border-b border-[#BABCD4]"></div>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
-                <Link to="/services">Services</Link>
-                <span
-                  className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${
-                    isActiveLink("/services")
-                      ? "scale-x-100"
-                      : "scale-x-0 group-hover:scale-x-100"
-                  }`}
-                ></span>
+                <button
+                  onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
+                  className="w-full text-left focus:outline-none"
+                >
+                  Services
+                  <span
+                    className={`absolute left-0 bottom-0 w-full h-[2px] bg-[#007A4D] transition-transform duration-300 ease-out origin-left ${
+                      isActiveLink("/services")
+                        ? "scale-x-100"
+                        : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                  ></span>
+                </button>
+                {isServicesDropdownOpen && (
+                  <ul className="mt-2 w-full bg-white shadow-md rounded-md overflow-hidden">
+                    {serviceLinks.map((link) => (
+                      <li key={link.id} className="border-b border-gray-200 last:border-b-0">
+                        {link.subLinks ? (
+                          <button
+                            onClick={() => {
+                              setActiveSubDropdownId(
+                                activeSubDropdownId === link.id ? null : link.id
+                              );
+                            }}
+                            className="w-full text-left p-3 text-[16px] font-[500] font-Inter hover:bg-[#E6F3EC] focus:outline-none"
+                          >
+                            {link.name}
+                            <span className="float-right">
+                              {activeSubDropdownId === link.id ? "▲" : "▼"}
+                            </span>
+                          </button>
+                        ) : (
+                          <Link
+                            to={link.path}
+                            className="block p-3 text-[16px] font-[500] font-Inter hover:bg-[#E6F3EC] focus:outline-none"
+                          >
+                            {link.name}
+                          </Link>
+                        )}
+                        {link.subLinks && activeSubDropdownId === link.id && (
+                          <ul className="pl-4 mt-1">
+                            {link.subLinks.map((subLink, subIndex) => (
+                              <li key={subIndex} className="border-b border-gray-200 last:border-b-0">
+                                <Link
+                                  to={subLink.path}
+                                  onClick={() => setIsMenuOpen(false)} // Close menu on click
+                                  className="block p-3 text-[14px] font-[400] font-Inter text-gray-700 hover:bg-[#E6F3EC] focus:outline-none"
+                                >
+                                  {subLink.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
               <div className="w-full border-b border-[#BABCD4]"></div>
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
