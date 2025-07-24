@@ -15,11 +15,11 @@ const ProvenFeedProcess = () => {
         </div>
 
       {/* cards */}
-      <div className="hidden md:grid md:grid-cols-2 justify-items-center mt-12 gap-8">
+      <div className="hidden md:grid md:grid-cols-2 justify-items-center mt-12 2xl:gap-14 xl:gap-12 md:gap-8">
         {FeedProcess.map((process) => (
-          <div className="w-full flex flex-col border-[1.53px] border-[#969797] rounded-lg overflow-hidden group" key={process.id}>
-          <div className="w-full overflow-hidden">
-            <img className="w-full md:h-58 lg:h-78 xl:h-100 rounded-t-md object-cover" src={process.img} alt={process.title} />
+          <div className="w-full flex flex-col border-[1.53px] 2xl:h-[750px] xl:h-[690px] lg:h-[750px] md:h-[520px] border-[#969797] rounded-lg overflow-hidden group" key={process.id}>
+          <div className="w-full">
+            <img className="w-full md:h-58 lg:h-78 xl:h-100 2xl:h-130 rounded-t-md object-cover" src={process.img} alt={process.title} />
 
                 {/* Hover Overlay Image
             <img className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-200 transition-opacity duration-300 z-90" src="/src/assets/client consultation1.png" alt="hover-overlay"/> */}
@@ -31,7 +31,7 @@ const ProvenFeedProcess = () => {
                     {process.title}
                   </h3>
                 </div>
-                <div className="text-[#000101] font-Inter text-base px-4 py-8 text-center">
+                <div className="text-[#000101] xl:text-[24px] md:text-[20px] font-Inter text-base px-4 py-8 text-center">
                   <p>{process.desc}</p>
                 </div>
               </div>

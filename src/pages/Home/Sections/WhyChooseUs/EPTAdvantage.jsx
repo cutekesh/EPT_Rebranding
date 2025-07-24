@@ -42,7 +42,7 @@ const EPTAdvantage = () => {
                 Smart blueprints for oil, gas, and power <br />
                 systems.
               </p>
-              <Link className="bg-[#F6C200] flex items-center gap-1 rounded-lg text-black text-base sm:text-lg font-semibold py-3 px-2 w-fit">
+              <Link className="bg-[#F6C200] flex items-center gap-1 rounded-lg text-black text-base sm:text-lg font-semibold py-3 px-2 w-fit hover:">
                 Learn More <FaArrowRightLong className="ml-1" />
               </Link>
             </div>

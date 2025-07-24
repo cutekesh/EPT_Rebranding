@@ -5,14 +5,13 @@ import ContactInfoSection from "../../components/ContactUsComps/ContactInfoSecti
 import OfficeMapSection from "../../components/ContactUsComps/OfficeMapSection";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import emailIcon from "../../assets/contactFormEmailIcon.png";
-import closeIcon from "../../assets/closeModalIcon.svg"; 
+import modalImageDesktop from "../../assets/ModalImageDesktop.png";
+import closeIcon from "../../assets/closeModalIcon.svg";
 import TalkToUs from "../../components/ContactUsComps/TalkToUs";
 
 const Contact = () => {
-  const [showModal, setShowModal] = useState(false); 
-  const navigate = useNavigate(); 
-
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   const handleFormSuccess = () => {
     setShowModal(true);
@@ -20,12 +19,11 @@ const Contact = () => {
 
   const handleNavigateHome = () => {
     setShowModal(false);
-    navigate("/"); 
+    navigate("/");
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
-    
   };
 
   const handleOutsideClick = (e) => {
@@ -38,17 +36,20 @@ const Contact = () => {
     <div className="bg-white">
       <Navbar />
       <TalkToUs />
-      <div className={`w-11/12 mx-auto md:py-20 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 container transition-opacity duration-300 ${showModal ? 'opacity-100' : 'opacity-100'}`}>
-        
-
+      <div
+        className={`w-11/12 mx-auto md:py-20 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 container transition-opacity duration-300 ${
+          showModal ? "opacity-100" : "opacity-100"
+        }`}
+      >
         <div className="lg:hidden flex flex-col justify-center items-center">
-        <h2 className="flex items-center justify-center text-[24px] font-bold text-[#000101]">
-          Get In Touch With Us
-        </h2>
-        <p className="text-[14px] text-[#000101] font-Inter font-normal my-4 text-center">
-        If you have any questions, please fill the form below get in touch with us via phone, text or visit any of our office address.
-        </p>
-      </div>
+          <h2 className="flex items-center justify-center text-[24px] font-bold text-[#000101]">
+            Get In Touch With Us
+          </h2>
+          <p className="text-[14px] text-[#000101] font-Inter font-normal my-4 text-center">
+            If you have any questions, please fill the form below get in touch
+            with us via phone, text or visit any of our office address.
+          </p>
+        </div>
 
         <div className="h-full order-2 md:order-2 lg:order-none">
           <ContactInfoSection />
@@ -71,8 +72,11 @@ const Contact = () => {
 
       {/* Success Modal */}
       {showModal && (
-        <div  id="modal-backdrop"
-        onClick={handleOutsideClick} className="fixed inset-0 bg-black/80  flex justify-center items-center z-50 p-4">
+        <div
+          id="modal-backdrop"
+          onClick={handleOutsideClick}
+          className="fixed inset-0 bg-black/80  flex justify-center items-center z-50 md:p-4 p-10"
+        >
           <div className="bg-white rounded-lg shadow-xl p-14 md:w-[480px] md:h-[460px] w-[340px] h-[360px] text-center relative ">
             {/* Close Button */}
             <img
@@ -82,9 +86,13 @@ const Contact = () => {
               alt="Close modal"
             />
             <div className="flex justify-center md:mb-6 mb-4">
-              <img src={emailIcon} alt="emailIcon" />
+              <img
+                className="md:h-full md:w-full w-[60px] h-[60px]"
+                src={modalImageDesktop}
+                alt="emailIcon"
+              />
             </div>
-            
+
             <p className="text-[#000101] md:my-10 font-Inter md:text-2xl my-6">
               Your message has been sent. Our support team will reply to your
               message within 24 hours.

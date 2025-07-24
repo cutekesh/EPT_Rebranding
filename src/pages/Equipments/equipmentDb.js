@@ -40,7 +40,7 @@ export const equipments = [
     id: 1,
     image: image1,
     name: "3 Phase Test Separator",
-    category: "3 Phase Well Test Seperator",
+    category: "Phase Well Test Seperator",
     dimension: "54 in. OD x 15' s/s x 1440 ",
   },
   {
@@ -190,7 +190,7 @@ export const equipments = [
     id: 25,
     image: image25,
     name: "HT90P",
-    category: "Heater Treater33",
+    category: "Heater Treater",
     dimension: "66 in. x 34 ft x - ",
   },
   {

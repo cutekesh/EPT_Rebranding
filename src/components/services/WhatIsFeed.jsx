@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import consultationIcon from "../../assets/consultationIcon.png";
+import modalImageDesktop from "../../assets/ModalImageDesktop.png";
 import closeIcon from "../../assets/closeModalIcon.svg";
 
 const WhatIsFeed = () => {
@@ -139,7 +139,7 @@ const WhatIsFeed = () => {
         <div
           id="modal-backdrop"
           onClick={handleOutsideClick}
-          className="fixed inset-0 bg-black/80 flex justify-center items-center z-50 p-4"
+          className="fixed inset-0 bg-black/80 flex justify-center items-center z-50 md:p-4 p-10"
         >
           <div className="bg-white rounded-lg shadow-xl p-8 md:p-14 w-full max-w-sm sm:max-w-md md:max-w-lg text-center relative">
             {/* Close Button */}
@@ -150,7 +150,7 @@ const WhatIsFeed = () => {
               alt="Close modal"
             />
             <div className="flex justify-center mb-4 sm:mb-6">
-              <img src={consultationIcon} alt="Success icon" />
+              <img className="md:h-full md:w-full w-[60px] h-[60px]" src={modalImageDesktop} alt="Success icon" />
             </div>
             <p className="text-[#000101] text-lg sm:text-xl md:text-2xl my-4 sm:my-6 font-Inter">
               Your consultation has been successfully booked and an email has been sent!
