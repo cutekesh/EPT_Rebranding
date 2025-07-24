@@ -328,7 +328,7 @@ const Navbar = () => {
           ) : (
             <>
               <Link to="/login">
-                <button className="text-[16px] font-[400] bg-[#008A3F] py-[17.5px] px-[24.5px] rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-[#006A3F] hover:text-black">
+                <button className="text-[16px] font-[400] bg-[#008A3F] py-[17.5px] px-[24.5px] rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-[#006A3F] hover:text-[#FEFFFF]">
                   Sign In
                 </button>
               </Link>
