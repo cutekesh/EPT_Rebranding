@@ -1,38 +1,37 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-
 import { auth as apiAuth } from "../api/axios";
-import { auth as firebaseAuth } from "../api/firebaseConfig"; // Import 'auth' from YOUR firebaseConfig.js
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"; // Import other functions from firebase/auth
+import { auth as firebaseAuth } from "../api/firebaseConfig";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // Stores user info (e.g., { id, username, email })
-  const [isLoading, setIsLoading] = useState(true); // To check if initial authentication status is loaded
-  const navigate = useNavigate(); // Initialize useNavigate
-  useEffect(() => {
-    // On app load, try to retrieve token and validate
-    const token = localStorage.getItem("jwtToken");
-    if (token) {
-      // In a real app, you might want to send this token to a backend
-      // endpoint like /api/auth/verifyToken to ensure it's still valid
-      // and get fresh user data. For simplicity here, we'll just set user if token exists.
-      // A better approach: decode JWT on frontend (for non-sensitive data)
-      // or make a call to /api/auth/profile to validate and get user details.
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
-      // Example: Simple token existence check (less secure but works)
-      // For production, always validate token with backend.
-      // Since our backend's /api/auth/profile needs a token, let's use it.
+  useEffect(() => {
+    // On app load, try to retrieve token and validate, but only if user is not already set
+    const token = localStorage.getItem("jwtToken");
+    if (token && !user) {
       const fetchUserProfile = async () => {
         try {
-          const response = await apiAuth.getProfile(); // This uses the interceptor to send token
-          setUser(response.data.user); // Assuming your backend sends user data with profile
+          const response = await apiAuth.getProfile();
+          console.log("Profile fetch response:", response.data); // Debug log
+          setUser(response.data.user);
         } catch (error) {
-          console.error("Token validation failed or expired:", error);
-          localStorage.removeItem("jwtToken"); // Clear invalid token
-          setUser(null);
-          navigate("/"); // Redirect to login on token expiry
+          console.error("Token validation failed:", {
+            message: error.message,
+            response: error.response?.data,
+            status: error.response?.status,
+          });
+          if (error.response?.status === 401) {
+            // Only clear token on explicit unauthorized error
+            localStorage.removeItem("jwtToken");
+            setUser(null);
+            navigate("/login"); // Redirect to login only for 401
+          }
         } finally {
           setIsLoading(false);
         }
@@ -41,42 +40,43 @@ export const AuthProvider = ({ children }) => {
     } else {
       setIsLoading(false);
     }
-  }, [navigate]);
+  }, [navigate, user]); // Add user as dependency to avoid re-running if user is set
 
   const login = async (email, password) => {
     try {
       const response = await apiAuth.login(email, password);
       const { token, user: userData } = response.data;
-      localStorage.setItem("jwtToken", token); // Store the JWT
-      setUser(userData); // Set user data in state
-      return true; // Indicate success
+      localStorage.setItem("jwtToken", token);
+      setUser(userData);
+      console.log("Login successful, user set:", userData); // Debug log
+      return true;
     } catch (error) {
       console.error(
         "Login failed:",
         error.response ? error.response.data.message : error.message
       );
       setUser(null);
-      return false; // Indicate failure
+      return false;
     }
   };
 
   const signup = async (name, email, password) => {
     try {
       const response = await apiAuth.signup(name, email, password);
-      // If backend automatically logs in on signup, store token and user
       if (response.data.token) {
         const { token, user: userData } = response.data;
         localStorage.setItem("jwtToken", token);
         setUser(userData);
+        console.log("Signup successful, user set:", userData); // Debug log
       }
-      return true; // Indicate success
+      return true;
     } catch (error) {
       console.error(
         "Signup failed:",
         error.response ? error.response.data.message : error.message
       );
       setUser(null);
-      return false; // Indicate failure
+      return false;
     }
   };
 
@@ -85,16 +85,19 @@ export const AuthProvider = ({ children }) => {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(firebaseAuth, provider);
       const firebaseUser = result.user;
-
       const idToken = await firebaseUser.getIdToken();
-
-      const response = await apiAuth.googleLogin(idToken); // Use apiAuth
+      const response = await apiAuth.googleLogin(idToken);
       const { token, user: userData } = response.data;
       localStorage.setItem("jwtToken", token);
       setUser(userData);
+      console.log("Google login successful, user set:", userData); // Debug log
       return true;
     } catch (error) {
-      console.error("Firebase Google login failed:", error.code, error.message);
+      console.error("Firebase Google login failed:", {
+        code: error.code,
+        message: error.message,
+        response: error.response?.data,
+      });
       setUser(null);
       if (error.code === "auth/popup-closed-by-user") {
         return false;
@@ -106,16 +109,16 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("jwtToken"); // Remove the JWT
-    setUser(null); // Clear user state
+    localStorage.removeItem("jwtToken");
+    setUser(null);
     firebaseAuth.signOut();
     navigate("/login");
+    console.log("Logout successful, user cleared"); // Debug log
   };
 
   const initiateForgotPassword = async (email) => {
     try {
       const response = await apiAuth.forgotPassword(email);
-      // Only return the message string, not the whole response object
       return response.data.message;
     } catch (err) {
       console.error(
@@ -131,7 +134,7 @@ export const AuthProvider = ({ children }) => {
   const completePasswordReset = async (token, newPassword) => {
     try {
       const response = await apiAuth.resetPassword(token, newPassword);
-      return response.data.message; // Return only the message string
+      return response.data.message;
     } catch (err) {
       console.error(
         "Password reset failed:",
@@ -142,6 +145,7 @@ export const AuthProvider = ({ children }) => {
         : "Error resetting password.";
     }
   };
+
   return (
     <AuthContext.Provider
       value={{

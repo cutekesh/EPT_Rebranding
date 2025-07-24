@@ -4,8 +4,10 @@ import eptUserLogo from "../../assets/eptUserLogo.svg";
 import eptMobileMenu from "../../assets/eptMobileMenu.svg";
 import closeIcon from "../../assets/closeIcon.svg";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../../../src/context/AuthContext"; // Adjust path to your AuthContext file
 
 const Navbar = () => {
+  const { user, isLoading, logout } = useAuth(); // Get user, isLoading, and logout from AuthContext
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
@@ -66,7 +68,7 @@ const Navbar = () => {
       subLinks: [
         {
           name: "Front End Engineering Design",
-          path: "/services",
+          path: "/services/engineering/front-end",
         },
         {
           name: "Detailed Engineering Design",
@@ -160,12 +162,16 @@ const Navbar = () => {
   // Handle click outside for dropdowns and menus
   useEffect(() => {
     function handleClickOutside(event) {
+      // Check if the click target is a Link or within a Link
+      const isLinkClick = event.target.closest('a');
+
       // Services dropdown
       if (
         isServicesDropdownOpen &&
         servicesDropdownRef.current &&
         !servicesDropdownRef.current.contains(event.target) &&
-        !navRef.current.contains(event.target)
+        !navRef.current.contains(event.target) &&
+        !isLinkClick
       ) {
         setIsServicesDropdownOpen(false);
         setIsEngineeringSubDropdownOpen(false);
@@ -177,7 +183,8 @@ const Navbar = () => {
         isEngineeringSubDropdownOpen &&
         engineeringSubDropdownRef.current &&
         !engineeringSubDropdownRef.current.contains(event.target) &&
-        !servicesDropdownRef.current?.contains(event.target)
+        !servicesDropdownRef.current?.contains(event.target) &&
+        !isLinkClick
       ) {
         setIsEngineeringSubDropdownOpen(false);
         setIsOverlayActive(false);
@@ -205,7 +212,6 @@ const Navbar = () => {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-    // eslint-disable-next-line
   }, [isServicesDropdownOpen, isEngineeringSubDropdownOpen, isUserMenuOpen, isMenuOpen]);
 
   const isActiveLink = (path) => {
@@ -310,16 +316,28 @@ const Navbar = () => {
 
         {/* Desktop Buttons */}
         <div className="hidden lg:flex text-[#333333] gap-[20px] items-center">
-          <Link to="/login">
-            <button className="text-[16px] font-[400] bg-[#008A3F] py-[17.5px] px-[24.5px] rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-[#006A3F] hover:text-black">
-              Sign In
-            </button>
-          </Link>
-          <Link to="/register">
-            <button className="text-[16px] font-[400] bg-white py-[17.5px] px-[24.5px] rounded-xl cursor-pointer border-1 font-Inter hover:text-[#007A4D]">
-              Sign Up
-            </button>
-          </Link>
+          {isLoading ? (
+            <div>Loading...</div> // Placeholder during auth check
+          ) : user ? (
+            <Link to="/services/engineering/front-end">
+              <button className="text-[16px] font-[400] bg-[#008A3F] py-[17.5px] px-[24.5px] rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-[#006A3F] hover:text-black">
+                Book a Consultation
+              </button>
+            </Link>
+          ) : (
+            <>
+              <Link to="/login">
+                <button className="text-[16px] font-[400] bg-[#008A3F] py-[17.5px] px-[24.5px] rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-[#006A3F] hover:text-black">
+                  Sign In
+                </button>
+              </Link>
+              <Link to="/register">
+                <button className="text-[16px] font-[400] bg-white py-[17.5px] px-[24.5px] rounded-xl cursor-pointer border-1 font-Inter hover:text-[#007A4D]">
+                  Sign Up
+                </button>
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Tablet and mobile icons */}
@@ -340,12 +358,10 @@ const Navbar = () => {
 
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
-
           <div
             className="absolute top-[60px] right-1 bg-white shadow-lg drop-shadow-md rounded-lg p-4 z-50 w-full md:hidden"
             ref={mobileMenuRef}
           >
-
             <ul className="text-[#333333] flex flex-col gap-4 items-center">
               <li className="text-[16px] font-[500] hover:text-[#007A4D] transition-all duration-300 font-Inter relative group">
                 <Link to="/">Home</Link>
@@ -395,21 +411,40 @@ const Navbar = () => {
           </div>
         )}
 
+        {/* User Menu (Tablet/Mobile) */}
         {isUserMenuOpen && (
-
-          <div className="absolute top-[50px] right-0 bg-white shadow-lg rounded-lg p-4 z-50 w-full ">
+          <div className="absolute top-[50px] right-0 bg-white shadow-lg rounded-lg p-4 z-50 w-full">
             <div className="flex flex-col gap-4">
-              <Link to="/login">
-                <button className="text-[16px] font-[400] bg-[#008A3F] py-2 px-4 rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-[#006A3F] w-full ">
-                  Sign In
-                </button>
-              </Link>
-              <Link to="/register">
-
-                <button className="text-[16px] font-[400] bg-white border-[#006A3F] text-[#008A3F] py-2 px-4 rounded-xl cursor-pointer border-1 font-Inter hover:text-black w-full ">
-                  Sign Up
-                </button>
-              </Link>
+              {isLoading ? (
+                <div>Loading...</div> // Placeholder during auth check
+              ) : user ? (
+                <>
+                  <Link to="/services/engineering/front-end">
+                    <button className="text-[16px] font-[400] bg-[#008A3F] py-2 px-4 rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-[#006A3F] w-full">
+                      Book a Consultation
+                    </button>
+                  </Link>
+                  <button
+                    onClick={logout}
+                    className="text-[16px] font-[400] bg-white border-[#006A3F] text-[#008A3F] py-2 px-4 rounded-xl cursor-pointer border-1 font-Inter hover:text-black w-full"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login">
+                    <button className="text-[16px] font-[400] bg-[#008A3F] py-2 px-4 rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-[#006A3F] w-full">
+                      Sign In
+                    </button>
+                  </Link>
+                  <Link to="/register">
+                    <button className="text-[16px] font-[400] bg-white border-[#006A3F] text-[#008A3F] py-2 px-4 rounded-xl cursor-pointer border-1 font-Inter hover:text-black w-full">
+                      Sign Up
+                    </button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         )}
@@ -424,15 +459,7 @@ const Navbar = () => {
       {isServicesDropdownOpen && (
         <div
           ref={servicesDropdownRef}
-          className={`absolute xl:top-26
-                      xl:left-[20%] md:left-15
-                      bg-white p-4 rounded-lg shadow-lg z-50
-                      w-[574px] h-[266px]
-                      md:w-[calc(100vw-4rem)] md:max-w-[450px] md:mx-auto md:h-auto
-                      transition-opacity duration-300 ease-in-out
-                      opacity-100
-                      hidden md:block
-                      pointer-events-auto`}
+          className={`absolute xl:top-26 xl:left-[20%] md:left-15 bg-white p-4 rounded-lg shadow-lg z-50 w-[574px] h-[266px] md:w-[calc(100vw-4rem)] md:max-w-[450px] md:mx-auto md:h-auto transition-opacity duration-300 ease-in-out opacity-100 hidden md:block pointer-events-auto`}
           onMouseEnter={handleMouseEnterServices}
           onMouseLeave={handleMouseLeaveServices}
         >
@@ -446,15 +473,13 @@ const Navbar = () => {
                       ? handleEngineeringClick
                       : undefined
                   }
-                  className={`text-black font-Inter text-[16px] font-[500] w-[257px] h-[55px] md:w-full p-3 rounded-md flex items-center text-start hover:bg-[#008A3F] hover:text-white transition-colors duration-200 relative group
-                    ${ link.id === "engineering" &&
-                    isEngineeringSubDropdownOpen
-                    ? "bg-[#008A3F] text-white"
-                    : ""
-                    }`}
+                  className={`text-black font-Inter text-[16px] font-[500] w-[257px] h-[55px] md:w-full p-3 rounded-md flex items-center text-start hover:bg-[#008A3F] hover:text-white transition-colors duration-200 relative group ${
+                    link.id === "engineering" && isEngineeringSubDropdownOpen
+                      ? "bg-[#008A3F] text-white"
+                      : ""
+                  }`}
                 >
                   {link.name}
-
                   {/* Nested Dropdown for Engineering & Project Management */}
                   {link.subLinks && activeSubDropdownId === link.id && (
                     <div
@@ -473,7 +498,8 @@ const Navbar = () => {
                         <Link
                           key={subIndex}
                           to={subLink.path}
-                          className="text-black font-Inter text-[16px] font-[500] hover:bg-[#E6F3EC] w-full h-[55px] p-3 rounded-md flex items-center justify-center text-center transition-colors duration-300 relative group">
+                          className="text-black font-Inter text-[16px] font-[500] hover:bg-[#E6F3EC] w-full h-[55px] p-3 rounded-md flex items-center justify-center text-center transition-colors duration-300 relative group"
+                        >
                           {subLink.name}
                         </Link>
                       ))}
@@ -490,10 +516,7 @@ const Navbar = () => {
       {isEngineeringSubDropdownOpen && (
         <div
           ref={engineeringSubDropdownRef}
-          className={`absolute bg-white p-4 rounded-lg shadow-lg z-50
-                      w-[280px] h-auto flex flex-col gap-2
-                      transition-opacity duration-300 ease-in-out opacity-100
-                      pointer-events-auto 2xl:top-26 xl:top-26 md:top-23.1  2xl:left-[46.2%] xl:left-[55.3%] md:left-[61.5%]`}
+          className={`absolute bg-white p-4 rounded-lg shadow-lg z-50 w-[280px] h-auto flex flex-col gap-2 transition-opacity duration-300 ease-in-out opacity-100 pointer-events-auto 2xl:top-26 xl:top-26 md:top-23.1 2xl:left-[43.6%] xl:left-[55.3%] md:left-[61.5%]`}
           onMouseEnter={() => clearTimeout(servicesDropdownTimeoutId.current)}
           onMouseLeave={() => {
             servicesDropdownTimeoutId.current = setTimeout(() => {
@@ -508,9 +531,15 @@ const Navbar = () => {
             ?.subLinks.map((subLink, subIndex) => (
               <Link
                 key={subIndex}
-                to={subLink.path}
-                className="text-black font-Inter text-[16px] font-[500] hover:bg-[#008A3F] hover:text-white w-full h-[55px] p-3 rounded-md flex items-center text-start transition-colors duration-300 relative group">
-                {subLink.name}
+                to={subLink.path || "#"}
+                onClick={() => {
+                  setIsEngineeringSubDropdownOpen(false);
+                  setIsOverlayActive(false);
+                  setIsServicesDropdownOpen(false);
+                }}
+                className="text-black font-Inter text-[16px] font-[500] hover:bg-[#008A3F] hover:text-white w-full h-[55px] p-3 rounded-md flex items-center text-start transition-colors duration-300 relative group"
+              >
+                {subLink.name || "Unnamed Link"}
               </Link>
             ))}
         </div>
