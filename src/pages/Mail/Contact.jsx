@@ -87,7 +87,7 @@ const Contact = () => {
             />
             <div className="flex justify-center md:mb-6 mb-4">
               <img
-                className="md:h-full md:w-full w-[60px] h-[60px]"
+                className=" "
                 src={modalImageDesktop}
                 alt="emailIcon"
               />

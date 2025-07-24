@@ -222,9 +222,9 @@ const AllEquipment = () => {
         </section>
 
         {/* Equipments */}
-        <section className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8 md:gap-x-8 md:gap-y-12">
+        <section className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-8 md:gap-x-8 md:gap-y-12 ">
           {currentEquipments.map((equipment) => (
-            <div key={equipment.id} className="bg-[#EEF4F0A3] overflow-hidden">
+            <div key={equipment.id} className="bg-[#EEF4F0A3] overflow-hidden ">
               <img
                 src={equipment.image}
                 alt={equipment.name}
