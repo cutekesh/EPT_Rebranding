@@ -319,7 +319,7 @@ const Navbar = () => {
           {isLoading ? (
             <div>Loading...</div> // Placeholder during auth check
           ) : user ? (
-            <Link to="/book-consultation">
+            <Link to="/services/engineering/front-end">
               <button className="text-[16px] font-[400] bg-[#008A3F] py-[17.5px] px-[24.5px] rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-[#006A3F] hover:text-black">
                 Book a Consultation
               </button>
@@ -419,7 +419,7 @@ const Navbar = () => {
                 <div>Loading...</div> // Placeholder during auth check
               ) : user ? (
                 <>
-                  <Link to="/book-consultation">
+                  <Link to="/services/engineering/front-end">
                     <button className="text-[16px] font-[400] bg-[#008A3F] py-2 px-4 rounded-xl cursor-pointer text-[#FEFFFF] border-1 font-Inter hover:bg-[#006A3F] w-full">
                       Book a Consultation
                     </button>

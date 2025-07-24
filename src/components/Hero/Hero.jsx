@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import heroImg1 from "../../assets/hero 1.png";
 import heroImg2 from "../../assets/hero 2.png";
 import heroImg3 from "../../assets/hero 3.png";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const heroTitleDesktop = [
@@ -113,25 +114,27 @@ const Hero = () => {
               </span>
             </button>
             {/* Book a Consultation Button */}
-            <button
-              className="group relative inline-flex items-center
-                         bg-transparent text-[#FEFFFF] border-2 border-[#FEFFFF] py-3 px-6 rounded-lg
-                         transition-all duration-300 ease-in-out
-                         overflow-hidden
-                          hover:text-white
-                         hover:pr-[calc(1.5rem + 3px)]"
-            >
-              <span className="relative z-10 font-Inter font-medium text-lg sm:text-xl md:text-2xl lg:text-[27.43px]">
-                Book a Consultation
-              </span>
-              <span
-                className="flex items-center justify-center
-                         w-0 opacity-0 group-hover:w-[1.5rem] group-hover:opacity-100
-                         transition-all duration-300 ease-in-out"
+            <Link to="/services/engineering/front-end">
+              <button
+                className="group relative inline-flex items-center
+                           bg-transparent text-[#FEFFFF] border-2 border-[#FEFFFF] py-3 px-6 rounded-lg
+                           transition-all duration-300 ease-in-out
+                           overflow-hidden
+                           hover:text-white
+                           hover:pr-[calc(1.5rem + 3px)]"
               >
-                <span className="text-xl ml-2">→</span>
-              </span>
-            </button>
+                <span className="relative z-10 font-Inter font-medium text-lg sm:text-xl md:text-2xl lg:text-[27.43px]">
+                  Book a Consultation
+                </span>
+                <span
+                  className="flex items-center justify-center
+                           w-0 opacity-0 group-hover:w-[1.5rem] group-hover:opacity-100
+                           transition-all duration-300 ease-in-out"
+                >
+                  <span className="text-xl ml-2">→</span>
+                </span>
+              </button>
+            </Link>
           </div>
         </div>
 
