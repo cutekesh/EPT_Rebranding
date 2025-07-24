@@ -20,20 +20,7 @@ const Login = () => {
 
   const handleTogglePassword = () => setShowPassword(!showPassword);
 
-  // const handleGoogleLoginClick = async () => {
-  //   setLoading(true);
-  //   setError({});
-  //   try {
-  //     const success = await googleLogin();
-  //     if (success) navigate("/");
-  //     else setError({ general: "Google login was cancelled or failed. Please try again." });
-  //   } catch (err) {
-  //     setError({
-  //       general: err.message || "Google login failed due to an unexpected error.",
-  //     });
-  //   }
-  //   setLoading(false);
-  // };
+  
 
   const handleGoogleLogin = async () => {
     setLoading(true);
