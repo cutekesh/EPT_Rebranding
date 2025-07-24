@@ -150,7 +150,7 @@ const WhatIsFeed = () => {
               alt="Close modal"
             />
             <div className="flex justify-center mb-4 sm:mb-6">
-              <img className="md:h-full md:w-full w-[60px] h-[60px]" src={modalImageDesktop} alt="Success icon" />
+              <img className="" src={modalImageDesktop} alt="Success icon" />
             </div>
             <p className="text-[#000101] text-lg sm:text-xl md:text-2xl my-4 sm:my-6 font-Inter">
               Your consultation has been successfully booked and an email has been sent!
